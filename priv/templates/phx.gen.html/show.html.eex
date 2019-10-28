@@ -1,13 +1,58 @@
-<h1>Show <%= schema.human_singular %></h1>
+<div class="row page-title clearfix">
 
-<ul>
-<%= for {k, _} <- schema.attrs do %>
-  <li>
-    <strong><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</strong>
-    <%%= @<%= schema.singular %>.<%= k %> %>
-  </li>
-<% end %>
-</ul>
+    <div class="page-title-left">
+        <div class="d-none d-md-inline-flex justify-center align-items-center">
+            <a href="<%%= <%= schema.route_helper %>_path(@conn, :index) %>" class="btn btn-color-scheme btn-sm ripple">
+                <i class="feather feather-chevron-left"></i>
+                <%%= gettext "Back" %>
+            </a>
+        </div>
+    </div>
 
-<span><%%= link "Edit", to: Routes.<%= schema.route_helper %>_path(@conn, :edit, @<%= schema.singular %>) %></span>
-<span><%%= link "Back", to: Routes.<%= schema.route_helper %>_path(@conn, :index) %></span>
+
+    <div class="page-title-right">
+        <div class="d-none d-md-inline-flex justify-center align-items-center">
+            <a href="<%%= <%= schema.route_helper %>_path(@conn, :new) %>" class="btn btn-color-scheme btn-sm ripple">
+                <i class="feather feather-plus"></i>
+                <%%= gettext "Create <%= schema.human_singular %>" %>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div class="widget-list">
+    <div class="row">
+        <!-- User Summary -->
+        <div class="col-12 widget-holder">
+            <div class="widget-bg">
+                <div class="widget-heading widget-heading-border">
+                    <h5 class="widget-title"><%%= gettext "<%= schema.human_singular %> Details" %></h5>
+                    <div class="flex-1"></div>
+                    <div class="text-right"><a href="<%%= <%= schema.route_helper %>_path(@conn, :edit, @<%= schema.singular %>) %>" class="btn btn-sm btn-secondary"> <i class="material-icons mr-1">mode_edit</i> <%%= gettext "Edit" %></a>
+                    </div>
+                </div>
+
+                <div class="widget-body clearfix">
+                    <div class="contact-details-profile">
+                        <div class="row">
+                            <%= for {k, _} <- schema.attrs do %>
+
+                                <div class="col-md-6">
+                                    <div class="contact-details-cell">
+                                        <small class="heading-font-family fw-500"><%%= gettext("<%= Phoenix.Naming.humanize(Atom.to_string(k)) %>") %></small>
+                                        <span><%%= @<%= schema.singular %>.<%= k %> %></span>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.widget-body -->
+            </div>
+            <!-- /.widget-bg -->
+        </div>
+
+    </div>
+    <!-- /.row -->
+</div>

@@ -1,18 +1,35 @@
 
   alias <%= inspect schema.module %>
+	alias <%= context.base_module %>.{Filter, Paginator}
+
 
   @doc """
-  Returns the list of <%= schema.plural %>.
+  Filter <%= schema.singular %> using given criterials and return the list of <%= schema.plural %>.
 
   ## Examples
 
-      iex> list_<%= schema.plural %>()
+      iex> filter_<%= schema.plural %>(%{name: "abc"})
       [%<%= inspect schema.alias %>{}, ...]
 
   """
-  def list_<%= schema.plural %> do
-    Repo.all(<%= inspect schema.alias %>)
-  end
+	def find_first_<%= schema.singular %>(filters \\ %{}) do
+	    from(u in <%= inspect schema.alias %>)
+	    |> Filter.apply(filters)
+	    |> first()
+	    |> Repo.one()
+	  end
+
+	  def filter_<%= schema.singular %>(filters \\ %{}) do
+	    from(u in <%= inspect schema.alias %>)
+	    |> Filter.apply(filters)
+	    |> Repo.all()
+	  end
+
+	  def filter_<%= schema.singular %>_paginate(filters, params \\ %{}) do
+	    from(u in <%= inspect schema.alias %>)
+	    |> Filter.apply(filters)
+	    |> Paginator.new(params)
+	  end
 
   @doc """
   Gets a single <%= schema.singular %>.

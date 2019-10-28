@@ -2,33 +2,27 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
   use <%= inspect context.web_module %>, :controller
 
   alias <%= inspect context.module %>
+	alias <%= inspect context.base_module %>.Filter
   alias <%= inspect schema.module %>
 
   def index(conn, params) do
-    pagination = <%= inspect context.alias %>.list_<%= schema.plural %>_with_paging(params)
+
+    filters =
+      Filter.parse(
+        [],
+        params
+      )
+
+    paginator = <%= inspect context.alias %>.filter_<%= schema.singular %>_paginate(filters, params)
 
     conn
-    |> assign(:title, "Listing <%= inspect schema.module %>")
-    |> assign(:pagination, pagination)
-    |> assign(:entries, pagination.entries)
-    |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-    |> assign(:fields, [])
-    |> assign(:filter_by, [])
-    |> put_view(Y1commonWeb.PageView)
-    |> render("listing.html")
+    |> assign(:filters, filters)
+    |> render("index.html", <%= schema.plural %>: paginator.entries, paginator: paginator)
   end
 
   def new(conn, _params) do
     changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(%<%= inspect schema.alias %>{})
-
-    conn
-    |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-    |> assign(:changeset, changeset)
-    |> assign(:model, <%= inspect schema.module %>)
-    |> assign(:page_title, "New <%= inspect schema.module %>")
-    |> assign(:form_title, "<%= inspect schema.module %> information")
-    |> put_view(Y1commonWeb.PageView)
-    |> render("new.html")
+    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{<%= inspect schema.singular %> => <%= schema.singular %>_params}) do
@@ -36,65 +30,35 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
       {:ok, <%= schema.singular %>} ->
         conn
         |> put_flash(:info, "<%= schema.human_singular %> created successfully.")
-        |> redirect(to: Routes.<%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>))
+        |> redirect(to: <%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        conn
-        |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-        |> assign(:changeset, changeset)
-        |> assign(:model, <%= inspect schema.module %>)
-        |> assign(:page_title, "New <%= inspect schema.module %>")
-        |> assign(:form_title, "<%= inspect schema.module %> information")
-        |> put_view(Y1commonWeb.PageView)
-        |> render("new.html")
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    item = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
-
-    conn
-    |> assign(:item, item)
-    |> assign(:fields, [])
-    |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-    |> put_view(Y1commonWeb.PageView)
-    |> render("show.html")
+    <%= schema.singular %> = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
+    render(conn, "show.html", <%= schema.singular %>: <%= schema.singular %>)
   end
 
   def edit(conn, %{"id" => id}) do
-    item = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
-    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(item)
-
-    conn
-    |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-    |> assign(:changeset, changeset)
-    |> assign(:item, item)
-    |> assign(:model, <%= inspect schema.module %>)
-    |> assign(:page_title, "Edit <%= inspect schema.module %>")
-    |> assign(:form_title, "<%= inspect schema.module %> information")
-    |> put_view(Y1commonWeb.PageView)
-    |> render("edit.html")
+    <%= schema.singular %> = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
+    changeset = <%= inspect context.alias %>.change_<%= schema.singular %>(<%= schema.singular %>)
+    render(conn, "edit.html", <%= schema.singular %>: <%= schema.singular %>, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, <%= inspect schema.singular %> => <%= schema.singular %>_params}) do
-    item = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
+    <%= schema.singular %> = <%= inspect context.alias %>.get_<%= schema.singular %>!(id)
 
-    case <%= inspect context.alias %>.update_<%= schema.singular %>(item, <%= schema.singular %>_params) do
+    case <%= inspect context.alias %>.update_<%= schema.singular %>(<%= schema.singular %>, <%= schema.singular %>_params) do
       {:ok, <%= schema.singular %>} ->
         conn
         |> put_flash(:info, "<%= schema.human_singular %> updated successfully.")
-        |> redirect(to: Routes.<%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>))
+        |> redirect(to: <%= schema.route_helper %>_path(conn, :show, <%= schema.singular %>))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        conn
-        |> assign(:path, &Routes.<%= schema.route_helper %>_path/3)
-        |> assign(:changeset, changeset)
-        |> assign(:item, item)
-        |> assign(:model, <%= inspect schema.module %>)
-        |> assign(:page_title, "Edit <%= inspect schema.module %>")
-        |> assign(:form_title, "<%= inspect schema.module %> information")
-        |> put_view(Y1commonWeb.PageView)
-        |> render("edit.html")
+        render(conn, "edit.html", <%= schema.singular %>: <%= schema.singular %>, changeset: changeset)
     end
   end
 
@@ -104,6 +68,6 @@ defmodule <%= inspect context.web_module %>.<%= inspect Module.concat(schema.web
 
     conn
     |> put_flash(:info, "<%= schema.human_singular %> deleted successfully.")
-    |> redirect(to: Routes.<%= schema.route_helper %>_path(conn, :index))
+    |> redirect(to: <%= schema.route_helper %>_path(conn, :index))
   end
 end

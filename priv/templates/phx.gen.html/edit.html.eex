@@ -1,5 +1,33 @@
-<h1>Edit <%= schema.human_singular %></h1>
+<div class="row page-title clearfix">
+    <!-- /.page-title-left -->
+    <div class="page-title-left">
+        <div class="d-none d-md-inline-flex justify-center align-items-center">
+            <a href="<%%= <%= schema.route_helper %>_path(@conn, :index) %>" class="btn btn-color-scheme btn-sm ripple">
+                <i class="feather feather-chevron-left"></i>
+                <%%= gettext "Back" %>
+            </a>
+        </div>
+    </div>
+    <!-- /.page-title-right -->
+</div>
 
-<%%= render "form.html", Map.put(assigns, :action, Routes.<%= schema.route_helper %>_path(@conn, :update, @<%= schema.singular %>)) %>
+<div class="widget-list">
+    <div class="row">
+        <!-- User Summary -->
+        <div class="col-12 widget-holder">
+            <div class="widget-bg">
+                <div class="widget-heading widget-heading-border">
+                    <h5 class="widget-title"><%%= gettext "Edit <%= schema.human_singular %>" %></h5>
+                </div>
 
-<span><%%= link "Back", to: Routes.<%= schema.route_helper %>_path(@conn, :index) %></span>
+                <div class="widget-body clearfix">
+                    <%%= render "form.html", Map.put(assigns, :action, <%= schema.route_helper %>_path(@conn, :update, @<%= schema.singular %>)) %>
+                </div>
+                <!-- /.widget-body -->
+            </div>
+            <!-- /.widget-bg -->
+        </div>
+
+    </div>
+    <!-- /.row -->
+</div>
