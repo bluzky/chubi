@@ -1,10 +1,10 @@
 defmodule Chubi.PostMeta.PostTag do
   use Chubi, :model
 
+  @primary_key false
   schema "post_tags" do
     field(:post_id, :id)
     field(:tag_id, :id)
-    timestamps()
   end
 
   @doc false

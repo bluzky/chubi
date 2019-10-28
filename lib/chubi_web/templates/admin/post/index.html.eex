@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row row-cards row-deck mt-md-5">
+
+    <div class="col-md-3">
+<%= render "_sidebar.html", assigns %>
+    </div>
+    
+    <div class="col-md-9">
+      <div class="card" style="flex-grow: 0;">
+        <div class="table-responsive">
+          <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+            <thead>
+              <tr>
+                <th ><%= gettext "Title" %></th>
+                <th><%= gettext "Category" %></th>
+                <th class="text-center"><%= gettext "Published at" %></th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <%= for post <- @posts do %>
+                <tr>
+                  <td> <a href="<%= Routes.admin_post_path(@conn, :show, post) %>" class="text-default"><%= post.title %></a>
+                  </td>
+
+                  <td>
+                    <%= for category <- post.categories do %>
+                      <span class="badge badge-secondary"><%= category.name %></span>
+                    <% end %>
+                  </td>
+
+
+                  <td class="text-center">
+                    <%= if post.is_draft do %>
+                      <span class="badge badge-pill badge-secondary"><%= gettext "Draft" %></span>
+                    <% else %>
+                      <%= format_date(post.published_at) %>
+                    <% end %>
+                  </td>
+
+                  <td class="text-center">
+                    <div class="item-action dropdown">
+                      <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Publish </a>
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-x"></i> Delete</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div class="clearfix">
+        <div class="dropdown float-left">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button"  data-toggle="dropdown" >
+            10 dòng mỗi trang
+          </a>
+
+          <div class="dropdown-menu" >
+            <a class="dropdown-item" href="/ad_units?page=1&amp;size=10">10 dòng mỗi trang</a>
+            <a class="dropdown-item" href="/ad_units?page=1&amp;size=20">20 dòng mỗi trang</a>
+            <a class="dropdown-item" href="/ad_units?page=1&amp;size=50">50 dòng mỗi trang</a>
+            <a class="dropdown-item" href="/ad_units?page=1&amp;size=80">80 dòng mỗi trang</a>
+          </div>
+        </div>
+
+        <ul class="pagination float-right">
+          <li class="page-item active"><a href="/ad_units?page=1&amp;size=10" class="page-link">1</a></li>
+          <li class="page-item "><a href="/ad_units?page=2&amp;size=10" class="page-link">2</a></li>
+          <li class="page-item "><a href="/ad_units?page=3&amp;size=10" class="page-link">3</a></li>
+          <li class="page-item "><a href="/ad_units?page=4&amp;size=10" class="page-link">4</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+

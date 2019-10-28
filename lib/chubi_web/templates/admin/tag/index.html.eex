@@ -1,0 +1,28 @@
+<h1>Listing Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for tag <- @tags do %>
+    <tr>
+      <td><%= tag.name %></td>
+      <td><%= tag.slug %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.admin_tag_path(@conn, :show, tag) %></span>
+        <span><%= link "Edit", to: Routes.admin_tag_path(@conn, :edit, tag) %></span>
+        <span><%= link "Delete", to: Routes.admin_tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Tag", to: Routes.admin_tag_path(@conn, :new) %></span>

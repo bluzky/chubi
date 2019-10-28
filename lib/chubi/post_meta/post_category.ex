@@ -1,10 +1,10 @@
 defmodule Chubi.PostMeta.PostCategory do
   use Chubi, :model
 
+  @primary_key false
   schema "post_categories" do
     field(:post_id, :id)
     field(:cateogry_id, :id)
-    timestamps()
   end
 
   @doc false

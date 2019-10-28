@@ -20,12 +20,13 @@ defmodule ChubiWeb.Router do
   scope "/", ChubiWeb do
     pipe_through(:browser)
     get("/", PageController, :index)
-
-    resources("/tags", TagController)
   end
 
   scope "/admin", ChubiWeb.Admin, as: "admin" do
     pipe_through([:browser, :admin])
     get("/", PageController, :index)
+    resources("/tags", TagController)
+    resources("/categories", CategoryController)
+    resources("/posts", PostController)
   end
 end

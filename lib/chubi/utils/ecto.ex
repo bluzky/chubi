@@ -1,5 +1,5 @@
 defmodule Chubi.EctoUtils do
-  import Ecto.Changeset
+  alias Ecto.Changeset
   require Logger
   import ChubiWeb.Gettext
 
@@ -19,7 +19,7 @@ defmodule Chubi.EctoUtils do
   def require_one(changeset, keys) do
     valid =
       Enum.reduce(keys, false, fn key, acc ->
-        value = get_field(changeset, key)
+        value = Changeset.get_field(changeset, key)
 
         if value not in [nil, "", [], %{}] do
           true
@@ -30,7 +30,7 @@ defmodule Chubi.EctoUtils do
 
     if not valid do
       Enum.reduce(keys, changeset, fn key, acc ->
-        add_error(
+        Changeset.add_error(
           acc,
           key,
           dgettext(
@@ -46,14 +46,18 @@ defmodule Chubi.EctoUtils do
   end
 
   def require_not_or_both(changeset, key1, key2) do
-    value1 = get_field(changeset, key1)
-    value2 = get_field(changeset, key2)
+    value1 = Changeset.get_field(changeset, key1)
+    value2 = Changeset.get_field(changeset, key2)
 
     if (is_nil(value1) and is_nil(value2)) or (not is_nil(value1) and not is_nil(value2)) do
       changeset
     else
-      add_error(changeset, key1, "this combination of #{key1} and #{key2} is not allowed")
-      |> add_error(key2, "this combination of #{key1} and #{key2} is not allowed")
+      Changeset.add_error(
+        changeset,
+        key1,
+        "this combination of #{key1} and #{key2} is not allowed"
+      )
+      |> Changeset.add_error(key2, "this combination of #{key1} and #{key2} is not allowed")
     end
   end
 
@@ -83,11 +87,11 @@ defmodule Chubi.EctoUtils do
     else
       case Timex.parse(value, format) do
         {:ok, parsed_value} ->
-          Ecto.Changeset.put_change(changeset, :"#{field}", Timex.to_datetime(parsed_value))
+          Changeset.put_change(changeset, :"#{field}", Timex.to_datetime(parsed_value))
 
         {:error, message} ->
           Logger.error("#{inspect(message)}")
-          Ecto.Changeset.add_error(changeset, :"#{field}", "Invalid format")
+          Changeset.add_error(changeset, :"#{field}", "Invalid format")
       end
     end
   end
@@ -121,10 +125,10 @@ defmodule Chubi.EctoUtils do
           |> Timex.end_of_day()
 
         changeset
-        |> put_change(:start_time, Timex.to_datetime(start_time))
-        |> put_change(:end_time, Timex.to_datetime(end_time))
+        |> Changeset.put_change(:start_time, Timex.to_datetime(start_time))
+        |> Changeset.put_change(:end_time, Timex.to_datetime(end_time))
       else
-        _ -> add_error(changeset, field, dgettext("errors", "Invalid timerange"))
+        _ -> Changeset.add_error(changeset, field, dgettext("errors", "Invalid timerange"))
       end
     else
       changeset
@@ -135,7 +139,7 @@ defmodule Chubi.EctoUtils do
   Clean upload in the changese if it does not exist in the stored value
   """
   def clean_upload(changeset, field, uploader) do
-    change = get_change(changeset, field)
+    change = Changeset.get_change(changeset, field)
     value = Map.get(changeset.data, field)
 
     cond do
@@ -152,12 +156,12 @@ defmodule Chubi.EctoUtils do
     changeset
   end
 
-  def sluggify(changeset, data_field, slug_field) do
+  def slugify(changeset, data_field, slug_field) do
     data = Changeset.get_change(changeset, data_field)
     slug = Changeset.get_change(changeset, slug_field)
 
     if not is_nil(data) or not is_nil(slug) do
-      Changeset.put_change(changeset, slug_field, Slugger.sluggify_downcase(slug || data))
+      Changeset.put_change(changeset, slug_field, Slugger.slugify_downcase(slug || data))
     else
       changeset
     end

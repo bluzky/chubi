@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="row row-cards row-deck mt-md-5">
+
+    <div class="col-md-3">
+      <%= render "_sidebar.html", assigns %>
+    </div>
+
+    <div class="col-md-9">
+      <div class="card profile">
+        <div class="card-body p-6">
+
+          <h4 class="fw-bold"><%= gettext "Edit posts" %></h4>
+
+          <%= render "_markdown_form.html", Map.put(assigns, :action, Routes.admin_post_path(@conn, :update, @post)) %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+

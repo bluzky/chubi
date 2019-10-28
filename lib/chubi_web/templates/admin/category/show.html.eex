@@ -1,0 +1,18 @@
+<h1>Show Category</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @category.name %>
+  </li>
+
+  <li>
+    <strong>Slug:</strong>
+    <%= @category.slug %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.admin_category_path(@conn, :edit, @category) %></span>
+<span><%= link "Back", to: Routes.admin_category_path(@conn, :index) %></span>

@@ -49,6 +49,15 @@ defmodule Chubi.Content do
       {:error, %Ecto.Changeset{}}
 
   """
+
+  def create_post(%{"format" => "markdown", "content" => content}) do
+    attrs = Chubi.Content.MarkdownParser.parse(content)
+
+    %Post{}
+    |> Post.changeset(attrs)
+    |> Repo.insert()
+  end
+
   def create_post(attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
@@ -67,6 +76,14 @@ defmodule Chubi.Content do
       {:error, %Ecto.Changeset{}}
 
   """
+  def update_post(%Post{} = post, %{"format" => "markdown", "content" => content}) do
+    attrs = Chubi.Content.MarkdownParser.parse(content)
+
+    post
+    |> Post.changeset(attrs)
+    |> Repo.update()
+  end
+
   def update_post(%Post{} = post, attrs) do
     post
     |> Post.changeset(attrs)
