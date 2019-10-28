@@ -27,7 +27,6 @@
   </head>
 
   <body class="">
-    <%= render "_sdk.html", assigns %>
     <div class="page">
       <div class="page-main vertical-nav">
         <%=  render "_header.html", assigns %>
@@ -42,6 +41,7 @@
       </div>
     </div>
 
+    <script src="<%= Routes.static_path(@conn, "/js/commons.js") %>"></script>
     <script src="<%= Routes.static_path(@conn, "/js/admin.js") %>"></script>
 
     <%= raw(render_existing(view_module(@conn), "scripts." <> view_template(@conn), assigns)) %>

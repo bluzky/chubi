@@ -1,0 +1,9 @@
+
+  <p class="<%= if @editable, do: "text-box", else: "px-5 bg-white text-box text-muted" %>"
+     <%= if @editable do %>
+     data-toggle="editable-text"
+     data-placeholder="<%= gettext "No content" %>"
+     data-field-name="<%= @field %>"
+     data-update-url="<%= @update_url %>"
+     <% end %>
+  ><%= if @has_content do %><%= @content %> <% else  %> <%= gettext "No content" %> <% end %></p>

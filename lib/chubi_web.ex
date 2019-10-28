@@ -51,8 +51,8 @@ defmodule ChubiWeb do
       use Phoenix.HTML
 
       import ChubiWeb.ErrorHelpers
-      import ChubiWeb.InputHelpers
-      import ChubiWeb.ViewHelpers
+      import ChubiWeb.Admin.InputHelpers
+      import ChubiWeb.Admin.ViewHelpers
       import ChubiWeb.Gettext
       alias ChubiWeb.Router.Helpers, as: Routes
     end

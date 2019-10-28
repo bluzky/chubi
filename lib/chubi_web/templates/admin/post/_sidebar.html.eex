@@ -5,18 +5,15 @@
       </div>
 
       <div class="list-group list-group-transparent mb-0">
-        <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="list-group-item list-group-item-action d-flex align-items-center active">
-          <i class="fe fe-inbox mr-2"></i> <%= gettext "All posts" %>
+        <a href="<%= Routes.admin_post_path(@conn, :index, is_draft: false) %>" class="list-group-item list-group-item-action d-flex align-items-center active">
+          <i class="fe fe-inbox mr-2"></i> <%= gettext "Published" %>
         </a>
-        <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="list-group-item list-group-item-action d-flex align-items-center">
+        <a href="<%= Routes.admin_post_path(@conn, :index, is_draft: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
           <i class="fe fe-file mr-2"></i> <%= gettext "Draft" %>
         </a>
-        <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fe fe-send mr-2"></i> <%= gettext "Published" %>
-        </a>
 
-        <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="list-group-item list-group-item-action d-flex align-items-center">
-          <i class="fe fe-file mr-2"></i> <%= gettext "Trash" %>
+        <a href="<%= Routes.admin_post_path(@conn, :index, trashed: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
+          <i class="fe fe-trash mr-2"></i> <%= gettext "Trash" %>
         </a>
       </div>
 

@@ -132,6 +132,7 @@ defmodule Chubi.PostMeta do
 
   """
   def get_category!(id), do: Repo.get!(Category, id)
+  def get_category_by!(filters), do: Repo.get_by!(Category, filters)
 
   @doc """
   Creates a category.

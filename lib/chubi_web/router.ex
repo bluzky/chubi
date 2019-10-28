@@ -19,7 +19,9 @@ defmodule ChubiWeb.Router do
 
   scope "/", ChubiWeb do
     pipe_through(:browser)
-    get("/", PageController, :index)
+    get("/", PostController, :index)
+    get("/posts/:slug", PostController, :show)
+    get("/category/:slug", PostController, :by_category)
   end
 
   scope "/admin", ChubiWeb.Admin, as: "admin" do

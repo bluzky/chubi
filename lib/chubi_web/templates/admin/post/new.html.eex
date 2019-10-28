@@ -16,7 +16,7 @@
 
           <h4 class="fw-bold"><%= gettext "Create posts" %></h4>
 
-          <%= render "_form.html", Map.put(assigns, :action, Routes.admin_post_path(@conn, :create)) %>
+          <%= render "_markdown_form.html", Map.put(assigns, :action, Routes.admin_post_path(@conn, :create)) %>
         </div>
       </div>
     </div>

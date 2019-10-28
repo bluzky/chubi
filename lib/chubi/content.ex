@@ -36,6 +36,7 @@ defmodule Chubi.Content do
 
   """
   def get_post!(id), do: Repo.get!(Post, id)
+  def get_post_by!(filters), do: Repo.get_by!(Post, filters)
 
   @doc """
   Creates a post.

@@ -1,0 +1,50 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading" style="padding: 100px 0;">
+          <h3>This is a really big test category</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <%= for post <- @posts do %>
+      <div class="post-preview">
+        <a href="<%= Routes.post_path(@conn, :show, post.slug) %>">
+          <h2 class="post-title">
+<%= post.title %>
+          </h2>
+          <%= if post.excerpt do %>
+          <h3 class="post-subtitle">
+            <%= raw post.excerpt %>
+          </h3>
+          <% end %>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on <%= format_datetime(post.published_at || post.inserted_at) %></p>
+      </div>
+      <hr>
+      <% end %>
+
+      <!-- Pager -->
+      <div class="clearfix">
+        <%=  if Chubi.Paginator.has_prev(@paginator) do %>
+          <a class="btn btn-primary float-left" href="#">&larr; <%= gettext "Newer posts" %></a>
+        <% end %>
+        <%=  if Chubi.Paginator.has_next(@paginator) do %>
+          <a class="btn btn-primary float-right" href="#"><%= gettext "Older posts" %> &rarr;</a>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

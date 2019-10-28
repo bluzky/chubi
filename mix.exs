@@ -47,7 +47,8 @@ defmodule Chubi.MixProject do
       {:basic_auth, "~> 2.2.2"},
       {:timex, "~> 3.6.1"},
       {:earmark, "~> 1.4.2"},
-      {:yamerl, "~> 0.7.0"}
+      {:yamerl, "~> 0.7.0"},
+      {:params, "~> 2.0"}
     ]
   end
 

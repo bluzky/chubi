@@ -2,15 +2,25 @@ defmodule ChubiWeb.Admin.PostController do
   use ChubiWeb, :controller
 
   alias Chubi.Content
+  alias Chubi.Content.PostQuery
   alias Chubi.Content.Post
   alias Chubi.Repo
+  alias ChubiWeb.PostFilterParams
 
-  def index(conn, _params) do
+  def index(conn, params) do
+    filters =
+      PostFilterParams.from(params)
+      |> Params.to_map()
+
+    paginator =
+      PostQuery.filter_post(filters)
+      |> Chubi.Paginator.new(params)
+
     posts =
-      Content.list_posts()
+      paginator.entries
       |> Repo.preload([:categories, :tags])
 
-    render(conn, "index.html", posts: posts)
+    render(conn, "index.html", posts: posts, paginator: paginator)
   end
 
   def new(conn, _params) do
@@ -60,7 +70,6 @@ defmodule ChubiWeb.Admin.PostController do
         |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset)
         render(conn, "edit.html", post: post, changeset: changeset)
     end
   end

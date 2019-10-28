@@ -1,0 +1,65 @@
+<form class="mb-5">
+  <div class="d-flex">
+    <textarea name="content" v-model="comment_content" rows="1" class="form-control flex-grow-1"
+              placeholder="<%= gettext "Your comment" %>"></textarea>
+    <div>
+      <button type="button" @click="addComment"
+              class="btn btn-primary ml-3">
+        <i class="fe fe-send"></i>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="media py-2" v-for="item in activities">
+  <div class="mr-3">
+    <span class="avatar" :style="{backgroundImage: 'url(' + (item.user ? item.user.avatar : '') + ')'}"></span>
+  </div>
+
+  <div class="media-body">
+    <div class="d-flex">
+      <p class="flex-grow-1 m-0">
+
+        <a :href="item.user ? item.user.link : ''" class="fw-bold">{{item.user ? item.user.first_name : 'System'}}</a>
+        <span>{{item.action_name}}</span>
+        <template v-if="item.action == 'add_comment'">
+          <p class="bg-gray-lightest rounded text-gray py-2 px-3 small">{{item.result.content}}</p>
+        </template>
+
+        <template v-else-if="item.action == 'update'">
+          <div class="bg-gray-lightest rounded text-gray py-2 px-3 small">
+            <template v-for="(value, name) in item.input">
+              <div class="fw-bold">{{name}}</div>
+              <p class="mt-1" v-html="parseLinkText(value)"></p>
+            </template>
+          </div>
+        </template>
+
+        <template v-else>
+          <span class="fw-bold">{{item.object_name}}</span>
+        </template>
+      </p>
+
+      <div>
+        <small class="d-block text-right">{{ item.inserted_at }}</small>
+        <small v-if="item.can_delete" class="d-block text-right text-muted">
+          <a class="text-muted btn btn-link small" @click="deleteComment(item.id)">
+            <i class="fe fe-trash mr-1"></i>
+            <%= gettext "Delete" %>
+          </a>
+        </small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- load more button  -->
+<div v-if="next_page_token != null && !loading" class="text-center">
+  <a class="btn btn-link fw-bold text-blue mt-3" @click="fetchActivity"><%= gettext "Load more" %></a>
+</div>
+
+<!-- spinner  -->
+<div v-if="loading" class="text-center">
+  <span class="spinner"></span>
+</div>

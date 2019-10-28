@@ -1,4 +1,4 @@
-defmodule ChubiWeb.ViewHelpers do
+defmodule ChubiWeb.Admin.ViewHelpers do
   use Phoenix.HTML
   import ChubiWeb.Gettext
 
@@ -182,5 +182,9 @@ defmodule ChubiWeb.ViewHelpers do
     |> Enum.sort(fn m1, m2 ->
       DateTime.compare(Map.get(m1, field), Map.get(m2, field)) == sort_type
     end)
+  end
+
+  def component(name, assigns) do
+    Phoenix.View.render(ChubiWeb.Admin.ComponentView, name, assigns)
   end
 end

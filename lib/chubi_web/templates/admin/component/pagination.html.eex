@@ -1,0 +1,79 @@
+<%
+conn = assigns[:conn]
+%>
+
+<div class="clearfix">
+  <div class="dropdown float-left">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+       data-toggle="dropdown">
+      <%= @paginator.size %> <%= gettext "items per page" %>
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item"
+         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 10})) %>">10
+        <%= gettext "items per page" %></a>
+      <a class="dropdown-item"
+         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 20})) %>">20
+        <%= gettext "items per page" %></a>
+      <a class="dropdown-item"
+         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 50})) %>">50
+        <%= gettext "items per page" %></a>
+      <a class="dropdown-item"
+         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 80})) %>">80
+        <%= gettext "items per page" %></a>
+    </div>
+  </div>
+
+  <%= if @paginator.total > 1 do %>
+    <ul class="pagination float-right">
+
+      <%
+      # 1 ------b1 ... b2 ----------- u1 ... u2 ---- total
+
+      b1 = min(3, @paginator.total)
+
+      b2 =
+      max(b1 + 1, @paginator.page - 2)
+      |> min(@paginator.total)
+
+      u1 =
+      min(@paginator.page + 2, @paginator.total)
+      |> max(b2)
+
+      u2 = max(u1 + 1, @paginator.total - 3)
+
+      url = fn i ->
+      current_path(conn, Map.merge(conn.params, %{"page" => i, "size" => @paginator.size}))
+      end
+      %>
+
+      <%= for page <- 1..b1 do %>
+        <li class="page-item <%= if page == @paginator.page, do: "active" %>"><a href="<%= url.(page) %>"
+                                                                                 class="page-link"><%= page %></a></li>
+      <% end %>
+
+      <%= if b2 - b1 > 1 do %>
+        <li class="page-item"><a class="page-link">...</a></li>
+      <% end %>
+
+      <%= if b1 < u1 do %>
+        <%= for page <- b2..u1 do %>
+          <li class="page-item <%= if page == @paginator.page, do: "active" %>"><a href="<%= url.(page) %>"
+                                                                                   class="page-link"><%= page %></a></li>
+        <% end %>
+      <% end %>
+
+      <%=  if u2 - u1 > 1 do %>
+        <li class="page-item"><a class="page-link">...</a></li>
+      <% end %>
+
+      <%= if u1 < @paginator.total do %>
+        <%= for page <- u2..@paginator.total do %>
+          <li class="page-item <%= if page == @paginator.page, do: "active" %>"><a href="<%= url.(page) %>"
+                                                                                   class="page-link"><%= page %></a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

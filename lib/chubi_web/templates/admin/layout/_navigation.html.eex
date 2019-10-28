@@ -17,6 +17,10 @@
             <a href="<%= Routes.admin_page_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PageController]) %>"><i class="fe fe-home"></i> <%= gettext "Dashboard" %></a>
           </li>
 
+          <li class="nav-item">
+            <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PostController]) %>"><i class="fe fe-home"></i> <%= gettext "Post" %></a>
+          </li>
+
         </ul>
       </div>
     </div>

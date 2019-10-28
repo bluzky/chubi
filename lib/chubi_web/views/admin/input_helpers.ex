@@ -1,4 +1,4 @@
-defmodule ChubiWeb.InputHelpers do
+defmodule ChubiWeb.Admin.InputHelpers do
   use Phoenix.HTML
   require Logger
 

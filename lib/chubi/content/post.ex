@@ -13,6 +13,7 @@ defmodule Chubi.Content.Post do
     field(:html_content, :string)
     field(:excerpt, :string)
     field(:format, :string, default: "markdown")
+    field(:cover, :string)
 
     field(:is_draft, :boolean, default: false)
     field(:published_at, :utc_datetime)
@@ -24,7 +25,7 @@ defmodule Chubi.Content.Post do
   end
 
   @required_fields [:title, :content, :format, :html_content]
-  @optional_fields [:slug, :excerpt, :is_draft]
+  @optional_fields [:slug, :excerpt, :is_draft, :cover]
 
   @doc false
   def changeset(post, attrs) do
@@ -34,7 +35,6 @@ defmodule Chubi.Content.Post do
     |> validate_required(@required_fields)
     |> put_assoc(:tags, parse_assoc(attrs, "tags", Tag))
     |> put_assoc(:categories, parse_assoc(attrs, "categories", Category))
-    |> IO.inspect()
   end
 
   # take from http://blog.plataformatec.com.br/2016/12/many-to-many-and-upserts/
