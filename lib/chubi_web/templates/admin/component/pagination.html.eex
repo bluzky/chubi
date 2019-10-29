@@ -3,29 +3,30 @@ conn = assigns[:conn]
 %>
 
 <div class="clearfix">
-  <div class="dropdown float-left">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-       data-toggle="dropdown">
-      <%= @paginator.size %> <%= gettext "items per page" %>
-    </a>
-
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item"
-         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 10})) %>">10
-        <%= gettext "items per page" %></a>
-      <a class="dropdown-item"
-         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 20})) %>">20
-        <%= gettext "items per page" %></a>
-      <a class="dropdown-item"
-         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 50})) %>">50
-        <%= gettext "items per page" %></a>
-      <a class="dropdown-item"
-         href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 80})) %>">80
-        <%= gettext "items per page" %></a>
-    </div>
-  </div>
 
   <%= if @paginator.total > 1 do %>
+    <div class="dropdown float-left">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+         data-toggle="dropdown">
+        <%= @paginator.size %> <%= gettext "items per page" %>
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item"
+           href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 10})) %>">10
+          <%= gettext "items per page" %></a>
+        <a class="dropdown-item"
+           href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 20})) %>">20
+          <%= gettext "items per page" %></a>
+        <a class="dropdown-item"
+           href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 50})) %>">50
+          <%= gettext "items per page" %></a>
+        <a class="dropdown-item"
+           href="<%= current_path(conn, Map.merge(conn.params, %{"page" => 1, "size" => 80})) %>">80
+          <%= gettext "items per page" %></a>
+      </div>
+    </div>
+    
     <ul class="pagination float-right">
 
       <%

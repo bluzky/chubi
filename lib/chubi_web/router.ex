@@ -22,6 +22,7 @@ defmodule ChubiWeb.Router do
     get("/", PostController, :index)
     get("/posts/:slug", PostController, :show)
     get("/category/:slug", PostController, :by_category)
+    get("/pages/:slug", PageController, :show)
   end
 
   scope "/admin", ChubiWeb.Admin, as: "admin" do
@@ -30,5 +31,6 @@ defmodule ChubiWeb.Router do
     resources("/tags", TagController)
     resources("/categories", CategoryController)
     resources("/posts", PostController)
+    resources("/pages", PageController)
   end
 end

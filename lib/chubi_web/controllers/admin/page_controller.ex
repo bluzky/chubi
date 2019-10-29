@@ -1,7 +1,72 @@
 defmodule ChubiWeb.Admin.PageController do
   use ChubiWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
+  alias Chubi.Content
+  alias Chubi.Content.Page
+  alias Chubi.Content.Post
+  alias Chubi.Content.PostQuery
+  alias Chubi.Paginator
+
+  def index(conn, params) do
+    paginator =
+      PostQuery.page_query()
+      |> Paginator.new(params)
+
+    render(conn, "index.html", pages: paginator.entries, paginator: paginator)
+  end
+
+  def new(conn, _params) do
+    changeset = Content.change_page(%Page{})
+    render(conn, "new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"page" => page_params}) do
+    Map.put(page_params, "format", "markdown")
+    |> Content.create_page()
+    |> case do
+      {:ok, page} ->
+        conn
+        |> put_flash(:info, "Page created successfully.")
+        |> redirect(to: Routes.admin_page_path(conn, :show, page))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  def show(conn, %{"id" => id}) do
+    page = Content.get_page!(id)
+    render(conn, "show.html", page: page)
+  end
+
+  def edit(conn, %{"id" => id}) do
+    page = Content.get_page!(id)
+    changeset = Content.change_page(page)
+    render(conn, "edit.html", page: page, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "page" => page_params}) do
+    page = Content.get_page!(id)
+
+    Map.put(page_params, "format", "markdown")
+    |> Content.update_page(page, page_params)
+    |> case do
+      {:ok, page} ->
+        conn
+        |> put_flash(:info, "Page updated successfully.")
+        |> redirect(to: Routes.admin_page_path(conn, :show, page))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", page: page, changeset: changeset)
+    end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    page = Content.get_page!(id)
+    {:ok, _page} = Content.delete_page(page)
+
+    conn
+    |> put_flash(:info, "Page deleted successfully.")
+    |> redirect(to: Routes.admin_page_path(conn, :index))
   end
 end

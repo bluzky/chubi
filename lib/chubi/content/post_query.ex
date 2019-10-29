@@ -1,20 +1,20 @@
 defmodule Chubi.Content.PostQuery do
   use Chubi, :query
-  alias Chubi.Content.Post
+  alias Chubi.Content.{Post, Page}
   alias Chubi.PostMeta.{Tag, Category}
 
-  def base_query() do
+  def post_query() do
     Post
     |> order_by(desc: :published_at)
   end
 
   def filter_post(filters \\ %{}) do
-    base_query
+    post_query
     |> Filter.apply(filters)
   end
 
   def all_post() do
-    base_query
+    post_query
   end
 
   def with_tag(query, tag) when is_binary(tag) do
@@ -42,7 +42,12 @@ defmodule Chubi.Content.PostQuery do
   end
 
   def published_posts do
-    base_query
+    post_query
     |> Filter.apply(is_draft: false)
+  end
+
+  def page_query() do
+    Page
+    |> order_by(desc: :inserted_at)
   end
 end

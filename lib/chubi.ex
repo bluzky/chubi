@@ -23,6 +23,15 @@ defmodule Chubi do
     end
   end
 
+  def business do
+    quote do
+      alias Chubi.Filter
+      alias Chubi.Paginator
+      import Ecto.Query
+      alias Chubi.Repo
+    end
+  end
+
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])
   end

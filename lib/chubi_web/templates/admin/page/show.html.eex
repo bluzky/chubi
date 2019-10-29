@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row row-cards row-deck mt-md-5">
+
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-9">
+      <div class="card profile">
+        <div class="card-body p-6 clearfix">
+          <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" class="btn btn-secondary btn-sm float-right"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
+
+          <h4 class="fw-bold"><%= @page.title %></h4>
+          <span class="text-muted"><%= @page.slug %></span>
+
+          <div class="field-list mt-5">
+            <div class="field p-0">
+              <div class="field-name fw-bold"><%= gettext "Status" %></div>
+              <div class="field-value">
+                <span class="badge-status badge-success">Published</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bd-t mt-7 p-5 pt-7">
+            <%= raw @page.html_content %>
+          </div>
+
+          <div class="mt-7">
+            <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" type="submit" class="btn btn-secondary"> <i class="fe fe-edit-2 mr-1"></i><%= gettext "Edit" %></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

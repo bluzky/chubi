@@ -1,35 +1,65 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
-</section>
+<div class="container">
+  <div class="row row-cards row-deck mt-md-5">
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
-</section>
+    <div class="col-md-12">
+      <a href="<%= Routes.admin_page_path(@conn, :new) %>" class="btn btn-secondary ml-auto">
+        <i class="fe fe-plus mr-1"></i>
+        <%= gettext "New page" %></a>
+    </div>
+    
+    <div class="col-md-12 mt-5">
+      <div class="card" style="flex-grow: 0;">
+        <div class="table-responsive">
+          <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+            <thead>
+              <tr>
+                <th ><%= gettext "Title" %></th>
+                <th class="text-center"><%= gettext "Published at" %></th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <%= for post <- @pages do %>
+                <tr>
+                  <td> <a href="<%= Routes.admin_page_path(@conn, :show, post) %>" class="text-default"><%= post.title %></a>
+                  </td>
+
+                  <td class="text-center">
+                    <%= if post.is_draft do %>
+                      <span class="badge badge-pill badge-secondary"><%= gettext "Draft" %></span>
+                    <% else %>
+                    <% end %>
+                  </td>
+
+                  <td class="text-center">
+                    <div class="item-action dropdown">
+                      <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Publish </a> -->
+                        <a href="<%= Routes.admin_page_path(@conn, :edit, post) %>" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
+                        <%= link to: Routes.admin_page_path(@conn, :delete, post), class: "dropdown-item", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
+                          <i class="dropdown-icon fe fe-x"></i> <%= gettext "Delete" %></a>
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <%= component "pagination.html", assigns %>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
