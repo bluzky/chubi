@@ -46,10 +46,12 @@ defmodule ChubiWeb.Admin.PageController do
   end
 
   def update(conn, %{"id" => id, "page" => page_params}) do
+    params = Map.put(page_params, "format", "markdown")
+
     page = Content.get_page!(id)
 
-    Map.put(page_params, "format", "markdown")
-    |> Content.update_page(page, page_params)
+    page
+    |> Content.update_page(params)
     |> case do
       {:ok, page} ->
         conn

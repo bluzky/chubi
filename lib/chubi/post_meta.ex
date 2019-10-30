@@ -36,6 +36,7 @@ defmodule Chubi.PostMeta do
 
   """
   def get_tag!(id), do: Repo.get!(Tag, id)
+  def get_tag_by!(filters), do: Repo.get_by!(Tag, filters)
 
   @doc """
   Creates a tag.

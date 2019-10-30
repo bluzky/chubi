@@ -33,8 +33,55 @@ defmodule ChubiWeb do
         root: "lib/chubi_web/templates",
         namespace: ChubiWeb
 
-      # Import convenience functions from controllers
-      # Import convenience functions from controllers
+      import Phoenix.Controller,
+        only: [
+          get_csrf_token: 0,
+          get_flash: 2,
+          view_module: 1,
+          view_template: 1,
+          current_url: 1,
+          current_url: 2,
+          current_path: 1,
+          current_path: 2
+        ]
+
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
+      import ChubiWeb.ErrorHelpers
+
+      import ChubiWeb.ViewHelpers,
+        only: [
+          partial: 2,
+          include: 2,
+          format_datetime: 1,
+          format_datetime: 2,
+          format_datetime: 3,
+          format_date: 1,
+          format_date: 2
+        ]
+
+      import ChubiWeb.Gettext
+      alias ChubiWeb.Router.Helpers, as: Routes
+    end
+  end
+
+  def admin_controller do
+    quote do
+      use Phoenix.Controller, namespace: ChubiWeb
+
+      import Plug.Conn
+      import ChubiWeb.Gettext
+      alias ChubiWeb.Router.Helpers, as: Routes
+    end
+  end
+
+  def admin_view do
+    quote do
+      use Phoenix.View,
+        root: "lib/chubi_web/templates",
+        namespace: ChubiWeb
+
       import Phoenix.Controller,
         only: [
           get_csrf_token: 0,

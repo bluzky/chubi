@@ -1,3 +1,3 @@
 defmodule ChubiWeb.Admin.PostView do
-  use ChubiWeb, :view
+  use ChubiWeb, :admin_view
 end

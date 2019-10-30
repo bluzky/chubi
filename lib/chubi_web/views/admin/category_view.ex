@@ -1,3 +1,3 @@
 defmodule ChubiWeb.Admin.CategoryView do
-  use ChubiWeb, :view
+  use ChubiWeb, :admin_view
 end
