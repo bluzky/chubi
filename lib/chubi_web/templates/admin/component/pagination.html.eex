@@ -4,7 +4,7 @@ conn = assigns[:conn]
 
 <div class="clearfix">
 
-  <%= if @paginator.total > 1 do %>
+  <%= if @paginator.total_page > 1 do %>
     <div class="dropdown float-left">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
          data-toggle="dropdown">
@@ -30,19 +30,19 @@ conn = assigns[:conn]
     <ul class="pagination float-right">
 
       <%
-      # 1 ------b1 ... b2 ----------- u1 ... u2 ---- total
+      # 1 ------b1 ... b2 ----------- u1 ... u2 ---- total_page
 
-      b1 = min(3, @paginator.total)
+      b1 = min(3, @paginator.total_page)
 
       b2 =
       max(b1 + 1, @paginator.page - 2)
-      |> min(@paginator.total)
+      |> min(@paginator.total_page)
 
       u1 =
-      min(@paginator.page + 2, @paginator.total)
+      min(@paginator.page + 2, @paginator.total_page)
       |> max(b2)
 
-      u2 = max(u1 + 1, @paginator.total - 3)
+      u2 = max(u1 + 1, @paginator.total_page - 3)
 
       url = fn i ->
       current_path(conn, Map.merge(conn.params, %{"page" => i, "size" => @paginator.size}))
@@ -69,8 +69,8 @@ conn = assigns[:conn]
         <li class="page-item"><a class="page-link">...</a></li>
       <% end %>
 
-      <%= if u1 < @paginator.total do %>
-        <%= for page <- u2..@paginator.total do %>
+      <%= if u1 < @paginator.total_page do %>
+        <%= for page <- u2..@paginator.total_page do %>
           <li class="page-item <%= if page == @paginator.page, do: "active" %>"><a href="<%= url.(page) %>"
                                                                                    class="page-link"><%= page %></a></li>
         <% end %>

@@ -58,7 +58,9 @@ defmodule ChubiWeb do
           format_datetime: 2,
           format_datetime: 3,
           format_date: 1,
-          format_date: 2
+          format_date: 2,
+          next_page_path: 2,
+          prev_page_path: 2
         ]
 
       import ChubiWeb.Gettext

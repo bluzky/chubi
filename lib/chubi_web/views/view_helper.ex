@@ -46,4 +46,22 @@ defmodule ChubiWeb.ViewHelpers do
   def include(name, assigns) do
     render(view_module(assigns.conn), name, assigns)
   end
+
+  def next_page_path(conn, paginator) do
+    if paginator.has_next? do
+      current_path(
+        conn,
+        Map.merge(conn.params, %{"page" => paginator.page + 1, "size" => paginator.size})
+      )
+    end
+  end
+
+  def prev_page_path(conn, paginator) do
+    if paginator.has_prev? do
+      current_path(
+        conn,
+        Map.merge(conn.params, %{"page" => paginator.page - 1, "size" => paginator.size})
+      )
+    end
+  end
 end

@@ -2,20 +2,31 @@ defmodule Chubi.Paginator do
   import Ecto.Query
   alias Chubi.Repo
 
-  defstruct entries: [], page: 1, size: 10, total: 1, entry_count: 0
+  defstruct entries: [],
+            page: 1,
+            size: 10,
+            total_page: 1,
+            entry_count: 0,
+            has_next?: false,
+            has_prev?: false
 
   def new(query, params) do
     params = parse_paging_params(params)
 
     entry_count = count_entry(query)
 
-    %__MODULE__{
+    paginator = %__MODULE__{
       entries: entries(query, params.page, params.size),
       page: params.page,
       size: params.size,
       entry_count: entry_count,
-      total: Float.ceil(entry_count / params.size) |> round()
+      total_page: Float.ceil(entry_count / params.size) |> round()
     }
+
+    Map.merge(paginator, %{
+      has_next?: paginator.page < paginator.total_page,
+      has_prev?: paginator.page > 1
+    })
   end
 
   def parse_paging_params(params) do
