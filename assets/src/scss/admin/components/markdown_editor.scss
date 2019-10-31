@@ -1,0 +1,12 @@
+@import "~codemirror/lib/codemirror.css";
+// @import "~codemirror/theme/dracula.css";
+@import "~codemirror/theme/cobalt.css";
+
+
+.CodeMirror {
+  height: auto;
+}
+
+pre{
+  text-shadow: none;
+}

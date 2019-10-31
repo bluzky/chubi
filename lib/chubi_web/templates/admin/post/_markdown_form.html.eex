@@ -1,6 +1,6 @@
 
 <%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
-  <%= input(f, :content, using: :textarea, rows: 15, label: gettext("Content")) %>
+  <%= input(f, :content, using: :textarea, id: "editor", label: false) %>
 
   <div class="mt-7">
     <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>

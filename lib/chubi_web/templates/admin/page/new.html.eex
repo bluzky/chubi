@@ -1,16 +1,9 @@
 <div class="container">
 
   <div class="row row-cards row-deck mt-md-5">
-
-    <div class="col-md-3">
-    </div>
-
-    <div class="col-md-9">
+    <div class="col-md-8 offset-md-2">
       <div class="card profile">
         <div class="card-body p-6">
-
-          <h4 class="fw-bold"><%= gettext "Create page" %></h4>
-
           <%= render "_markdown_form.html", Map.put(assigns, :action, Routes.admin_page_path(@conn, :create)) %>
         </div>
       </div>
