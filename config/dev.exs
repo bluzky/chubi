@@ -71,3 +71,32 @@ config :chubi,
     password: "123123",
     realm: "Danger"
   ]
+
+config :chubi,
+  blog_info: [
+    title: "My blog",
+    sub_title: "Coding is awesome",
+    intro:
+      "Welcome to my personal blog. My name is Wangchuk, I am a full-stack web developer. That's it.",
+    ga: "my code",
+    menu: [
+      main: [
+        %{
+          label: "Home",
+          url: "/"
+        },
+        %{
+          label: "A category",
+          url: "/categories/test"
+        },
+        %{
+          label: "Categories",
+          url: "/categories"
+        },
+        %{
+          label: "Contacts",
+          url: "/contact"
+        }
+      ]
+    ]
+  ]

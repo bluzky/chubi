@@ -3,29 +3,26 @@ defmodule ChubiWeb.TagController do
 
   alias Chubi.Content
   alias Chubi.Content.PostQuery
-  alias Chubi.Content.Post
-  alias Chubi.PostMeta
+  alias Chubi.PostMeta.PostMetaQuery
   alias Chubi.Repo
   alias ChubiWeb.ControllerHelpers
 
   def index(conn, params) do
     paginator =
-      PostQuery.published_posts()
+      PostMetaQuery.tag_query()
+      |> PostMetaQuery.tag_with_post_count()
+      |> PostMetaQuery.order_by_post_count()
       |> Chubi.Paginator.new(params)
 
-    posts =
-      paginator.entries
-      |> Repo.preload([:categories, :tags])
-
-    render(conn, "list.html", posts: posts, paginator: paginator)
+    render(conn, "list.html", items: paginator.entries, paginator: paginator)
   end
 
-  def show(conn, %{"slug" => slug} = params) do
-    tag = PostMeta.get_tag_by!(slug: slug)
+  def show(conn, %{"slug" => tag_slug} = params) do
+    tag = PostMeta.get_tag_by!(slug: tag_slug)
 
     paginator =
       PostQuery.published_posts()
-      |> PostQuery.with_tag(slug)
+      |> PostQuery.with_tag(tag_slug)
       |> Chubi.Paginator.new(params)
 
     posts =

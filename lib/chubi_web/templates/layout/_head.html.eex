@@ -11,11 +11,19 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
+
+  <meta property="og:title" content="<%= @blog_info[:title] %>"/>
+  <meta property="og:url" content="<%=  %>"/>
+  <meta property="og:site_name" content="<%= @blog_info[:title] %>"/>
+  <meta property="og:image" content="<%= @blog_info[:image] %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:description" content="<%= @blog_info[:intro] %>"/>
+
+
   <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
   <!-- Generated: 2019-02-13 14:57:09 +0700 -->
-  <title><%= assigns[:title] || "Yeah1 App" %></title>
-
+  <title><%= assigns[:title] || @blog_info[:title] %></title>
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <!-- Dashboard Core -->

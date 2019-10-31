@@ -4,8 +4,8 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading" style="padding: 100px 0;">
-          <h3>This is a really big test category</h3>
+        <div class="site-heading" style="padding: 100px 0; background-color: orange;">
+          <h3>This is custom page for category test</h3>
         </div>
       </div>
     </div>
@@ -37,11 +37,11 @@
 
       <!-- Pager -->
       <div class="clearfix">
-        <%=  if Chubi.Paginator.has_prev(@paginator) do %>
-          <a class="btn btn-primary float-left" href="#">&larr; <%= gettext "Newer posts" %></a>
+        <%=  if @paginator.has_prev? do %>
+          <a class="btn btn-primary float-left" href="<%= prev_page_path(@conn, @paginator) %>">&larr; <%= gettext "Newer posts" %></a>
         <% end %>
-        <%=  if Chubi.Paginator.has_next(@paginator) do %>
-          <a class="btn btn-primary float-right" href="#"><%= gettext "Older posts" %> &rarr;</a>
+        <%=  if @paginator.has_next? do %>
+          <a class="btn btn-primary float-right" href="<%= next_page_path(@conn, @paginator) %>"><%= gettext "Older posts" %> &rarr;</a>
           <% end %>
       </div>
     </div>

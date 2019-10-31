@@ -21,7 +21,17 @@ defmodule Chubi.PostMeta.PostMetaQuery do
 
     query
     |> join(:inner, [t], p in subquery(tag_count_query), on: t.id == p.tag_id)
-    |> select([t, p], {t, p.post_count})
+    |> select([t, p], %{tag: t, post_count: p.post_count})
+  end
+
+  def order_by_post_count(query) do
+    query
+    |> order_by([t, p], desc: p.post_count)
+  end
+
+  def order_by_name(query) do
+    query
+    |> order_by(asc: :name)
   end
 
   def category_query do
@@ -42,6 +52,6 @@ defmodule Chubi.PostMeta.PostMetaQuery do
 
     query
     |> join(:inner, [t], p in subquery(category_count_query), on: t.id == p.category_id)
-    |> select([t, p], {t, p.post_count})
+    |> select([t, p], %{category: t, post_count: p.post_count})
   end
 end

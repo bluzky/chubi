@@ -1,0 +1,43 @@
+<!-- Page Header -->
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading" style="padding: 50px 0;">
+          <h2><%= gettext "Tags"%></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <%= for %{tag: tag, post_count: post_count} <- @items do %>
+        <div class="post-preview">
+          <a href="<%= Routes.tag_path(@conn, :show, tag.slug) %>">
+            <h6 class="">
+              <%= tag.name %> (<%= post_count %>)
+            </h6>
+          </a>
+        </div>
+        <hr>
+      <% end %>
+
+      <!-- Pager -->
+      <div class="clearfix">
+        <%=  if @paginator.has_prev? do %>
+          <a class="btn btn-primary float-left" href="<%= prev_page_path(@conn, @paginator) %>">&larr; <%= gettext "Previous page" %></a>
+        <% end %>
+        <%=  if @paginator.has_next? do %>
+          <a class="btn btn-primary float-right" href="<%= next_page_path(@conn, @paginator) %>"><%= gettext "Next page" %> &rarr;</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
