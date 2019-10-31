@@ -3,7 +3,7 @@
   <div class="row row-cards row-deck mt-md-5">
 
     <div class="col-md-8 offset-md-2">
-      <div class="card profile">
+      <div class="card profile" style="background: #f5f5f5;">
         <div class="card-body p-6">
           <%= render "_markdown_form.html", Map.put(assigns, :action, Routes.admin_page_path(@conn, :update, @page)) %>
         </div>

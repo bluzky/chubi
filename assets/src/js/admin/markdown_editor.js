@@ -11,5 +11,5 @@ const editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
   mode: "gfm",
   autofocus: true,
   highlightFormatting: true,
-  theme: "default"
+  theme: "base16-light"
 });
