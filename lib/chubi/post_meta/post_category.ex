@@ -4,7 +4,7 @@ defmodule Chubi.PostMeta.PostCategory do
   @primary_key false
   schema "post_categories" do
     field(:post_id, :id)
-    field(:cateogry_id, :id)
+    field(:category_id, :id)
   end
 
   @doc false
