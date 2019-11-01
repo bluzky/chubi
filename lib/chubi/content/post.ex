@@ -25,7 +25,7 @@ defmodule Chubi.Content.Post do
   end
 
   @required_fields [:title, :content, :format, :html_content]
-  @optional_fields [:slug, :excerpt, :is_draft, :cover]
+  @optional_fields [:slug, :excerpt, :is_draft, :cover, :published_at]
 
   @doc false
   def changeset(post, attrs) do

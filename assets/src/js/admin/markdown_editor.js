@@ -1,15 +1,12 @@
 import "../../scss/admin/components/markdown_editor.scss";
-import CodeMirror from "codemirror";
-import "codemirror/mode/gfm/gfm";
-import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/python/python";
-import "codemirror/mode/htmlmixed/htmlmixed";
-import "codemirror/mode/erlang/erlang";
-import "codemirror-mode-elixir";
+import { mirrorMark } from "./components/markdown_editor.js";
 
-const editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-  mode: "gfm",
+const editor = mirrorMark(document.getElementById("editor"), {
+  showToolbar: false,
   autofocus: true,
-  highlightFormatting: true,
-  theme: "base16-light"
+  tabSize: 4,
+  extraKeys: {
+    Enter: "newlineAndIndentContinueMarkdownList"
+  }
 });
+editor.render();

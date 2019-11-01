@@ -1,6 +1,6 @@
 @import "~codemirror/lib/codemirror.css";
 // @import "~codemirror/theme/dracula.css";
-@import "~codemirror/theme/base16-light.css";
+// @import "~codemirror/theme/base16-light.css";
 
 
 .CodeMirror {
@@ -9,4 +9,34 @@
 
 pre{
   text-shadow: none;
+}
+
+$mirror-mark-font: sans-serif;
+$mirror-mark-font-mono: Menlo, Consolas, Monaco, 'Andale Mono', monospace;
+$mirror-mark-font-header: $mirror-mark-font-mono;
+
+@import "./markdown_editor/highlight";
+@import "./markdown_editor/toolbar";
+
+.cm-s-mirrormark {
+	font: 16px/1.7 $mirror-mark-font-mono;
+	box-sizing: border-box;
+	height: auto;
+	margin: auto;
+	position: relative;
+	z-index: 0;
+
+	.CodeMirror-scroll {
+		height: auto !important;
+		overflow: visible !important;
+		padding: 30px 4%;
+		box-sizing: border-box;
+	}
+
+	&.CodeMirror-fullscreen .CodeMirror-scroll {
+		height: 100% !important;
+		overflow: scroll !important;
+	}
+
+	pre.CodeMirror-placeholder { color: #999; }
 }
