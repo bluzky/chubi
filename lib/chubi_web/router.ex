@@ -37,5 +37,8 @@ defmodule ChubiWeb.Router do
     resources("/categories", CategoryController)
     resources("/posts", PostController)
     resources("/pages", PageController)
+
+    post("/upload", UploadController, :create)
+    delete("/upload", UploadController, :delete)
   end
 end

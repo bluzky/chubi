@@ -48,7 +48,8 @@ defmodule Chubi.MixProject do
       {:timex, "~> 3.6.1"},
       {:earmark, "~> 1.4.2"},
       {:yamerl, "~> 0.7.0"},
-      {:params, "~> 2.0"}
+      {:params, "~> 2.0"},
+      {:belt, "~> 0.4.2"}
     ]
   end
 

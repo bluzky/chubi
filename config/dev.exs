@@ -72,6 +72,10 @@ config :chubi,
     realm: "Danger"
   ]
 
+config :belt, Belt.Provider.Filesystem,
+  default: [directory: "priv/uploads", base_url: "http://localhost:4000/uploads"],
+  directory: ""
+
 config :chubi,
   blog_info: [
     title: "My blog",
