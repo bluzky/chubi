@@ -9,6 +9,7 @@ defmodule ChubiWeb.Admin.UploadController do
         json(conn, %{status: "OK", data: %{url: Uploader.url(identifier), identifier: identifier}})
 
       {:error, err} ->
+        IO.inspect(err)
         json(conn, %{status: "ERROR", message: "Cannot upload file"})
     end
   end

@@ -6,17 +6,19 @@ defmodule Chubi.Uploader do
 
   # Build base directory
   defp get_directory(base) do
-    storage_dir = Belt.Config.get(Belt.Provider.Filesystem, :directory)
     now = DateTime.utc_now()
     timed_dir = "#{now.year}/#{now.month}"
-    Path.join("#{storage_dir}/#{base}", timed_dir)
+    Path.join("#{base}", timed_dir)
   end
 
   # build file name
   defp build_file_name(%{filename: filename}) do
-    base_name = Path.basename(filename, Path.extname(filename))
-    timestamp = Timex.now() |> Timex.to_unix()
-    "#{base_name}_#{timestamp}#{Path.extname(filename)}"
+    base_name =
+      Path.basename(filename, Path.extname(filename))
+      |> Slugger.slugify_downcase()
+
+    # timestamp = Timex.now() |> Timex.to_unix()
+    "#{base_name}_#{Path.extname(filename)}"
   end
 
   # validate upload file
@@ -39,8 +41,6 @@ defmodule Chubi.Uploader do
       key: build_file_name(file),
       scope: get_directory(dir)
     ]
-
-    IO.inspect(get_directory(dir))
 
     Belt.store(config, path, store_opts)
   end
@@ -90,14 +90,16 @@ defmodule Chubi.Uploader do
   end
 
   def url("http" <> _ = url) do
-    {:ok, url}
+    url
   end
 
   def url(identifier) do
     config = build_config()
-    Belt.get_url(config, identifier)
 
-    # serve_at = Belt.Config.get(Belt.Provider.Filesystem, :serve_at)
-    # {:ok, Path.join(serve_at, identifier)}
+    Belt.get_url(config, identifier)
+    |> case do
+      {:ok, url} -> url
+      _err -> nil
+    end
   end
 end

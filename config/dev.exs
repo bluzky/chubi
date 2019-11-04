@@ -73,7 +73,7 @@ config :chubi,
   ]
 
 config :belt, Belt.Provider.Filesystem,
-  default: [directory: "priv/uploads", base_url: "http://localhost:4000/uploads"],
+  default: [directory: Path.expand("priv/uploads"), base_url: "http://localhost:4000/uploads"],
   directory: ""
 
 config :chubi,
