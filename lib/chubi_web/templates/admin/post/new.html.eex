@@ -1,11 +1,5 @@
 <div class="container">
 
-  <%= form_for @changeset, Routes.admin_upload_path(@conn, :create), [multipart: true, novalidate: true], fn f -> %>
-    <input type="file" name="file">
-    <button class="btn btn-primary" type="submit">Submit</button>
-  <% end %>
-
-
   <div class="row row-cards row-deck mt-md-5">
     <div class="col-md-8 offset-md-2">
       <div class="card profile">

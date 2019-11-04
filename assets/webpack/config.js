@@ -47,10 +47,10 @@ const resolve = {
   modules: [
     path.join(__dirname, "../node_modules"),
     path.join(manifest.paths.src, "")
-  ],
-  alias: {
-    vue: 'vue/dist/vue.js'
-  }
+  ]
+  // alias: {
+  //   vue: 'vue/dist/vue.js'
+  // }
 };
 
 // ---------------

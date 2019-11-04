@@ -5,6 +5,7 @@
 
 .CodeMirror {
   height: auto;
+  min-height: 500px;
 }
 
 pre{
@@ -39,4 +40,19 @@ $mirror-mark-font-header: $mirror-mark-font-mono;
 	}
 
 	pre.CodeMirror-placeholder { color: #999; }
+}
+
+
+
+#upload-box{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  max-width: 300px;
+  
+  // background: rgba(255, 255, 255, 0.8);
+  // box-shadow: 0px 0px 5px rgba(0,0,0, 0.4);
+  // border-radius: 10px;
+  // padding: 20px;
 }
