@@ -1,6 +1,25 @@
 
+<% default_content = """
+---
+title: this is a title
+published_at: 2019-10-01
+categories: CategoryA, CateogryB
+tags: Tag1, Tag2
+is_draft: true
+
+---
+
+this is excerpt
+
+---
+
+your blog content here
+"""
+%>
+
 <%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
-  <%= input(f, :content, using: :textarea, id: "editor", label: false) %>
+  <% content = input_value(f, :content) || default_content %>
+  <%= input(f, :content, using: :textarea, id: "editor", label: false, value: content) %>
 
   <div class="mt-7">
     <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>

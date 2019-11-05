@@ -20,7 +20,7 @@ $mirror-mark-font-header: $mirror-mark-font-mono;
 @import "./markdown_editor/toolbar";
 
 .cm-s-mirrormark {
-	font: 16px/1.7 $mirror-mark-font-mono;
+	font: 14px $mirror-mark-font-mono;
 	box-sizing: border-box;
 	height: auto;
 	margin: auto;
