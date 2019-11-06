@@ -1,0 +1,37 @@
+use Mix.Config
+
+config :chubi,
+  blog_info: [
+    title: "My blog",
+    sub_title: "Coding is awesome",
+    intro:
+      "Welcome to my personal blog. My name is Wangchuk, I am a full-stack web developer. That's it.",
+    ga: "my code",
+    author: %{
+      fullname: "Dzung Nguyen",
+      email: "bluesky.1289@gmail.com",
+      avatar: "https://i.pravatar.cc/300",
+      bio:
+        "Hello! I am Dzung, I like blogging about interesting things. I don't talk much. When talking I don't have time to observe and think a bout the world."
+    },
+    menu: [
+      main: [
+        %{
+          label: "Home",
+          url: "/"
+        },
+        %{
+          label: "A category",
+          url: "/categories/test"
+        },
+        %{
+          label: "Categories",
+          url: "/categories"
+        },
+        %{
+          label: "Contacts",
+          url: "/contact"
+        }
+      ]
+    ]
+  ]

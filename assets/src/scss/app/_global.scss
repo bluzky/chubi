@@ -1,8 +1,12 @@
 // Global styling for this template
 body {
-  font-size: 20px;
+  font-size: 1em;
+  line-height: 1.6;
   color: $gray-900;
+
   @include serif-font;
+  // color: #6e6b5e;
+  // background-color: #fefbec
 }
 
 p {
@@ -19,7 +23,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 800;
+  font-weight: 700;
   @include sans-serif-font;
 }
 

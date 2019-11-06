@@ -61,10 +61,11 @@
   background-size: cover;
 }
 @mixin serif-font() {
-  font-family: 'Inconsolata', monospace;
-  // font-family: 'Lora', 'Times New Roman', serif;
+  // font-family: 'Inconsolata', monospace;
+  font-family: Merriweather,Book Antiqua,Georgia,Century Schoolbook,serif;
 }
+
 @mixin sans-serif-font() {
-  font-family: 'Inconsolata', monospace;
-  // font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  // font-family: 'Inconsolata', monospace;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
