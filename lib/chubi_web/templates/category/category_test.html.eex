@@ -29,7 +29,7 @@
         </a>
         <p class="post-meta">Posted by
           <a href="#">Start Bootstrap</a>
-          on <%= format_datetime(post.date || post.inserted_at) %></p>
+          on <%= format_date(post.date || post.inserted_at) %></p>
       </div>
       <hr>
       <% end %>

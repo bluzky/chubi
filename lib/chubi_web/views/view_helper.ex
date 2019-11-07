@@ -14,7 +14,7 @@ defmodule ChubiWeb.ViewHelpers do
     ]
 
   # code only functions
-  def format_date(date, format \\ "{0D}/{0M}/{YYYY}") do
+  def format_date(date, format \\ "{0M}/{0D}/{YYYY}") do
     format_datetime(date, format)
   end
 
@@ -24,18 +24,16 @@ defmodule ChubiWeb.ViewHelpers do
 
   def format_datetime(
         date,
-        format \\ "{h24}:{m} {0D}/{0M}/{YYYY}",
-        timezone \\ "Asia/Ho_Chi_Minh"
+        format \\ "{0M}/{0D}/{YYYY} {h24}:{m}"
       )
 
-  def format_datetime(nil, _, _) do
+  def format_datetime(nil, _) do
     nil
   end
 
-  def format_datetime(date, format, timezone) do
+  def format_datetime(date, format) do
     date
     |> Timex.to_datetime()
-    |> Timex.to_datetime(timezone)
     |> Timex.format!(format)
   end
 

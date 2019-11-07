@@ -56,7 +56,6 @@ defmodule ChubiWeb do
           include: 2,
           format_datetime: 1,
           format_datetime: 2,
-          format_datetime: 3,
           format_date: 1,
           format_date: 2,
           next_page_path: 2,

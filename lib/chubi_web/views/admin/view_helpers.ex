@@ -11,12 +11,12 @@ defmodule ChubiWeb.Admin.ViewHelpers do
     format_datetime(date, format)
   end
 
-  def format_datetime(date, format) do
-    Timex.format!(date, format)
-  end
-
   def format_datetime(nil, _format) do
     nil
+  end
+
+  def format_datetime(date, format) do
+    Timex.format!(date, format)
   end
 
   @spec nav_state(Plug.Conn.t(), atom, list) :: any
