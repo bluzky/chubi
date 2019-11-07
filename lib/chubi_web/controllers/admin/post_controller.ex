@@ -43,7 +43,10 @@ defmodule ChubiWeb.Admin.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Content.get_post!(id)
+    post =
+      Content.get_post!(id)
+      |> Repo.preload([:tags, :categories])
+
     render(conn, "show.html", post: post)
   end
 

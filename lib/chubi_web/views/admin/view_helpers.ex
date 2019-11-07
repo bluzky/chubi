@@ -3,7 +3,7 @@ defmodule ChubiWeb.Admin.ViewHelpers do
   import ChubiWeb.Gettext
 
   # code only functions
-  def format_date(date, format \\ "{0D}/{0M}/{YYYY}") do
+  def format_date(date, format \\ "{0M}/{0D}/{YYYY}") do
     format_datetime(date, format)
   end
 
@@ -11,13 +11,11 @@ defmodule ChubiWeb.Admin.ViewHelpers do
     format_datetime(date, format)
   end
 
-  def format_datetime(
-        date,
-        format \\ "{h24}:{m} {0D}/{0M}/{YYYY}",
-        timezone \\ "Asia/Ho_Chi_Minh"
-      )
+  def format_datetime(date, format) do
+    Timex.format!(date, format)
+  end
 
-  def format_datetime(nil, _, _) do
+  def format_datetime(nil, _format) do
     nil
   end
 

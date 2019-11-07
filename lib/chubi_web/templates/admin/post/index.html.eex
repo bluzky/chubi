@@ -35,7 +35,7 @@
                     <%= if post.is_draft do %>
                       <span class="badge badge-pill badge-secondary"><%= gettext "Draft" %></span>
                     <% else %>
-                      <%= format_date(post.published_at) %>
+                      <%= format_date(post.date) %>
                     <% end %>
                   </td>
 

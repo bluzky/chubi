@@ -12,7 +12,7 @@
   <% end %>
 
   <p class="post-meta"><%= gettext "Posted by" %>
-    <a href="#"></a><%= @blog_info.author.fullname %>
-    on <%= format_date(@post.published_at || @post.inserted_at) %></p>
+    <a href="#"></a><%= @site_params.author.fullname %>
+    on <%= format_date(@post.date || @post.inserted_at) %></p>
 </div>
 <hr>

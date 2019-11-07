@@ -5,7 +5,7 @@ defmodule Chubi.Content.PostQuery do
 
   def post_query() do
     Post
-    |> order_by(desc: :published_at)
+    |> order_by(desc: :date)
   end
 
   def filter_post(filters \\ %{}) do

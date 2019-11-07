@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
-          <h1><%= @blog_info[:title] %></h1>
-          <span class="subheading"><%= @blog_info[:sub_title] %></span>
+          <h1><%= @site_params[:title] %></h1>
+          <span class="subheading"><%= @site_params[:sub_title] %></span>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ defmodule Chubi.Repo.Migrations.CreatePosts do
       add :content, :text, null: false
       add :format, :string, default: "html"
       add :is_draft, :boolean, default: true, null: false
-      add :published_at, :utc_datetime
+      add :date, :utc_datetime
 
       timestamps()
     end

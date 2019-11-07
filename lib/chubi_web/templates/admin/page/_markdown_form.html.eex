@@ -3,7 +3,7 @@
 ---
 title: this is a title
 slug: custom-slug
-published_at: 2019-10-01
+date: 2019-10-01
 is_draft: true
 
 ---

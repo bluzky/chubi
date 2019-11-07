@@ -2,7 +2,7 @@
   <div class="row row-cards row-deck mt-md-5">
 
     <div class="col-md-3">
-    <%= render "_sidebar.html", assigns %>
+      <%= render "_sidebar.html", assigns %>
     </div>
 
     <div class="col-md-9">
@@ -10,34 +10,58 @@
         <div class="card-body p-6 clearfix">
           <a href="<%= Routes.admin_post_path(@conn, :edit, @post) %>" class="btn btn-secondary btn-sm float-right"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
 
-          <h4 class="fw-bold"><%= @post.title %></h4>
+          <h4 class="fw-bold mb-0"><%= @post.title %></h4>
           <span class="text-muted"><%= @post.slug %></span>
-
-          <div class="mt-4 d-flex">
-            <!-- <div class="d-flex align-items-center">
-                 <div class="avatar avatar-md mr-3" style="background-image: url(./demo/faces/male/16.jpg)"></div>
-                 <div>
-                 <a href="./profile.html" class="text-default">Peter Richards</a>
-                 <small class="d-block text-muted">Sr Director</small>
-                 </div>
-                 </div> -->
-
-            <div class="ml-5 text-muted">
-              <%= gettext "Published at" %> <span class="ml-1 text-default">20/10/2012</span>
-            </div>
-          </div>
 
           <div class="field-list mt-5">
             <div class="field p-0">
+              <div class="field-name fw-bold"><%= gettext "Categories" %></div>
+              <div class="field-value">
+                <%= for cat <- @post.categories do %>
+                  <span class="badge badge-secondary mr-1">
+                    <%= cat.name %>
+                  </span>
+                  <% end %>
+              </div>
+            </div>
+
+            <div class="field p-0">
+              <div class="field-name fw-bold"><%= gettext "Tags" %></div>
+              <div class="field-value">
+                <%= for tag <- @post.tags do %>
+                  <span class="badge badge-secondary mr-1">
+                    <%= tag.name %>
+                  </span>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="field p-0">
               <div class="field-name fw-bold"><%= gettext "Status" %></div>
               <div class="field-value">
-                <span class="badge-status badge-success">Published</span>
+                <%= if @post.is_draft do %>
+                  <span class="badge-status badge-secondary">
+                    <%= gettext "Draft" %>
+                  </span>
+                <% else %>
+                  <span class="badge-status badge-success">
+                    <%= gettext "Published" %>
+                  </span>
+                <% end %>
+
+              </div>
+            </div>
+
+            <div class="field p-0">
+              <div class="field-name fw-bold"><%= gettext "Date" %></div>
+              <div class="field-value">
+                <%= format_date(@post.date) %>
               </div>
             </div>
           </div>
 
           <div class="bd-t mt-7 p-5 pt-7">
-<%= raw @post.html_content %>
+            <%= raw @post.html_content %>
           </div>
 
           <div class="mt-7">

@@ -16,7 +16,7 @@ defmodule Chubi.Content.Post do
     field(:cover, :string)
 
     field(:is_draft, :boolean, default: false)
-    field(:published_at, :utc_datetime)
+    field(:date, :utc_datetime)
 
     many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)
     many_to_many(:categories, Category, join_through: "post_categories", on_replace: :delete)
@@ -25,12 +25,13 @@ defmodule Chubi.Content.Post do
   end
 
   @required_fields [:title, :content, :format, :html_content]
-  @optional_fields [:slug, :excerpt, :is_draft, :cover, :published_at]
+  @optional_fields [:slug, :excerpt, :is_draft, :cover]
 
   @doc false
   def changeset(post, attrs) do
     post
     |> cast(attrs, @required_fields ++ @optional_fields)
+    |> EctoUtils.cast_date(attrs, :date)
     |> EctoUtils.slugify(:title, :slug)
     |> validate_required(@required_fields)
     |> put_assoc(:tags, parse_assoc(attrs, "tags", Tag))
@@ -46,7 +47,7 @@ defmodule Chubi.Content.Post do
     |> insert_and_get_all(model)
   end
 
-  defp insert_and_get_all([], model) do
+  defp insert_and_get_all([], _model) do
     []
   end
 

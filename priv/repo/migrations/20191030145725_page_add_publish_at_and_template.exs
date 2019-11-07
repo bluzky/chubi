@@ -3,7 +3,7 @@ defmodule Chubi.Repo.Migrations.PageAddPublishAtAndTemplate do
 
   def change do
     alter table(:pages) do
-      add :published_at, :utc_datetime
+      add :date, :utc_datetime
       add :template, :text
     end
   end

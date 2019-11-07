@@ -26,4 +26,24 @@ defmodule Chubi.EctoUtils do
       changeset
     end
   end
+
+  def cast_date(changeset, params, field) do
+    date_str = Map.get(params, field) || Map.get(params, to_string(field))
+
+    if date_str do
+      case Ecto.Type.cast(:date, date_str) do
+        :error ->
+          Ecto.Type.cast(:utc_datetime, date_str)
+
+        {:ok, date} ->
+          {:ok, Timex.to_datetime(date)}
+      end
+      |> case do
+        {:ok, date} -> Changeset.put_change(changeset, field, date)
+        _err -> Changeset.add_error(changeset, field, "invalid date")
+      end
+    else
+      changeset
+    end
+  end
 end

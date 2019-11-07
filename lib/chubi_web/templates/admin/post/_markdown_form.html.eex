@@ -2,7 +2,7 @@
 <% default_content = """
 ---
 title: this is a title
-published_at: 2019-10-01
+date: 2019-10-01
 categories: CategoryA, CateogryB
 tags: Tag1, Tag2
 is_draft: true

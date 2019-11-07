@@ -9,7 +9,7 @@
             <h2 class="subheading"><%= raw @post.excerpt %></h2>
             <span class="meta">Posted by
               <a href="#">Start Bootstrap</a>
-              on <%= format_date(@post.published_at || @post.inserted_at) %></span>
+              on <%= format_date(@post.date || @post.inserted_at) %></span>
           </div>
         </div>
       </div>

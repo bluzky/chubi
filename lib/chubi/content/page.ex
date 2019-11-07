@@ -10,7 +10,7 @@ defmodule Chubi.Content.Page do
     field(:format, :string, default: "markdown")
     field(:is_draft, :boolean, default: false)
 
-    field(:published_at, :utc_datetime)
+    field(:date, :utc_datetime)
     field(:template, :string)
 
     timestamps()
@@ -27,9 +27,9 @@ defmodule Chubi.Content.Page do
       :format,
       :is_draft,
       :cover,
-      :published_at,
       :template
     ])
+    |> EctoUtils.cast_date(attrs, :date)
     |> EctoUtils.slugify(:title, :slug)
     |> validate_required([:title, :slug, :content, :html_content, :format])
   end

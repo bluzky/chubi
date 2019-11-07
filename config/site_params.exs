@@ -1,11 +1,11 @@
 use Mix.Config
 
 config :chubi,
-  blog_info: [
-    title: "My blog",
-    sub_title: "Coding is awesome",
+  site_params: [
+    title: "Dzung Nguyen",
+    sub_title: "Blue is Orange",
     intro:
-      "Welcome to my personal blog. My name is Wangchuk, I am a full-stack web developer. That's it.",
+      "Welcome to my personal blog. My name is Dzung Nguyen, I am a full-stack web developer. That's it.",
     ga: "my code",
     author: %{
       fullname: "Dzung Nguyen",
@@ -29,8 +29,8 @@ config :chubi,
           url: "/categories"
         },
         %{
-          label: "Contacts",
-          url: "/contact"
+          label: "About me",
+          url: "/about-me"
         }
       ]
     ]

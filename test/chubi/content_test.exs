@@ -6,9 +6,30 @@ defmodule Chubi.ContentTest do
   describe "posts" do
     alias Chubi.Content.Post
 
-    @valid_attrs %{content: "some content", excerpt: "some excerpt", format: "some format", is_draft: true, published_at: "2010-04-17T14:00:00Z", title: "some title"}
-    @update_attrs %{content: "some updated content", excerpt: "some updated excerpt", format: "some updated format", is_draft: false, published_at: "2011-05-18T15:01:01Z", title: "some updated title"}
-    @invalid_attrs %{content: nil, excerpt: nil, format: nil, is_draft: nil, published_at: nil, title: nil}
+    @valid_attrs %{
+      content: "some content",
+      excerpt: "some excerpt",
+      format: "some format",
+      is_draft: true,
+      date: "2010-04-17T14:00:00Z",
+      title: "some title"
+    }
+    @update_attrs %{
+      content: "some updated content",
+      excerpt: "some updated excerpt",
+      format: "some updated format",
+      is_draft: false,
+      date: "2011-05-18T15:01:01Z",
+      title: "some updated title"
+    }
+    @invalid_attrs %{
+      content: nil,
+      excerpt: nil,
+      format: nil,
+      is_draft: nil,
+      date: nil,
+      title: nil
+    }
 
     def post_fixture(attrs \\ %{}) do
       {:ok, post} =
@@ -35,7 +56,7 @@ defmodule Chubi.ContentTest do
       assert post.excerpt == "some excerpt"
       assert post.format == "some format"
       assert post.is_draft == true
-      assert post.published_at == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
+      assert post.date == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
       assert post.title == "some title"
     end
 
@@ -50,7 +71,7 @@ defmodule Chubi.ContentTest do
       assert post.excerpt == "some updated excerpt"
       assert post.format == "some updated format"
       assert post.is_draft == false
-      assert post.published_at == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
+      assert post.date == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
       assert post.title == "some updated title"
     end
 
@@ -75,9 +96,33 @@ defmodule Chubi.ContentTest do
   describe "pages" do
     alias Chubi.Content.Page
 
-    @valid_attrs %{content: "some content", cover: "some cover", format: "some format", html_content: "some html_content", is_draft: true, slug: "some slug", title: "some title"}
-    @update_attrs %{content: "some updated content", cover: "some updated cover", format: "some updated format", html_content: "some updated html_content", is_draft: false, slug: "some updated slug", title: "some updated title"}
-    @invalid_attrs %{content: nil, cover: nil, format: nil, html_content: nil, is_draft: nil, slug: nil, title: nil}
+    @valid_attrs %{
+      content: "some content",
+      cover: "some cover",
+      format: "some format",
+      html_content: "some html_content",
+      is_draft: true,
+      slug: "some slug",
+      title: "some title"
+    }
+    @update_attrs %{
+      content: "some updated content",
+      cover: "some updated cover",
+      format: "some updated format",
+      html_content: "some updated html_content",
+      is_draft: false,
+      slug: "some updated slug",
+      title: "some updated title"
+    }
+    @invalid_attrs %{
+      content: nil,
+      cover: nil,
+      format: nil,
+      html_content: nil,
+      is_draft: nil,
+      slug: nil,
+      title: nil
+    }
 
     def page_fixture(attrs \\ %{}) do
       {:ok, page} =

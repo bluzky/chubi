@@ -4,11 +4,11 @@ defmodule ChubiWeb.Plugs.PutBlogInfo do
   def init(options), do: options
 
   def call(conn, _opts) do
-    blog_info =
-      Application.get_env(:chubi, :blog_info, [])
+    site_params =
+      Application.get_env(:chubi, :site_params, [])
       |> Enum.into(Map.new())
 
     conn
-    |> assign(:blog_info, blog_info)
+    |> assign(:site_params, site_params)
   end
 end
