@@ -21,8 +21,8 @@ config :chubi,
           url: "/"
         },
         %{
-          label: "A category",
-          url: "/categories/test"
+          label: "Elixir",
+          url: "/categories/elixir"
         },
         %{
           label: "Categories",
@@ -30,7 +30,7 @@ config :chubi,
         },
         %{
           label: "About me",
-          url: "/about-me"
+          url: "/pages/about-me"
         }
       ]
     ]

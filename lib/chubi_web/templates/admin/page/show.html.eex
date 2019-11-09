@@ -3,9 +3,12 @@
     <div class="col-md-8 offset-md-2">
       <div class="card profile">
         <div class="card-body p-6 clearfix">
-          <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" class="btn btn-secondary btn-sm float-right"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
+          <div class="btn-list float-right">
+            <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
+            <a href="<%= Routes.preview_path(@conn, :show_page, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-eye"></i> <%= gettext "Preview" %> </a>
+          </div>
 
-          <h4 class="fw-bold"><%= @page.title %></h4>
+          <h2 class="fw-bold mb-0 text-primary"><%= @page.title %></h2>
           <span class="text-muted"><%= @page.slug %></span>
 
           <div class="field-list mt-5">

@@ -8,7 +8,7 @@ defmodule Chubi.Content.Page do
     field(:cover, :string)
     field(:html_content, :string)
     field(:format, :string, default: "markdown")
-    field(:is_draft, :boolean, default: false)
+    field(:draft, :boolean, default: false)
 
     field(:date, :utc_datetime)
     field(:template, :string)
@@ -25,7 +25,7 @@ defmodule Chubi.Content.Page do
       :content,
       :html_content,
       :format,
-      :is_draft,
+      :draft,
       :cover,
       :template
     ])

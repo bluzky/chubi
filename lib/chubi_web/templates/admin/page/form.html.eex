@@ -25,9 +25,9 @@
   <%= text_input f, :format %>
   <%= error_tag f, :format %>
 
-  <%= label f, :is_draft %>
-  <%= checkbox f, :is_draft %>
-  <%= error_tag f, :is_draft %>
+  <%= label f, :draft %>
+  <%= checkbox f, :draft %>
+  <%= error_tag f, :draft %>
 
   <%= label f, :cover %>
   <%= text_input f, :cover %>

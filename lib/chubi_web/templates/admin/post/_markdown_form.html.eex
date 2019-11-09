@@ -5,7 +5,7 @@ title: this is a title
 date: 2019-10-01
 categories: CategoryA, CateogryB
 tags: Tag1, Tag2
-is_draft: true
+draft: true
 
 ---
 

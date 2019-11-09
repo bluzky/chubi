@@ -1,9 +1,38 @@
-blockquote{
-  padding-left: 30px;
-  border-left: solid;
-  margin-left: 30px;
+
+article{
+
+  line-height: 1.6;
+  blockquote{
+    padding-left: 30px;
+    border-left: solid;
+    margin-left: 30px;
+
+    p{
+      margin: 5px 0;
+    }
+  }
 
   p{
-    margin: 5px 0;
+    margin: 0.86em 0 0.4em 0;
+    line-height: 1.6;
+  }
+
+  li{
+    margin: 0.3em 0;
+  }
+
+  h1,h2,h3,h4,h5,h6{
+    margin: 1.2em 0 0.8em 0;
+  }
+
+  a{
+    text-decoration: none;
+    border-bottom: dashed 1px #fd7e14;
+
+    &:hover{
+      text-decoration: none;
+      color: #fff;
+      background: #fd7e14;
+    }
   }
 }

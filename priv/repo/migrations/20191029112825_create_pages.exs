@@ -8,7 +8,7 @@ defmodule Chubi.Repo.Migrations.CreatePages do
       add :content, :text
       add :html_content, :text
       add :format, :string
-      add :is_draft, :boolean, default: false, null: false
+      add :draft, :boolean, default: false, null: false
       add :cover, :string
 
       timestamps()

@@ -10,7 +10,7 @@ defmodule Chubi.ContentTest do
       content: "some content",
       excerpt: "some excerpt",
       format: "some format",
-      is_draft: true,
+      draft: true,
       date: "2010-04-17T14:00:00Z",
       title: "some title"
     }
@@ -18,7 +18,7 @@ defmodule Chubi.ContentTest do
       content: "some updated content",
       excerpt: "some updated excerpt",
       format: "some updated format",
-      is_draft: false,
+      draft: false,
       date: "2011-05-18T15:01:01Z",
       title: "some updated title"
     }
@@ -26,7 +26,7 @@ defmodule Chubi.ContentTest do
       content: nil,
       excerpt: nil,
       format: nil,
-      is_draft: nil,
+      draft: nil,
       date: nil,
       title: nil
     }
@@ -55,7 +55,7 @@ defmodule Chubi.ContentTest do
       assert post.content == "some content"
       assert post.excerpt == "some excerpt"
       assert post.format == "some format"
-      assert post.is_draft == true
+      assert post.draft == true
       assert post.date == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
       assert post.title == "some title"
     end
@@ -70,7 +70,7 @@ defmodule Chubi.ContentTest do
       assert post.content == "some updated content"
       assert post.excerpt == "some updated excerpt"
       assert post.format == "some updated format"
-      assert post.is_draft == false
+      assert post.draft == false
       assert post.date == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
       assert post.title == "some updated title"
     end
@@ -101,7 +101,7 @@ defmodule Chubi.ContentTest do
       cover: "some cover",
       format: "some format",
       html_content: "some html_content",
-      is_draft: true,
+      draft: true,
       slug: "some slug",
       title: "some title"
     }
@@ -110,7 +110,7 @@ defmodule Chubi.ContentTest do
       cover: "some updated cover",
       format: "some updated format",
       html_content: "some updated html_content",
-      is_draft: false,
+      draft: false,
       slug: "some updated slug",
       title: "some updated title"
     }
@@ -119,7 +119,7 @@ defmodule Chubi.ContentTest do
       cover: nil,
       format: nil,
       html_content: nil,
-      is_draft: nil,
+      draft: nil,
       slug: nil,
       title: nil
     }
@@ -149,7 +149,7 @@ defmodule Chubi.ContentTest do
       assert page.cover == "some cover"
       assert page.format == "some format"
       assert page.html_content == "some html_content"
-      assert page.is_draft == true
+      assert page.draft == true
       assert page.slug == "some slug"
       assert page.title == "some title"
     end
@@ -165,7 +165,7 @@ defmodule Chubi.ContentTest do
       assert page.cover == "some updated cover"
       assert page.format == "some updated format"
       assert page.html_content == "some updated html_content"
-      assert page.is_draft == false
+      assert page.draft == false
       assert page.slug == "some updated slug"
       assert page.title == "some updated title"
     end

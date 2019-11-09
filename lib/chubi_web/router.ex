@@ -14,6 +14,10 @@ defmodule ChubiWeb.Router do
     plug(BasicAuth, use_config: {:chubi, :auth_config})
   end
 
+  pipeline :preview do
+    plug(BasicAuth, use_config: {:chubi, :auth_config})
+  end
+
   pipeline :app do
     plug(ChubiWeb.Plugs.PutBlogInfo)
   end
@@ -28,6 +32,13 @@ defmodule ChubiWeb.Router do
     get("/tags", TagController, :index)
     get("/categories", CategoryController, :index)
     get("/categories/:slug", CategoryController, :show)
+  end
+
+  scope "/preview", ChubiWeb do
+    pipe_through([:browser, :preview, :app])
+
+    get("/posts/:id", PreviewController, :show_post)
+    get("/pages/:id", PreviewController, :show_page)
   end
 
   scope "/admin", ChubiWeb.Admin, as: "admin" do

@@ -4,7 +4,7 @@
 title: this is a title
 slug: custom-slug
 date: 2019-10-01
-is_draft: true
+draft: true
 
 ---
 

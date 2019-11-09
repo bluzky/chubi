@@ -15,7 +15,7 @@ defmodule Chubi.Content.Post do
     field(:format, :string, default: "markdown")
     field(:cover, :string)
 
-    field(:is_draft, :boolean, default: false)
+    field(:draft, :boolean, default: false)
     field(:date, :utc_datetime)
 
     many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)
@@ -25,7 +25,7 @@ defmodule Chubi.Content.Post do
   end
 
   @required_fields [:title, :content, :format, :html_content]
-  @optional_fields [:slug, :excerpt, :is_draft, :cover]
+  @optional_fields [:slug, :excerpt, :draft, :cover]
 
   @doc false
   def changeset(post, attrs) do

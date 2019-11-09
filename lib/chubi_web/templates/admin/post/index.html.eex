@@ -21,7 +21,7 @@
 
               <%= for post <- @posts do %>
                 <tr>
-                  <td> <a href="<%= Routes.admin_post_path(@conn, :show, post) %>" class="text-default"><%= post.title %></a>
+                  <td> <a href="<%= Routes.admin_post_path(@conn, :show, post) %>" class=""><%= post.title %></a>
                   </td>
 
                   <td>
@@ -32,7 +32,7 @@
 
 
                   <td class="text-center">
-                    <%= if post.is_draft do %>
+                    <%= if post.draft do %>
                       <span class="badge badge-pill badge-secondary"><%= gettext "Draft" %></span>
                     <% else %>
                       <%= format_date(post.date) %>

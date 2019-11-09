@@ -43,7 +43,7 @@ defmodule Chubi.Content.PostQuery do
 
   def published_posts do
     post_query
-    |> Filter.apply(is_draft: false)
+    |> Filter.apply(draft: false)
   end
 
   def page_query() do

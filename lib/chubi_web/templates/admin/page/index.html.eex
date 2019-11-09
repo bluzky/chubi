@@ -2,7 +2,7 @@
   <div class="row row-cards row-deck mt-md-5">
 
     <div class="col-md-12">
-      <a href="<%= Routes.admin_page_path(@conn, :new) %>" class="btn btn-secondary ml-auto">
+      <a href="<%= Routes.admin_page_path(@conn, :new) %>" class="btn btn-primary mr-auto">
         <i class="fe fe-plus mr-1"></i>
         <%= gettext "New page" %></a>
     </div>
@@ -14,35 +14,34 @@
             <thead>
               <tr>
                 <th ><%= gettext "Title" %></th>
-                <th class="text-center"><%= gettext "Published at" %></th>
-                <th class="text-center"></th>
+                <th class="w-0"><%= gettext "Status" %></th>
+                <th class="w-0"><%= gettext "Actions" %></th>
               </tr>
             </thead>
             <tbody>
 
-              <%= for post <- @pages do %>
+              <%= for page <- @pages do %>
                 <tr>
-                  <td> <a href="<%= Routes.admin_page_path(@conn, :show, post) %>" class="text-default"><%= post.title %></a>
+                  <td>
+                    <a href="<%= Routes.admin_page_path(@conn, :show, page) %>" class="fw-bold d-block"><%= page.title %></a>
+                    <a href="<%= Routes.page_path(@conn, :show, page) %>" class="small text-muted"><%= Routes.page_path(@conn, :show, page) %></a>
                   </td>
 
                   <td class="text-center">
-                    <%= if post.is_draft do %>
+                    <%= if page.draft do %>
                       <span class="badge badge-pill badge-secondary"><%= gettext "Draft" %></span>
                     <% else %>
+                      <span class="badge badge-pill badge-success"><%= gettext "Published" %></span>
                     <% end %>
                   </td>
 
                   <td class="text-center">
-                    <div class="item-action dropdown">
-                      <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Publish </a> -->
-                        <a href="<%= Routes.admin_page_path(@conn, :edit, post) %>" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
-                        <%= link to: Routes.admin_page_path(@conn, :delete, post), class: "dropdown-item", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
-                          <i class="dropdown-icon fe fe-x"></i> <%= gettext "Delete" %></a>
-                        <% end %>
-                      </div>
-                    </div>
+                    <a href="<%= Routes.admin_page_path(@conn, :edit, page) %>" class="btn btn-secondary btn-sm"><i class="fe fe-edit-2"></i> Edit</a>
+                    <%= link to: Routes.admin_page_path(@conn, :delete, page), class: "btn btn-danger btn-sm", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
+                      <i class="fe fe-x"></i> <%= gettext "Delete" %></a>
+                    <% end %>
+
+                    
                   </td>
                 </tr>
               <% end %>

@@ -8,7 +8,7 @@ defmodule Chubi.Repo.Migrations.CreatePosts do
       add :excerpt, :text
       add :content, :text, null: false
       add :format, :string, default: "html"
-      add :is_draft, :boolean, default: true, null: false
+      add :draft, :boolean, default: true, null: false
       add :date, :utc_datetime
 
       timestamps()

@@ -8,7 +8,7 @@ defmodule ChubiWeb.Admin.Page.PageControllerTest do
     cover: "some cover",
     format: "some format",
     html_content: "some html_content",
-    is_draft: true,
+    draft: true,
     slug: "some slug",
     title: "some title"
   }
@@ -17,7 +17,7 @@ defmodule ChubiWeb.Admin.Page.PageControllerTest do
     cover: "some updated cover",
     format: "some updated format",
     html_content: "some updated html_content",
-    is_draft: false,
+    draft: false,
     slug: "some updated slug",
     title: "some updated title"
   }
@@ -26,7 +26,7 @@ defmodule ChubiWeb.Admin.Page.PageControllerTest do
     cover: nil,
     format: nil,
     html_content: nil,
-    is_draft: nil,
+    draft: nil,
     slug: nil,
     title: nil
   }

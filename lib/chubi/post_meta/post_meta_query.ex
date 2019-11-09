@@ -15,7 +15,7 @@ defmodule Chubi.PostMeta.PostMetaQuery do
   def tag_with_post_count(query) do
     tag_count_query =
       PostTag
-      |> join(:inner, [pt], p in Post, on: pt.post_id == p.id and p.is_draft == false)
+      |> join(:inner, [pt], p in Post, on: pt.post_id == p.id and p.draft == false)
       |> group_by([pt, p], pt.tag_id)
       |> select([pt], %{tag_id: pt.tag_id(), post_count: count(pt.post_id)})
 
@@ -46,7 +46,7 @@ defmodule Chubi.PostMeta.PostMetaQuery do
   def category_with_post_count(query) do
     category_count_query =
       PostCategory
-      |> join(:inner, [pt], p in Post, on: pt.post_id == p.id and p.is_draft == false)
+      |> join(:inner, [pt], p in Post, on: pt.post_id == p.id and p.draft == false)
       |> group_by([pt], pt.category_id)
       |> select([pt], %{category_id: pt.category_id(), post_count: count(pt.post_id)})
 
