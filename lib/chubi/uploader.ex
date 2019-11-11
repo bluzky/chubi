@@ -18,7 +18,7 @@ defmodule Chubi.Uploader do
       |> Slugger.slugify_downcase()
 
     # timestamp = Timex.now() |> Timex.to_unix()
-    "#{base_name}_#{Path.extname(filename)}"
+    "#{base_name}#{Path.extname(filename)}"
   end
 
   # validate upload file
