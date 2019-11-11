@@ -27,9 +27,9 @@ defmodule ChubiWeb.Router do
     get("/", PageController, :index)
     get("/posts", PostController, :index)
     get("/posts/:slug", PostController, :show)
-    get("/category/:slug", PostController, :by_category)
     get("/pages/:slug", PageController, :show)
     get("/tags", TagController, :index)
+    get("/tags/:slug", TagController, :show)
     get("/categories", CategoryController, :index)
     get("/categories/:slug", CategoryController, :show)
   end

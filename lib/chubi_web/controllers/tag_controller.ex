@@ -3,6 +3,7 @@ defmodule ChubiWeb.TagController do
 
   alias Chubi.Content
   alias Chubi.Content.PostQuery
+  alias Chubi.PostMeta
   alias Chubi.PostMeta.PostMetaQuery
   alias Chubi.Repo
   alias ChubiWeb.ControllerHelpers
