@@ -1,36 +1,37 @@
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
-  <div class="overlay"></div>
+<section class="site-section py-sm pt-5">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Clean Blog</h1>
-          <span class="subheading">A Blog Theme by Start Bootstrap</span>
-        </div>
+      <div class="col-md-6">
+        <h2 class="mb-4"><%= gettext "Latest Posts" %></h2>
       </div>
     </div>
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-md-10 mx-auto">
-
-      <%= for post <- @posts do %>
-        <%= render "_post_item.html", Map.put(assigns, :post, post) %>
-      <% end %>
-
-      <!-- Pager -->
-      <div class="clearfix">
-        <%=  if @paginator.has_prev? do %>
-          <a class="btn btn-primary float-left" href="<%= prev_page_path(@conn, @paginator) %>">&larr; <%= gettext "Newer posts" %></a>
-        <% end %>
-        <%=  if @paginator.has_next? do %>
-          <a class="btn btn-primary float-right" href="<%= next_page_path(@conn, @paginator) %>"><%= gettext "Older posts" %> &rarr;</a>
+    <div class="row blog-entries">
+      <div class="col-md-12 col-lg-8 main-content">
+        <div class="row">
+          <%= for post <- @posts do %>
+            <div class="col-md-6">
+              <%= render ChubiWeb.PostView, "_post_item.html", Map.put(assigns, :post, post) %>
+            </div>
           <% end %>
+          
+        </div>
+
+        <div class="clearfix">
+          <%=  if @paginator.has_prev? do %>
+            <a class="btn btn-primary float-left" href="<%= prev_page_path(@conn, @paginator) %>">&larr; <%= gettext "Newer posts" %></a>
+          <% end %>
+          <%=  if @paginator.has_next? do %>
+            <a class="btn btn-primary float-right" href="<%= next_page_path(@conn, @paginator) %>"><%= gettext "Older posts" %> &rarr;</a>
+          <% end %>
+        </div>
+
       </div>
+
+      <!-- END main-content -->
+
+      <%= render ChubiWeb.PageView, "_sidebar.html", assigns %>
+
     </div>
   </div>
-</div>
+</section>
 
