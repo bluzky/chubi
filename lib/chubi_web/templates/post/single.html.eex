@@ -35,8 +35,7 @@
       </div>
 
       <!-- END main-content -->
-
-      <%= render ChubiWeb.PageView, "_sidebar.html", assigns %>
+      <%= partial "sidebar.html", assigns %>
     </div>
   </div>
 </section>
