@@ -1,4 +1,7 @@
-@import "./app/bootstrap.scss";
+@import "~bootstrap/scss/functions";
+@import "./app/variables";
+/* @import "mixins"; */
+@import '~bootstrap/scss/bootstrap';
 @import "./app/style.scss";
 @import "~highlight.js/styles/night-owl";
 
