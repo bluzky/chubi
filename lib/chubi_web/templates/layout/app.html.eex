@@ -13,7 +13,8 @@
      gtag('config', '<%= @site_params[:ga] %>');
     </script>
     
-    <%= partial "navigation.html", assigns %>
+    <div class="wrap">
+      <%= partial "navigation.html", assigns %>
 
     <%= render @view_module, @view_template, assigns %>
 
@@ -21,6 +22,7 @@
 
     <!-- Footer -->
     <%= partial "footer.html", assigns %>
+    </div>
 
     <script src="<%= Routes.static_path(@conn, "/js/commons.js") %>"></script>
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

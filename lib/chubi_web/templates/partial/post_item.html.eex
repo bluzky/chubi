@@ -1,18 +1,11 @@
-<div class="post-preview">
-  <a href="<%= Routes.post_path(@conn, :show, @post.slug) %>">
-    <h4 class="post-title">
-      <%= @post.title %>
-    </h4>
-  </a>
-  
-  <%= if @post.excerpt do %>
-    <div class="post-subtitle my-2">
-      <%= raw @post.excerpt %>
-    </div>
-  <% end %>
 
-  <p class="post-meta"><%= gettext "Posted by" %>
-    <a href="#"></a><%= @site_params.author.fullname %>
-    on <%= format_date(@post.date || @post.inserted_at) %></p>
-</div>
-<hr>
+  <a href="<%= Routes.post_path(@conn, :show, @post.slug) %>" class="blog-entry">
+    <img src="<%= Routes.static_path(@conn, "/images/img_5.jpg") %>" alt="Image placeholder">
+    <div class="blog-content-body">
+      <div class="post-meta">
+        <span class="author mr-2"><img src="<%= @site_params.author.avatar %>" alt="Colorlib"> <%= @site_params.author.fullname %></span>&bullet;
+        <span class="mr-2"><%= format_date(@post.date || @post.inserted_at) %></span>
+      </div>
+      <h2><%= @post.title %></h2>
+    </div>
+  </a>

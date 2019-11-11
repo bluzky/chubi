@@ -26,7 +26,17 @@ config :chubi,
         },
         %{
           label: "Categories",
-          url: "/categories"
+          url: "/categories",
+          children: [
+            %{
+              label: "Elixir",
+              url: "/categories/elixir"
+            },
+            %{
+              label: "Python",
+              url: "/categories/python"
+            }
+          ]
         },
         %{
           label: "About me",

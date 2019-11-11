@@ -1,28 +1,43 @@
-<!-- Page Header -->
-  <header class="masthead" style="background-image: url(<%= @post.cover %>)">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1><%= @post.title %></h1>
-            <h2 class="subheading"><%= raw @post.excerpt %></h2>
-            <span class="meta">Posted by
-              <a href="#"><%= @site_params.author.fullname %></a>
-              on <%= format_date(@post.date || @post.inserted_at) %></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+<section class="site-section py-lg">
+  <div class="container">
+    
+    <div class="row blog-entries">
 
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="col-md-12 col-lg-8 main-content">
+        <img src="<%= Routes.static_path(@conn, "/images/img_10.jpg") %>" alt="Image" class="img-fluid mb-5">
+        <div class="post-meta">
+          <span class="author mr-2"><img src="<%= @site_params.author.avatar %>" alt="Colorlib" class="mr-2"> <%= @site_params.author.fullname %></span>&bullet;
+          <span class="mr-2"><%= format_date(@post.date || @post.inserted_at) %> </span>
+        </div>
+        <h1 class="mb-4"><%= @post.title %></h1>
+
+        <%= for item <- @post.categories do %>
+          <a class="category mb-5" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+        <% end %>
+
+        <div class="post-content-body">
           <%= compile_shortcode @post.html_content %>
         </div>
+
+
+        <div class="pt-5">
+          <p>Categories:
+            <%= for item <- @post.categories do %>
+              <a class="category mb-5" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+            <% end %>
+
+            Tags:
+
+            <%= for item <- @post.tags do %>
+              <a class="category mb-5" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+            <% end %>
+        </div>
       </div>
+
+      <!-- END main-content -->
+
+      <%= render ChubiWeb.PageView, "_sidebar.html", assigns %>
     </div>
-  </article>
+  </div>
+</section>
+
