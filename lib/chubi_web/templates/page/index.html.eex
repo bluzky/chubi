@@ -10,7 +10,7 @@
         <div class="row">
           <%= for post <- @posts do %>
             <div class="col-md-6">
-              <%= render ChubiWeb.PostView, "_post_item.html", Map.put(assigns, :post, post) %>
+              <%= partial "post_card.html", Map.put(assigns, :post, post) %>
             </div>
           <% end %>
           
@@ -29,7 +29,7 @@
 
       <!-- END main-content -->
 
-      <%= render ChubiWeb.PageView, "_sidebar.html", assigns %>
+      <%= partial "sidebar.html", assigns %>
 
     </div>
   </div>
