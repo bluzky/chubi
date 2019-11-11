@@ -1,9 +1,9 @@
 
 body {
 	/* background: #ccc url('../images/photography.png') repeat; */
-	font-family: $font-family-monospace;
+	font-family: $font-family-serif;
 	font-weight: 300;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.9;
 	color: gray('600');
 }
@@ -17,6 +17,7 @@ a {
 h1, h2, h3, h4, h5 {
 	color: $black;
 	font-family: $font-family-sans-serif;
+  font-weight: bold;
 }
 
 .wrap {
@@ -594,6 +595,7 @@ header {
 			font-size: 13px;
 			color: lighten($black, 50%);
 		}
+
 	}
 	.post-meta {
 		margin-bottom: 20px;
@@ -607,6 +609,10 @@ header {
 				}
 			}
 	}
+
+  li p{
+    margin-bottom: 0;
+  }
 }
 
 
@@ -1436,7 +1442,6 @@ textarea.form-control {
 		li {
 			list-style: none;
 			padding: 0 0 20px 0;
-			margin: 0 0 20px 0;
 			a {
 				display: table;
 				img {
@@ -1449,7 +1454,7 @@ textarea.form-control {
 				}
 				.text {
 					h4 {
-						font-size: 18px;
+						font-size: 16px;
 					}
 				}
 			}
