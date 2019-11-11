@@ -45,23 +45,14 @@ defmodule ChubiWeb do
           current_path: 2
         ]
 
+      def partial(name, assigns) do
+        render(ChubiWeb.PartialView, name, assigns)
+      end
+
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
       import ChubiWeb.ErrorHelpers
-
-      import ChubiWeb.ViewHelpers,
-        only: [
-          partial: 2,
-          include: 2,
-          format_datetime: 1,
-          format_datetime: 2,
-          format_date: 1,
-          format_date: 2,
-          next_page_path: 2,
-          prev_page_path: 2
-        ]
-
+      import ChubiWeb.ViewHelpers
       import ChubiWeb.Gettext
       alias ChubiWeb.Router.Helpers, as: Routes
     end

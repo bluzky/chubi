@@ -1,14 +1,6 @@
 defmodule ChubiWeb.ViewHelpers do
-  use Phoenix.View,
-    root: "lib/chubi_web/templates",
-    namespace: ChubiWeb
-
   import Phoenix.Controller,
     only: [
-      view_module: 1,
-      view_template: 1,
-      current_url: 1,
-      current_url: 2,
       current_path: 1,
       current_path: 2
     ]
@@ -35,14 +27,6 @@ defmodule ChubiWeb.ViewHelpers do
     date
     |> Timex.to_datetime()
     |> Timex.format!(format)
-  end
-
-  def partial(name, assigns) do
-    render(ChubiWeb.LayoutView, name, assigns)
-  end
-
-  def include(name, assigns) do
-    render(view_module(assigns.conn), name, assigns)
   end
 
   def next_page_path(conn, paginator) do

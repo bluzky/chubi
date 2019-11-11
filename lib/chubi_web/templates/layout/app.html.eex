@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-  <%= partial "_head.html", assigns %>
+  <%= partial "head.html", assigns %>
 
   <body class="">
 
-    <%= partial "_navigation.html", assigns %>
+    <%= partial "navigation.html", assigns %>
 
     <%= render @view_module, @view_template, assigns %>
 
     <hr>
 
     <!-- Footer -->
-    <%= partial "_footer.html", assigns %>
+    <%= partial "footer.html", assigns %>
 
     <script src="<%= Routes.static_path(@conn, "/js/commons.js") %>"></script>
     <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
