@@ -2,45 +2,35 @@ use Mix.Config
 
 config :chubi,
   site_params: [
-    title: "Dzung Nguyen",
-    sub_title: "Blue is Orange",
+    title: "Chả giò cá",
+    sub_title: "Hương vị của biển",
     intro:
-      "Welcome to my personal blog. My name is Dzung Nguyen, I am a full-stack web developer. That's it.",
+      "Chả giò cá là món ăn đặc sản nổi tiếng của vùng đất Bà Rịa. Chả giò cá là sự kết hợp hài hoà từ rau xanh tươi của núi và cá mềm ngọt từ biển khơi.",
     ga: "my code",
     author: %{
-      fullname: "Dzung Nguyen",
+      fullname: "Chuso Foods",
       email: "bluesky.1289@gmail.com",
       avatar: "https://i.pravatar.cc/300",
       bio:
-        "Hello! I am Dzung, I like blogging about interesting things. I don't talk much. When talking I don't have time to observe and think a bout the world."
+        "Thấu hiểu được mong muốn về những bữa ăn tươi ngon và an toàn cho gia đình bạn. Chuso Foods lựa chọn và đem đến cho bạn những thực phẩm vệ sinh, an toàn và tốt cho sức khoẻ."
     },
     menu: [
       main: [
         %{
-          label: "Home",
+          label: "Trang chủ",
           url: "/"
         },
         %{
-          label: "Elixir",
-          url: "/categories/elixir"
+          label: "Chả giò cá Châu Đức",
+          url: "/pages/cha-gio-ca"
         },
         %{
-          label: "Categories",
-          url: "/categories",
-          children: [
-            %{
-              label: "Elixir",
-              url: "/categories/elixir"
-            },
-            %{
-              label: "Python",
-              url: "/categories/python"
-            }
-          ]
+          label: "Về Chuso Foods",
+          url: "/pages/about-us"
         },
         %{
-          label: "About me",
-          url: "/pages/about-me"
+          label: "Liên hệ",
+          url: "/pages/contact"
         }
       ]
     ]
