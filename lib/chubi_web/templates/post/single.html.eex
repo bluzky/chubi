@@ -6,7 +6,7 @@
       <div class="col-md-12 col-lg-8 main-content">
         <%= if @post.cover do %>
           <img src="<%= @post.cover %>" alt="<%= @post.title %>" class="img-fluid mb-5">
-          <% end %>
+        <% end %>
         <div class="post-meta">
           <span class="author mr-2"><img src="<%= @site_params.author.avatar %>" alt="Colorlib" class="mr-2"> <%= @site_params.author.fullname %></span>&bullet;
           <span class="mr-2"><%= format_date(@post.date || @post.inserted_at) %> </span>
@@ -23,15 +23,20 @@
 
 
         <div class="pt-5">
-          <p><%= gettext "Categories" %>:
-            <%= for item <- @post.categories do %>
-              <a class="category mb-5" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+          <p>
+            <%= if length(@post.categories) > 0 do %>
+              <%= gettext "Categories" %>:
+              <%= for item <- @post.categories do %>
+                <a class="category" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+              <% end %>
             <% end %>
+            <br/>
+            <%= if length(@post.tags) > 0 do %>
+              <%= gettext "Tags" %>:
 
-            <%= gettext "Tags" %>:
-
-            <%= for item <- @post.tags do %>
-              <a class="category mb-5" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+              <%= for item <- @post.tags do %>
+                <a class="category" href="<%= Routes.category_path(@conn, :show, item.slug) %>"><%= item.name %></a>
+              <% end %>
             <% end %>
         </div>
       </div>
