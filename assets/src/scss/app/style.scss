@@ -257,7 +257,7 @@ header {
 
 .category {
   display: inline-block;
-  background: $primary;
+  background: $gray-600;
   padding: 2px 8px;
   line-height: 1.5;
   font-size: 12px;
@@ -265,7 +265,7 @@ header {
   text-transform: uppercase;
   color: $white !important;
   margin-right: 10px;
-  letter-spacing: .2em;
+  letter-spacing: .1em;
 }
 
 .a-block {

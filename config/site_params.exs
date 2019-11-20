@@ -10,7 +10,7 @@ config :chubi,
     author: %{
       fullname: "Chuso Foods",
       email: "bluesky.1289@gmail.com",
-      avatar: "https://i.pravatar.cc/300",
+      avatar: "/images/logo.png",
       bio:
         "Thấu hiểu được mong muốn về những bữa ăn tươi ngon và an toàn cho gia đình bạn. Chuso Foods lựa chọn và đem đến cho bạn những thực phẩm vệ sinh, an toàn và tốt cho sức khoẻ."
     },
