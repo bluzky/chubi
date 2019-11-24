@@ -1,6 +1,7 @@
 import "../scss/index.scss";
 
 import * as $ from "jquery";
+import "bootstrap";
 import * as hljs from "highlight.js";
 
 hljs.initHighlightingOnLoad();
