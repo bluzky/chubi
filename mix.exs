@@ -49,7 +49,8 @@ defmodule Chubi.MixProject do
       {:earmark, "~> 1.4.2"},
       {:yamerl, "~> 0.7.0"},
       {:params, "~> 2.0"},
-      {:belt, "~> 0.4.2"}
+      {:belt, "~> 0.4.2"},
+      {:floki, "~> 0.23.0"}
     ]
   end
 

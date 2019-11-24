@@ -6,6 +6,7 @@ config :chubi,
     sub_title: "Hương vị của biển",
     intro:
       "Chả giò cá là món ăn đặc sản nổi tiếng của vùng đất Bà Rịa. Chả giò cá là sự kết hợp hài hoà từ rau xanh tươi của núi và cá mềm ngọt từ biển khơi.",
+    image: "/images/chagio.jpg",
     ga: "my code",
     author: %{
       fullname: "Chuso Foods",

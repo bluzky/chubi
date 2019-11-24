@@ -24,8 +24,13 @@ defmodule ChubiWeb.PostController do
       Content.get_post_by!(slug: slug)
       |> Repo.preload([:categories, :tags])
 
-    ControllerHelpers.render_first_match(
-      conn,
+    conn
+    |> assign(:seo, %{
+      title: post.title,
+      description: String.slice(Floki.text(post.html_content), 0, 200),
+      image: post.cover
+    })
+    |> ControllerHelpers.render_first_match(
       ["post_#{post.slug}.html", "single.html"],
       post: post
     )
