@@ -12,12 +12,15 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
 
-  <meta property="og:title" content="<%= @site_params[:title] %>"/>
-  <meta property="og:url" content="<%=  %>"/>
+  <title><%= assigns[:title] || @site_params[:title] %></title>
+
+  <% seo = assigns[:seo] || %{} %>
+  <meta property="og:title" content="<%= seo[:title] || @site_params[:title] %>"/>
+  <meta property="og:url" content="<%= current_url(@conn) %>"/>
   <meta property="og:site_name" content="<%= @site_params[:title] %>"/>
-  <meta property="og:image" content="<%= @site_params[:image] %>"/>
+  <meta property="og:image" content="<%= seo[:image] || Routes.static_url(@conn, @site_params[:image]) %>"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:description" content="<%= @site_params[:intro] %>"/>
+  <meta property="og:description" content="<%= seo[:description] || @site_params[:intro] %>"/>
 
   <!-- <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet"> -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Open+Sans:400,700&display=swap&subset=vietnamese" rel="stylesheet"> 
