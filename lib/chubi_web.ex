@@ -53,6 +53,7 @@ defmodule ChubiWeb do
       use Phoenix.HTML
       import ChubiWeb.ErrorHelpers
       import ChubiWeb.ViewHelpers
+      import ChubiWeb.ShortCodeHelpers, only: [compile_shortcode: 2, compile_shortcode: 1]
       import ChubiWeb.Gettext
       alias ChubiWeb.Router.Helpers, as: Routes
     end

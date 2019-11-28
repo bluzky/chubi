@@ -1,16 +1,15 @@
 defmodule ChubiWeb.ShortCodeView do
   use ChubiWeb, :view
 
-  def render_shortcode("hello", _assigns) do
-    "<h1>Hello</h1>"
-  end
-
-  def render_shortcode("greeting", %{args: [name]}) do
-    "<h2>Welcome, #{name}</h2>"
-  end
-
-  def render_shortcode("add", %{args: [a, b, c]}) do
-    "<h1> result: #{a + b + c}</h1>"
+  def render_shortcode("youtube", %{args: [video_id]}) do
+    """
+    <div class="embed video-player">
+    <iframe class="youtube-player" type="text/html" width="640" height="385" src="https://www.youtube.com/embed/#{
+      video_id
+    }" allowfullscreen frameborder="0">
+    </iframe>
+    </div>
+    """
   end
 
   def render_shortcode(name, assigns) do

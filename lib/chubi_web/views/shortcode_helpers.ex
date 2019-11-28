@@ -1,6 +1,4 @@
 defmodule ChubiWeb.ShortCodeHelpers do
-  use ChubiWeb, :view
-
   def html do
     """
 
@@ -32,6 +30,7 @@ defmodule ChubiWeb.ShortCodeHelpers do
     html
     |> do_compile_shortcode(~r/\[\[([_\w]+)([^\/]*)\]\](.+?)\[\[\/\w+?\]\]/sm, assigns)
     |> do_compile_shortcode(~r/\[\[([_\w]+)([^\/]*)\/\]\]/m, assigns)
+    |> Phoenix.HTML.raw()
   end
 
   defp do_compile_shortcode(html, regex, assigns) do
