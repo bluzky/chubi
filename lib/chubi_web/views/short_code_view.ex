@@ -1,44 +1,19 @@
 defmodule ChubiWeb.ShortCodeView do
   use ChubiWeb, :view
 
-  def html do
-    """
-
-    <h2>this is a short markdown to test</h2>
-    <p><strong>Short code</strong></p>
-    <ul>
-    <li>For example: [[hello /]]
-    </li>
-    </ul>
-    <p>this is another: [[greeting “Wangchuk” /]]</p>
-    <p>with multiple argument: [[add 1, 2, 3 /]]</p>
-    <p>with keyword list [[hello name: “dung”, age: 19 /]]</p>
-    <p>block short code</p>
-    <p>[[block]]
-    Inner block content
-    another row
-    [[/block]]</p>
-    <p>Block with argument:</p>
-    <p>[[border width: 10]]
-    Inner blog content</p>
-    <p>with space
-    [[/border]]</p>
-
-    """
+  def render_shortcode("hello", _assigns) do
+    "<h1>Hello</h1>"
   end
 
-  def compile_shortcode(html) do
-    html
-    |> compile_shortcode_block
-    |> compile_shortcode_inline
+  def render_shortcode("greeting", %{args: [name]}) do
+    "<h2>Welcome, #{name}</h2>"
   end
 
-  defp compile_shortcode_block(html) do
-    Regex.scan(~r/\[\[([_\w]+)([^\/]*)\]\](.+?)\[\[\/\w+?\]\]/sm, html)
-    |> IO.inspect()
+  def render_shortcode("add", %{args: [a, b, c]}) do
+    "<h1> result: #{a + b + c}</h1>"
   end
 
-  defp compile_shortcode_inline(html) do
-    # Regex.scan(~r/\[\[([_\w]+)(.*?)(?:\s.*)?\/\]\]/m, html)
+  def render_shortcode(name, assigns) do
+    Phoenix.View.render_existing(ChubiWeb.ShortCodeView, "#{name}.html", assigns)
   end
 end
