@@ -3,7 +3,16 @@
   <%= partial "head.html", assigns %>
 
   <body class="">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= @site_params[:ga] %>"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
 
+     gtag('config', '<%= @site_params[:ga] %>');
+    </script>
+    
     <%= partial "navigation.html", assigns %>
 
     <%= render @view_module, @view_template, assigns %>
