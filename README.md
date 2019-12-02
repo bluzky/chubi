@@ -31,7 +31,7 @@ password: 123123
 Click button `New post` to start writing a new post
 This is the format of a post
 
-```
+```markdown
 ---
 title: this is a title
 slug: my-first-post
@@ -97,7 +97,7 @@ see [Wikipedia](https://en.wikipedia.org/wiki/Markdown)
 2. Click 'HTML Preview' button.
 ```
 
-# 2. Config file
+# 4. Config file
 
 ## Site params
 Config file `config/site_params.exs`, this file store config for the website. You can store any kind of information that is used in your template.
@@ -166,7 +166,7 @@ For my project, I store uploaded file locally in directory `priv/uploads` and se
 
 [Belt](https://hex.pm/packages/belt) provide `S3 provider` and `SFTP provider`, so you can easily edit project to store your file on S3 or FTP server. 
 
-# 2. Features
+# 5. Features
 - Easy to customize template
 - Simple admin interface
 - Support Page and Post
@@ -174,13 +174,13 @@ For my project, I store uploaded file locally in directory `priv/uploads` and se
 - Support Mardown format
 
 
-# 3. What it doesn't support
+# 6. What it doesn't support
 - Comment: You can use Disqu or Facebook comment plugin, so I wan to keep it as simple as possible
 - User and permission management: It's not an essential functions of a blog. I use Basic Auth for admin authentication. You can roll out your own user management functions.
 - Media library: it is nice to have, but I don't want to make it too compicated.
 
 
 
-# 4. Credit
+# 7. Credit
 - Blog template [Clean blog](https://startbootstrap.com/themes/clean-blog/)
 - Admin template [Tabler admin template](https://preview.tabler.io/index.html)

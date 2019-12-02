@@ -18,7 +18,7 @@
     <div class="col-lg-8 col-md-10 mx-auto">
 
       <%= for post <- @posts do %>
-        <%= render "_post_item.html", Map.put(assigns, :post, post) %>
+        <%= partial "post_item.html", Map.put(assigns, :post, post) %>
       <% end %>
 
       <!-- Pager -->

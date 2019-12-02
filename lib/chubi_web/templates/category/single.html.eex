@@ -17,22 +17,7 @@
     <div class="col-lg-8 col-md-10 mx-auto">
 
       <%= for post <- @posts do %>
-      <div class="post-preview">
-        <a href="<%= Routes.post_path(@conn, :show, post.slug) %>">
-          <h2 class="post-title">
-<%= post.title %>
-          </h2>
-          <%= if post.excerpt do %>
-          <h3 class="post-subtitle">
-            <%= raw post.excerpt %>
-          </h3>
-          <% end %>
-        </a>
-        <p class="post-meta">Posted by
-          <a href="#">Start Bootstrap</a>
-          on <%= format_date(post.date || post.inserted_at) %></p>
-      </div>
-      <hr>
+        <%= partial "post_item.html", Map.put(assigns, :post, post) %>
       <% end %>
 
       <!-- Pager -->
