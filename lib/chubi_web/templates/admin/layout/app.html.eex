@@ -16,7 +16,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Generated: 2019-02-13 14:57:09 +0700 -->
-    <title><%= assigns[:title] || "Yeah1 App" %></title>
+    <title><%= assigns[:title] || "Chubi Admin" %></title>
 
     <!-- Dashboard Core -->
 
