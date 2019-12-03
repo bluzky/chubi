@@ -43,7 +43,7 @@ defmodule ChubiWeb.Router do
 
   scope "/admin", ChubiWeb.Admin, as: "admin" do
     pipe_through([:browser, :admin])
-    get("/", PageController, :index)
+    get("/", PostController, :index)
     resources("/tags", TagController)
     resources("/categories", CategoryController)
     resources("/posts", PostController)

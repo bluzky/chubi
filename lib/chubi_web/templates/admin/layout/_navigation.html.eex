@@ -14,11 +14,11 @@
       <div class="col-lg order-lg-first">
         <ul class="nav nav-tabs border-0 flex-column flex-lg-row justify-content-center">
           <li class="nav-item">
-            <a href="<%= Routes.admin_page_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PageController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Page" %></a>
+            <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PostController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Post" %></a>
           </li>
 
           <li class="nav-item">
-            <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PostController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Post" %></a>
+            <a href="<%= Routes.admin_page_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PageController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Page" %></a>
           </li>
 
         </ul>
