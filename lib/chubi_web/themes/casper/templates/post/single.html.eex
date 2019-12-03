@@ -1,0 +1,1 @@
+<%= compile_shortcode @post.html_content %>

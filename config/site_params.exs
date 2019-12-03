@@ -1,6 +1,7 @@
 use Mix.Config
 
 config :chubi,
+  theme: {"casper", CasperTheme},
   site_params: [
     title: "Dzung Nguyen",
     sub_title: "Blue is Orange",
