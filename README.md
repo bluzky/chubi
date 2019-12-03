@@ -6,8 +6,9 @@ Inspired by Hugo static site generator, and I want a simple admin interface to w
 
 # Demo
 This is demo blog
-[Front page](http://demo.sachcuabo.com)
-[Admin](http://demo.sachcuabo.com/admin)
+
+- [Front page](http://demo.sachcuabo.com)
+- [Admin](http://demo.sachcuabo.com/admin)
 
 ```
 username: admin
