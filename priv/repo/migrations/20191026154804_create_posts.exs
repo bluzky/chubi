@@ -13,5 +13,6 @@ defmodule Chubi.Repo.Migrations.CreatePosts do
 
       timestamps()
     end
+    create unique_index(:posts, [:slug])
   end
 end
