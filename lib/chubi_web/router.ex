@@ -19,6 +19,7 @@ defmodule ChubiWeb.Router do
   end
 
   pipeline :app do
+    plug(:put_layout, {ChubiWeb.ThemeHelpers.theme_module("LayoutView"), "app.html"})
     plug(ChubiWeb.Plugs.PutBlogInfo)
   end
 

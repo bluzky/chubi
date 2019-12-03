@@ -22,13 +22,6 @@ defmodule ChubiWeb.ControllerHelpers do
 
   # render first matched template
   def render_first_match(conn, template_list, assigns) do
-    case render_theme_template(conn, template_list, assigns) do
-      %Plug.Conn{} = conn -> conn
-      _ -> render_default_template(conn, template_list, assigns)
-    end
-  end
-
-  defp render_theme_template(conn, templates_list, assigns) do
     {theme, theme_module} = Application.get_env(:chubi, :theme)
     root = Phoenix.Template.module_to_template_root(view_module(conn), ChubiWeb, "View")
 
@@ -51,24 +44,8 @@ defmodule ChubiWeb.ControllerHelpers do
       conn
       |> put_view(String.to_existing_atom("#{theme_module}.#{view_scope}"))
       |> render(template, assigns)
-    end
-  end
-
-  defp render_default_template(conn, templates_list, assigns) do
-    root = Phoenix.Template.module_to_template_root(view_module(conn), ChubiWeb, "View")
-    root = "lib/chubi_web/templates/#{root}"
-
-    template =
-      Enum.find(templates_list, fn template ->
-        Phoenix.Template.find_all(root, "#{template}*")
-        |> length()
-        |> Kernel.>(0)
-      end)
-
-    if is_nil(template) do
-      raise "No template found"
     else
-      render(conn, template, assigns)
+      raise "No template found"
     end
   end
 end
