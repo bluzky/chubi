@@ -22,8 +22,8 @@
     <!-- Footer -->
     <%= partial "footer.html", assigns %>
 
-    <script src="<%= Routes.static_path(@conn, "/js/commons.js") %>"></script>
-    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/chubi/js/commons.js") %>"></script>
+    <script src="<%= Routes.static_path(@conn, "/chubi/js/app.js") %>"></script>
     <%= raw(render_existing(view_module(@conn), "scripts." <> view_template(@conn), assigns)) %>
   </body>
 </html>

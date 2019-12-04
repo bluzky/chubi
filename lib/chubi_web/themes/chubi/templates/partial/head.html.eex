@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&display=swap&subset=vietnamese" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:300,700&display=swap&subset=vietnamese" rel="stylesheet"> 
   <!-- Dashboard Core -->
-  <link href="<%= Routes.static_path(@conn, "/css/app.css") %>" rel="stylesheet" />
+  <link href="<%= Routes.static_path(@conn, "/chubi/css/app.css") %>" rel="stylesheet" />
   <%= raw(render_existing(view_module(@conn), "styles." <> view_template(@conn), assigns)) %>
 </head>
 

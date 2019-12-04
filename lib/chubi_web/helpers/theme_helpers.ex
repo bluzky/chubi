@@ -10,6 +10,17 @@ defmodule ChubiWeb.ThemeHelpers do
     end
   end
 
+  def theme_directory(suffix \\ "") do
+    theme = Application.get_env(:chubi, :theme)
+
+    "lib/chubi_web/themes/#{theme}"
+    |> Path.join(suffix)
+  end
+
+  def theme_name do
+    Application.get_env(:chubi, :theme)
+  end
+
   def partial(template, assigns) do
     Phoenix.View.render(theme_module("PartialView"), template, assigns)
   end

@@ -18,6 +18,13 @@ defmodule ChubiWeb.Endpoint do
   )
 
   plug(Plug.Static,
+    at: "/#{ChubiWeb.ThemeHelpers.theme_name()}",
+    from: ChubiWeb.ThemeHelpers.theme_directory("static"),
+    gzip: false,
+    only: ~w(css fonts images js favicon.ico robots.txt)
+  )
+
+  plug(Plug.Static,
     at: "/uploads/",
     from: "priv/uploads",
     gzip: false
