@@ -35,15 +35,12 @@ defmodule ChubiWeb.Themes.Chubi do
           current_path: 2
         ]
 
-      def partial(name, assigns) do
-        render(ChubiWeb.PartialView, name, assigns)
-      end
-
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
       import ChubiWeb.ErrorHelpers
       import ChubiWeb.ViewHelpers
       import ChubiWeb.ShortCodeHelpers, only: [compile_shortcode: 2, compile_shortcode: 1]
+      import ChubiWeb.ThemeHelpers, only: [partial: 2]
       import ChubiWeb.Gettext
       alias ChubiWeb.Router.Helpers, as: Routes
     end

@@ -1,4 +1,4 @@
-defmodule ChubiWeb.Plugs.PutBlogInfo do
+defmodule ChubiWeb.Plugs.LoadSiteParams do
   import Plug.Conn
 
   def init(options), do: options

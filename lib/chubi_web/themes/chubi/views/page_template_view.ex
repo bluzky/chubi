@@ -1,3 +1,3 @@
-defmodule ChubiWeb.PageTemplateView do
-  use ChubiWeb, :view
+defmodule ChubiWeb.Themes.Chubi.PageTemplateView do
+  use ChubiWeb.Themes.Chubi, :view
 end

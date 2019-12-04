@@ -14,7 +14,10 @@ defmodule ChubiWeb.CategoryController do
       |> PostMetaQuery.order_by_post_count()
       |> Chubi.Paginator.new(params)
 
-    render(conn, "list.html", items: paginator.entries, paginator: paginator)
+    ControllerHelpers.render(conn, "list.html",
+      items: paginator.entries,
+      paginator: paginator
+    )
   end
 
   def show(conn, %{"slug" => category_slug} = params) do

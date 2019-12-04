@@ -1,3 +1,3 @@
-defmodule ChubiWeb.PartialView do
-  use ChubiWeb, :view
+defmodule ChubiWeb.Themes.Chubi.PartialView do
+  use ChubiWeb.Themes.Chubi, :view
 end

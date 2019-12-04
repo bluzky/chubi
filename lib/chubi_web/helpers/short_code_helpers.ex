@@ -1,31 +1,4 @@
 defmodule ChubiWeb.ShortCodeHelpers do
-  def html do
-    """
-
-    <h2>this is a short markdown to test</h2>
-    <p><strong>Short code</strong></p>
-    <ul>
-    <li>For example: [[hello /]]
-    </li>
-    </ul>
-    <p>this is another: [[greeting “Wangchuk” /]]</p>
-    <p>with multiple argument: [[add 1, 2, 3 /]]</p>
-    <p>block short code</p>
-    <p>[[block]]
-    Inner block content
-    another row
-    [[/block]]</p>
-    <p>Block with argument:</p>
-    <p>[[border 10]]
-    Inner blog content</p>
-    <p>with space
-    [[/border]]</p>
-
-    [[hello_shortcode/]]
-
-    """
-  end
-
   def compile_shortcode(html, assigns \\ %{}) do
     html
     |> do_compile_shortcode(~r/\[\[([_\w]+)([^\/]*)\]\](.+?)\[\[\/\w+?\]\]/sm, assigns)
@@ -65,7 +38,7 @@ defmodule ChubiWeb.ShortCodeHelpers do
   defp process_shortcode([_, shortcode_name, arg_str], assigns) do
     args = parse_arg(arg_str)
     assigns = Map.put(assigns, :args, args)
-    apply(ChubiWeb.ShortCodeView, :render_shortcode, [shortcode_name, assigns])
+    render_shortcode(shortcode_name, assigns)
   end
 
   defp process_shortcode([_, shortcode_name, arg_str, inner_content], assigns) do
@@ -75,10 +48,10 @@ defmodule ChubiWeb.ShortCodeHelpers do
       Map.put(assigns, :inner_content, inner_content)
       |> Map.put(:args, args)
 
-    apply(ChubiWeb.ShortCodeView, :render_shortcode, [shortcode_name, assigns])
+    render_shortcode(shortcode_name, assigns)
   end
 
-  def parse_arg(arg_str) do
+  defp parse_arg(arg_str) do
     arg_str =
       String.replace(arg_str, ~r/“|”/, "\"")
       |> String.trim()
@@ -92,7 +65,7 @@ defmodule ChubiWeb.ShortCodeHelpers do
     end)
   end
 
-  def parse_kw(arg_str) do
+  defp parse_kw(arg_str) do
     Regex.scan(~r/([\w_]+):\s+(.+?)[,\s]/, "#{arg_str} ")
     |> Enum.map(fn [_, k, v] ->
       case Jason.decode(v) do
@@ -101,5 +74,14 @@ defmodule ChubiWeb.ShortCodeHelpers do
       end
     end)
     |> Enum.into(Keyword.new())
+  end
+
+  def render_shortcode(name, assigns) do
+    Phoenix.View.render_existing(
+      ChubiWeb.ThemeHelpers.theme_module("ShortCodeView"),
+      "#{name}.html",
+      assigns
+    ) ||
+      ChubiWeb.BuiltInShortCode.render_built_in_shortcode(name, assigns)
   end
 end
