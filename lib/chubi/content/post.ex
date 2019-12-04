@@ -64,7 +64,9 @@ defmodule Chubi.Content.Post do
         })
       end)
 
+    slugs = Enum.map(maps, & &1.slug)
+
     Repo.insert_all(model, maps, on_conflict: :nothing)
-    Repo.all(from(t in model, where: t.name in ^names))
+    Repo.all(from(t in model, where: t.slug in ^slugs))
   end
 end

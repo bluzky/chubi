@@ -1,6 +1,7 @@
 use Mix.Config
 
 config :chubi,
+  theme: "chubi",
   site_params: [
     title: "Chả giò cá",
     sub_title: "Hương vị của biển",

@@ -16,7 +16,7 @@ defmodule ChubiWeb.PostController do
       paginator.entries
       |> Repo.preload([:categories, :tags])
 
-    render(conn, "list.html", posts: posts, paginator: paginator)
+    ControllerHelpers.render(conn, "list.html", posts: posts, paginator: paginator)
   end
 
   def show(conn, %{"slug" => slug}) do

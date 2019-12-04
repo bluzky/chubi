@@ -9,6 +9,6 @@ defmodule Chubi.Repo.Migrations.CreateTags do
       timestamps()
     end
 
-    create unique_index(:tags, [:name])
+    create unique_index(:tags, [:slug])
   end
 end

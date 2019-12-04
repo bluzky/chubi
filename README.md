@@ -5,6 +5,17 @@ Chubi is a simple blog, it can be easily customize and add new functions.
 Inspired by Hugo static site generator, and I want a simple admin interface to write new post instead of rebuild and deploy website.
 
 # Demo
+This is demo blog
+
+- [Front page](http://demo.sachcuabo.com)
+- [Admin](http://demo.sachcuabo.com/admin)
+
+```
+username: admin
+password: 123123
+```
+
+
 I build 2 site with Chubi
 - [Chagioca](http://chagioca.com)
 - [Sample blog](http://bluzky.sachcuabo.com/)
@@ -106,6 +117,7 @@ This is config file for current template
 use Mix.Config
 
 config :chubi,
+  theme: "chubi", # default theme
   site_params: [
     title: "Dzung Nguyen",
     sub_title: "Blue is Orange",

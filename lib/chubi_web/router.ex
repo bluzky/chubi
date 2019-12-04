@@ -19,7 +19,8 @@ defmodule ChubiWeb.Router do
   end
 
   pipeline :app do
-    plug(ChubiWeb.Plugs.PutBlogInfo)
+    plug(ChubiWeb.Plugs.PutBlogTheme)
+    plug(ChubiWeb.Plugs.LoadSiteParams)
   end
 
   scope "/", ChubiWeb do
