@@ -117,6 +117,7 @@ This is config file for current template
 use Mix.Config
 
 config :chubi,
+  theme: "chubi", # default theme
   site_params: [
     title: "Dzung Nguyen",
     sub_title: "Blue is Orange",
