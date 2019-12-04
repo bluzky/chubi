@@ -10,5 +10,17 @@ defmodule ChubiWeb.BuiltInShortCode do
     """
   end
 
+  def render_built_in_shortcode("vimeo", %{args: [video_id]}) do
+    """
+    <iframe src="https://player.vimeo.com/video/#{video_id}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    """
+  end
+
+  def render_built_in_shortcode("gist", %{args: [id]}) do
+    """
+    <script src="https://gist.github.com/bluzky/#{id}.js"></script>
+    """
+  end
+
   def render_built_in_shortcode(_, _), do: nil
 end

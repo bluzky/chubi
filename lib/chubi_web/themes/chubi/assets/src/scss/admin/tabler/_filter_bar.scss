@@ -1,0 +1,38 @@
+.filter-toolbar{
+  display: flex;
+  width: 100%;
+
+  .form-group{
+    width: auto;
+    margin-bottom: 0;
+    margin-left: 10px;
+
+    &:first-child{
+      margin-left: 0;
+    }
+    // &.no-label{
+    //   padding-top: 30.5px;
+    // }
+
+    &.button-group{
+      padding-top: 30px;
+    }
+
+    label{
+      display: block;
+      margin-right: 5px;
+      font-weight: 600;
+    }
+
+    .selectize-control{
+      display: block;
+    }
+
+    input[type=text], select, .selectize-input,{
+      width: auto;
+      min-width: 150px;
+      display: block;
+    }
+  }
+}
+

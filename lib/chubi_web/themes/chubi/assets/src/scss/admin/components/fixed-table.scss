@@ -1,0 +1,24 @@
+.fixed-table-container {
+  border: 1px solid #ccc;
+}
+
+.fixed-table-container th,
+.fixed-table-container td {
+  border-right: 1px solid $border-color;
+  border-top: 1px solid $border-color;
+  padding: 8px;
+  vertical-align: top;
+
+  /**
+   * Current implementation doesn't work when
+   * cells in a row have different heights
+   */
+  white-space: nowrap !important;
+}
+.fixed-table-container th {
+  background: $gray-200;
+  z-index: 9;
+}
+.fixed-table-container td:first-child {
+  background: $gray-200;
+}
