@@ -18,7 +18,7 @@
         <% end %>
 
         <div class="post-content-body">
-          <%= raw @post.html_content %>
+          <%= compile_shortcode @post.html_content %>
         </div>
 
 

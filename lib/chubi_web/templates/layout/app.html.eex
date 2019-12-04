@@ -3,7 +3,6 @@
   <%= partial "head.html", assigns %>
 
   <body class="">
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= @site_params[:ga] %>"></script>
     <script>

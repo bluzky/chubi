@@ -25,7 +25,7 @@ your blog content here
       <%= if assigns[:post] do
         gettext "Update"
       else
-        gettext "Save draft"
+        gettext "Save"
       end %></button>
   </div>
 <% end %>
