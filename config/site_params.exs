@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :chubi,
-  theme: "chubi",
+  theme: "wordify",
   site_params: [
     title: "Chả giò cá",
     sub_title: "Hương vị của biển",

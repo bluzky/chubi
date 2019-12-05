@@ -1,0 +1,8 @@
+<div class="sidebar-box">
+  <h3 class="heading"><%= gettext "Categories" %></h3>
+  <ul class="categories">
+    <%= for %{category: category, post_count: post_count} <- list_top_categories() do %>
+      <li><a href="<%= Routes.category_path(@conn, :show, category.slug) %>"><%= category.name %> <span>(<%= post_count %>)</span></a></li>
+    <% end %>
+  </ul>
+</div>

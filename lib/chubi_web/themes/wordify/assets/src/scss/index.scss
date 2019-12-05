@@ -1,0 +1,22 @@
+@import "~bootstrap/scss/functions";
+@import "./app/variables";
+/* @import "mixins"; */
+@import '~bootstrap/scss/bootstrap';
+@import "./app/style.scss";
+@import "~highlight.js/styles/night-owl";
+
+pre{
+  border: solid 1px
+                aliceblue;
+  border-radius: 7px;
+}
+
+code.inline{
+  // background-color: bisque;
+  padding: 0 4px;
+  display: inline-block;
+  border-radius: 3px;
+  border: solid 1px bisque;
+}
+
+/**/

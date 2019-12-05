@@ -1,8 +1,0 @@
-<div class="sidebar-box">
-  <h3 class="heading"><%= gettext "Tags" %></h3>
-  <ul class="tags">
-    <%= for %{tag: tag} <- list_top_tags(10) do %>
-      <li><a href="<%= Routes.tag_path(@conn, :show, tag.slug) %>"><%= tag.name %></a></li>
-    <% end %>
-  </ul>
-</div>

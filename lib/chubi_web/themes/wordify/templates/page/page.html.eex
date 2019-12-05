@@ -1,0 +1,11 @@
+
+<!-- Post Content -->
+<article class="mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <%= compile_shortcode @page.html_content, assigns %>
+      </div>
+    </div>
+  </div>
+</article>
