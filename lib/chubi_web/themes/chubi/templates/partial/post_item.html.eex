@@ -1,0 +1,18 @@
+<div class="post-preview">
+  <a href="<%= Routes.post_path(@conn, :show, @post.slug) %>">
+    <h4 class="post-title">
+      <%= @post.title %>
+    </h4>
+  </a>
+  
+  <%= if @post.excerpt do %>
+    <div class="post-subtitle my-2">
+      <%= raw @post.excerpt %>
+    </div>
+  <% end %>
+
+  <p class="post-meta"><%= gettext "Posted by" %>
+    <a href="#"></a><%= @site_params.author.fullname %>
+    on <%= format_date(@post.date || @post.inserted_at) %></p>
+</div>
+<hr>

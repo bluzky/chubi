@@ -1,0 +1,36 @@
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading" style="padding: 100px 0;">
+          <h3><%= gettext "Tag" %>: <%= @tag.name %></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <%= for post <- @posts do %>
+        <%= partial "post_item.html", Map.put(assigns, :post, post) %>
+      <% end %>
+
+      <!-- Pager -->
+      <div class="clearfix">
+        <%=  if @paginator.has_prev? do %>
+          <a class="btn btn-primary float-left" href="<%= prev_page_path(@conn, @paginator) %>">&larr; <%= gettext "Newer posts" %></a>
+        <% end %>
+        <%=  if @paginator.has_next? do %>
+          <a class="btn btn-primary float-right" href="<%= next_page_path(@conn, @paginator) %>"><%= gettext "Older posts" %> &rarr;</a>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

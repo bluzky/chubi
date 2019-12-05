@@ -1,4 +1,4 @@
-defmodule ChubiWeb.Themes.Wordify do
+defmodule ChubiWeb.Themes.Chubi do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
@@ -20,7 +20,7 @@ defmodule ChubiWeb.Themes.Wordify do
   def view do
     quote do
       use Phoenix.View,
-        root: "/lib/chubi_web/themes/wordify/templates",
+        root: "lib/chubi_web/themes/chubi/templates",
         namespace: ChubiWeb.ThemeHelpers.theme_module()
 
       use ChubiWeb, :view
