@@ -1,4 +1,4 @@
-
+# Chubi supports theme 🎉
 
 # Chubi
 Chubi is a simple blog, it can be easily customize and add new functions.
