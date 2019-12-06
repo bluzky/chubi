@@ -1,5 +1,7 @@
 # Chubi supports theme 🎉
 
+Log in to Admin space and select a theme from the dropdown. Refresh the front page to apply new theme.
+
 # Chubi
 Chubi is a simple blog, it can be easily customize and add new functions.
 Inspired by Hugo static site generator, and I want a simple admin interface to write new post instead of rebuild and deploy website.
