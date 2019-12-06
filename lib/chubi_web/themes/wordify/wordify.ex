@@ -1,27 +1,20 @@
 defmodule ChubiWeb.Themes.Wordify do
-  @moduledoc """
-  The entrypoint for defining your web interface, such
-  as controllers, views, channels and so on.
-
-  This can be used in your application as:
-
-      use ChubiWeb, :controller
-      use ChubiWeb, :view
-
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
-
-  Do NOT define functions inside the quoted expressions
-  below. Instead, define any helper function in modules
-  and import those modules here.
-  """
+  def info do
+    %{
+      name: "Wordify",
+      author: "Dzung Nguyen",
+      email: "blusky.1289@gmail.com",
+      description: "Wordify is a simple blog theme with sidebar",
+      thumbnail: "",
+      repo: ""
+    }
+  end
 
   def view do
     quote do
       use Phoenix.View,
         root: "lib/chubi_web/themes/wordify/templates",
-        namespace: ChubiWeb.ThemeHelpers.theme_module()
+        namespace: ChubiWeb.Themes.Wordify
 
       use ChubiWeb, :view
     end

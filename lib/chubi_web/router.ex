@@ -12,6 +12,8 @@ defmodule ChubiWeb.Router do
   pipeline :admin do
     plug(:put_layout, {ChubiWeb.Admin.LayoutView, "app.html"})
     plug(BasicAuth, use_config: {:chubi, :auth_config})
+    plug(ChubiWeb.Plugs.PutSiteSetting)
+    plug(ChubiWeb.Plugs.LoadSiteParams)
   end
 
   pipeline :preview do
@@ -19,8 +21,10 @@ defmodule ChubiWeb.Router do
   end
 
   pipeline :app do
-    plug(ChubiWeb.Plugs.PutBlogTheme)
+    plug(ChubiWeb.Plugs.PutSiteSetting)
     plug(ChubiWeb.Plugs.LoadSiteParams)
+    # put this at end of pipeline
+    plug(ChubiWeb.Plugs.PutSiteLayout)
   end
 
   scope "/", ChubiWeb do

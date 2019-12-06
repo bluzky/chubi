@@ -78,7 +78,7 @@ defmodule ChubiWeb.ShortCodeHelpers do
 
   def render_shortcode(name, assigns) do
     Phoenix.View.render_existing(
-      ChubiWeb.ThemeHelpers.theme_module("ShortCodeView"),
+      ChubiWeb.ThemeHelpers.current_theme_module("ShortCodeView"),
       "#{name}.html",
       assigns
     ) ||

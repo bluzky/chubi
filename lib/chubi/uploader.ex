@@ -53,7 +53,7 @@ defmodule Chubi.Uploader do
         {dir, _} = Keyword.pop(opts, :base_dir)
 
         store_opts = [
-          key: UUID.uuid1() <> ".png",
+          key: "Crop-#{DateTime.utc_now() |> DateTime.to_unix()}.png",
           scope: get_directory(dir)
         ]
 

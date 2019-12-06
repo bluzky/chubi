@@ -2,6 +2,7 @@ use Mix.Config
 
 config :chubi,
   theme: "wordify",
+  locale: "en",
   site_params: [
     title: "Chả giò cá",
     sub_title: "Hương vị của biển",

@@ -1,27 +1,20 @@
 defmodule ChubiWeb.Themes.Chubi do
-  @moduledoc """
-  The entrypoint for defining your web interface, such
-  as controllers, views, channels and so on.
-
-  This can be used in your application as:
-
-      use ChubiWeb, :controller
-      use ChubiWeb, :view
-
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
-
-  Do NOT define functions inside the quoted expressions
-  below. Instead, define any helper function in modules
-  and import those modules here.
-  """
+  def info do
+    %{
+      name: "Chubi default theme",
+      author: "Dzung Nguyen",
+      email: "blusky.1289@gmail.com",
+      description: "This is chubi default theme",
+      thumbnail: "",
+      repo: ""
+    }
+  end
 
   def view do
     quote do
       use Phoenix.View,
         root: "lib/chubi_web/themes/chubi/templates",
-        namespace: ChubiWeb.ThemeHelpers.theme_module()
+        namespace: ChubiWeb.Themes.Chubi
 
       use ChubiWeb, :view
     end

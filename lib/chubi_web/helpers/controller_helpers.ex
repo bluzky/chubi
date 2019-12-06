@@ -8,7 +8,7 @@ defmodule ChubiWeb.ControllerHelpers do
       |> String.split(".")
       |> List.last()
 
-    view_module = ChubiWeb.ThemeHelpers.theme_module(view_scope)
+    view_module = ChubiWeb.ThemeHelpers.current_theme_module(view_scope)
 
     conn
     |> put_view(view_module)
