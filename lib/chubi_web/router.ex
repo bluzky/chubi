@@ -56,5 +56,7 @@ defmodule ChubiWeb.Router do
 
     post("/upload", UploadController, :create)
     delete("/upload", UploadController, :delete)
+
+    get("/settings/set_theme", SettingController, :set_theme)
   end
 end
