@@ -17,12 +17,25 @@ defmodule ChubiWeb.Endpoint do
     only: ~w(css fonts images js favicon.ico robots.txt)
   )
 
-  plug(Plug.Static,
-    at: "/#{ChubiWeb.ThemeHelpers.theme_name()}",
-    from: ChubiWeb.ThemeHelpers.current_theme_directory("static"),
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
-  )
+  # I haven't found any solution to config static plug dinamically by theme, this is a hack in case
+  # you want switch theme dynamically
+
+  Enum.each(ChubiWeb.ThemeHelpers.list_theme(), fn %{identifier: identifier} ->
+    plug(Plug.Static,
+      at: "/#{identifier}",
+      from: ChubiWeb.ThemeHelpers.theme_directory(identifier, "static"),
+      gzip: false,
+      only: ~w(css fonts images js favicon.ico robots.txt)
+    )
+  end)
+
+  # If you don't need to switch theme, comment above setting and uncomment below Plug
+  # plug(Plug.Static,
+  #   at: "/#{ChubiWeb.ThemeHelpers.current_theme_name()}",
+  #   from: ChubiWeb.ThemeHelpers.current_theme_directory("static"),
+  #   gzip: false,
+  #   only: ~w(css fonts images js favicon.ico robots.txt)
+  # )
 
   plug(Plug.Static,
     at: "/uploads/",

@@ -27,7 +27,7 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <%= for theme <- ChubiWeb.ThemeHelpers.list_theme() do %>
-                <a class="dropdown-item" href="#"><%= theme.name %></a>
+                <a class="dropdown-item" href="<%= Routes.admin_setting_path(@conn, :set_theme, theme: theme.identifier) %>"><%= theme.name %></a>
                 <% end %>
               </div>
             </div>

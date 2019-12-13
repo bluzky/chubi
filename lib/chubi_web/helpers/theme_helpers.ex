@@ -1,6 +1,6 @@
 defmodule ChubiWeb.ThemeHelpers do
   def current_theme_module(suffix \\ nil) do
-    theme = Process.get(:theme)
+    theme = current_theme_name()
     theme_module(theme, suffix)
   end
 
@@ -46,14 +46,14 @@ defmodule ChubiWeb.ThemeHelpers do
   end
 
   def current_theme() do
-    theme = Process.get(:theme)
+    theme = current_theme_name()
 
     list_theme()
     |> Enum.find(&(&1.identifier == theme))
   end
 
-  def theme_name do
-    Application.get_env(:chubi, :theme)
+  def current_theme_name do
+    Process.get(:theme) || Application.get_env(:chubi, :theme)
   end
 
   def partial(template, assigns) do
