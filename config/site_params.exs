@@ -1,8 +1,7 @@
-use Mix.Config
-
-config :chubi,
+[
   theme: "wordify",
   locale: "en",
+  base_url: "http://localhost:4000",
   site_params: [
     title: "Chả giò cá",
     sub_title: "Hương vị của biển",
@@ -38,3 +37,4 @@ config :chubi,
       ]
     ]
   ]
+]

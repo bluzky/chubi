@@ -32,7 +32,6 @@ defmodule ChubiWeb.ThemeHelpers do
     |> case do
       {:ok, files} ->
         Enum.filter(files, &File.dir?(Path.join(directory, &1)))
-        |> IO.inspect()
         |> Enum.map(fn theme ->
           module = theme_module(theme)
 

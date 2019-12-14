@@ -71,6 +71,3 @@ config :chubi,
     password: "123123",
     realm: "Hey! Log in to admin"
   ]
-
-config :belt, Belt.Provider.Filesystem,
-  default: [directory: Path.expand("priv/uploads"), base_url: "http://localhost:4000/uploads/"]

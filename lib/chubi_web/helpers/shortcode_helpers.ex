@@ -1,4 +1,4 @@
-defmodule ChubiWeb.ShortCodeHelpers do
+defmodule ChubiWeb.ShortcodeHelpers do
   def compile_shortcode(html, assigns \\ %{}) do
     html
     |> do_compile_shortcode(~r/\[\[([_\w]+)([^\/]*)\]\](.+?)\[\[\/\w+?\]\]/sm, assigns)
@@ -78,10 +78,15 @@ defmodule ChubiWeb.ShortCodeHelpers do
 
   def render_shortcode(name, assigns) do
     Phoenix.View.render_existing(
-      ChubiWeb.ThemeHelpers.current_theme_module("ShortCodeView"),
-      "#{name}.html",
+      ChubiWeb.ThemeHelpers.current_theme_module("ShortcodeView"),
+      name,
       assigns
     ) ||
-      ChubiWeb.BuiltInShortCode.render_built_in_shortcode(name, assigns)
+      Phoenix.View.render_existing(
+        ChubiWeb.ThemeHelpers.current_theme_module("ShortcodeView"),
+        "#{name}.html",
+        assigns
+      ) ||
+      ChubiWeb.BuiltInShortcode.render_built_in_shortcode(name, assigns)
   end
 end

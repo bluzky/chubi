@@ -1,4 +1,4 @@
-defmodule ChubiWeb.BuiltInShortCode do
+defmodule ChubiWeb.BuiltInShortcode do
   def render_built_in_shortcode("youtube", %{args: [video_id]}) do
     """
     <div class="embed video-player">
