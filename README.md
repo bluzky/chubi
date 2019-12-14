@@ -26,14 +26,14 @@ I build 2 site with Chubi
 
 # Document
 
-1. [About `Chubi`](docs/1.what_is_chu_bi.md)
-2. [Getting started](docs/2.Getting started.md)
-3. [Start writing](docs/3.Start writing.md)
-4. [Configuration](docs/4.Configuration.md)
-5. [Theme directory structure](docs/5.Theme directory structure.md)
-6. [Template look up](docs/6.Template look up.md)
-7. [Template variables and helper functions](docs/7.Template variables and helper functions.md)
-8. [Shortcode](docs/Shortcode.md)
+1. [About `Chubi`](docs/1.what_is_chubi.md)
+2. [Getting started](docs/2.getting_started.md)
+3. [Start writing](docs/3.start_writing.md)
+4. [Configuration](docs/4.configuration.md)
+5. [Theme directory structure](docs/5.theme_directory_structure.md)
+6. [Template look up](docs/6.template_look_up.md)
+7. [Template variables and helper functions](docs/7.template_variables_and_helper_functions.md)
+8. [Shortcode](docs/8.shortcode.md)
 
 # 1. Install
 
