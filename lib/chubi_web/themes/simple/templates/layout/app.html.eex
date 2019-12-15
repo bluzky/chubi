@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.57.2" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta property="og:url" content="">
+
+    <title>Chubi blog</title>
+    <meta property="og:title" content="Hugo Journal Theme Showcase">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Arvo:400,700">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/simple/css/journal.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/simple/css/highlight.css") %>">
+
+  </head>
+
+  <body>
+    <div class="container">
+      <%= render @view_module, @view_template, assigns %>
+
+      <footer class="site-footer">
+        <strong>This theme is ported from <a href="https://dashdashzako.github.io/hugo-journal-demo/">Journal theme for Hugo</a></strong>
+      </footer>
+    </div>
+    <script src="<%= Routes.static_path(@conn, "/simple/js/highlight.pack.js") %>"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!-- Page Header -->
+<header class="masthead" style="background-color: orange;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading" style="padding: 100px 0;">
+          <h3>This is custom page for category test</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <%%= for post <- @posts do %>
+      <div class="post-preview">
+        <a href="<%%= Routes.post_path(@conn, :show, post.slug) %>">
+          <h2 class="post-title">
+<%%= post.title %>
+          </h2>
+          <%%= if post.excerpt do %>
+          <h3 class="post-subtitle">
+            <%%= raw post.excerpt %>
+          </h3>
+          <%% end %>
+        </a>
+        <p class="post-meta">Posted by
+          <a href="#">Start Bootstrap</a>
+          on <%%= format_date(post.date || post.inserted_at) %></p>
+      </div>
+      <hr>
+      <%% end %>
+
+      <!-- Pager -->
+      <div class="clearfix">
+        <%%=  if @paginator.has_prev? do %>
+          <a class="btn btn-primary float-left" href="<%%= prev_page_path(@conn, @paginator) %>">&larr; <%%= gettext "Newer posts" %></a>
+        <%% end %>
+        <%%=  if @paginator.has_next? do %>
+          <a class="btn btn-primary float-right" href="<%%= next_page_path(@conn, @paginator) %>"><%%= gettext "Older posts" %> &rarr;</a>
+          <%% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

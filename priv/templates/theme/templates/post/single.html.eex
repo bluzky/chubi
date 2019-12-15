@@ -1,0 +1,14 @@
+<nav class="site-nav">
+  <a href="<%%= Routes.page_path(@conn, :index) %>">Index</a>
+</nav>
+
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><%%= @post.title %></h1>
+    <time class="post-date"><%%= format_date(@post.date || @post.inserted_at, "{0D} {Mshort} {YYYY}") %></time>
+  </header>
+
+  <%%= compile_shortcode @post.html_content %>
+</article>
+

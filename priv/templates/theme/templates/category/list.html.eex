@@ -1,0 +1,20 @@
+<%%= partial "header.html", assigns %>
+
+<h2 class=""><%%= gettext "Categories" %></h2>
+
+<%%= for %{category: category, post_count: post_count} <- @items do %>
+  <a href="<%%= Routes.category_path(@conn, :show, category.slug) %>">
+    <h6 >
+      <%%= category.name %> (<%%= post_count %>)
+    </h6>
+  </a>
+<%% end %>
+
+<div>
+  <%%=  if @paginator.has_prev? do %>
+    <a href="<%%= prev_page_path(@conn, @paginator) %>">&larr; <%%= gettext "Previous page" %></a>
+  <%% end %>
+  <%%=  if @paginator.has_next? do %>
+    <a  href="<%%= next_page_path(@conn, @paginator) %>"><%%= gettext "Next page" %> &rarr;</a>
+  <%% end %>
+</div>

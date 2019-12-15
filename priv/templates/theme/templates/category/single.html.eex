@@ -1,0 +1,24 @@
+
+<article class="posts">
+  <section>
+    <h2>Category: <%%= @category.name %></h2>
+    <ol>
+      <%%= for post <- @posts do %>
+        <li>
+          <time ><%%= format_date(post.date || post.inserted_at, "{Mshort}-{0D}") %></time>
+          <a href="<%%= Routes.post_path(@conn, :show, post.slug) %>"><%%= post.title %></a>
+        </li>
+      <%% end %>
+    </ol>
+  </section>
+</article>
+
+<div >
+  <%%=  if @paginator.has_prev? do %>
+    <a  href="<%%= prev_page_path(@conn, @paginator) %>">&larr; <%%= gettext "Newer posts" %></a>
+  <%% end %>
+  
+  <%%=  if @paginator.has_next? do %>
+    <a  href="<%%= next_page_path(@conn, @paginator) %>"><%%= gettext "Older posts" %> &rarr;</a>
+  <%% end %>
+</div>

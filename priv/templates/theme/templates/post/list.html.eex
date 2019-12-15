@@ -1,0 +1,36 @@
+<%%= partial "header.html", assigns %>
+
+<article class="posts">
+  <%%
+  posts =
+  @posts
+  |> Enum.sort_by(fn item -> item.date || item.inserted_at end, fn (a, b) -> Timex.compare(a, b) > 0 end)
+  |> Enum.group_by(fn item -> Map.get(item.date || item.inserted_at, :year) end)
+  |> Enum.sort_by(fn {year, _} -> year end, &Kernel.>/2)
+  %>
+  <section>
+    <%%= for {year, items} <- posts do %>
+      <h2><%%= year %></h2>
+
+      <ol>
+
+        <%%= for post <- items do %>
+          <li>
+            <time ><%%= format_date(post.date || post.inserted_at, "{Mshort}-{0D}") %></time>
+            <a href="<%%= Routes.post_path(@conn, :show, post.slug) %>"><%%= post.title %></a>
+          </li>
+        <%% end %>
+      </ol>
+    <%% end %>
+  </section>
+</article>
+
+<div class="clearfix">
+  <%%=  if @paginator.has_prev? do %>
+    <a class="" href="<%%= prev_page_path(@conn, @paginator) %>">&larr; <%%= gettext "Newer posts" %></a>
+  <%% end %>
+  
+  <%%=  if @paginator.has_next? do %>
+    <a  href="<%%= next_page_path(@conn, @paginator) %>"><%%= gettext "Older posts" %> &rarr;</a>
+  <%% end %>
+</div>

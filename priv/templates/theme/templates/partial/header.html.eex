@@ -1,0 +1,4 @@
+<header class="site-header">
+  <h1><a href="<%%= Routes.page_path(@conn, :index) %>"><%%= @site_params.title %></a></h1>
+  <p>This is a starter theme</p>
+</header>
