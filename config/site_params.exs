@@ -1,39 +1,43 @@
 [
-  theme: "simple",
+  theme: "wordify",
   locale: "en",
   post_format: "html",
-  base_url: "http://localhost:4000",
+  base_url: "http://vuonbancong.sachcuabo.com",
   site_params: [
-    title: "Chả giò cá",
-    sub_title: "Hương vị của biển",
+    title: "Vườn của Sói",
+    sub_title: "Khu vườn xanh mướt và một tâm hồn yêu cây",
     intro:
-      "Chả giò cá là món ăn đặc sản nổi tiếng của vùng đất Bà Rịa. Chả giò cá là sự kết hợp hài hoà từ rau xanh tươi của núi và cá mềm ngọt từ biển khơi.",
+      "Sói không còn thích ăn thịt nữa, Sói thích ăn chay, yêu hoa và thích đắm mình trong những khu vườn xanh yên bình",
     image: "/images/chagio.jpg",
     ga: "UA-40665301-5",
     author: %{
-      fullname: "Chuso Foods",
+      fullname: "Sói sắp già",
       email: "bluesky.1289@gmail.com",
       avatar: "/images/logo.png",
       bio:
-        "Thấu hiểu được mong muốn về những bữa ăn tươi ngon và an toàn cho gia đình bạn. Chuso Foods lựa chọn và đem đến cho bạn những thực phẩm vệ sinh, an toàn và tốt cho sức khoẻ."
+        "Sói không còn thích ăn thịt nữa, Sói thích ăn chay, yêu hoa và thích đắm mình trong những khu vườn xanh yên bình"
     },
     menu: [
       main: [
         %{
-          label: "Trang chủ",
+          label: "Vườn của sói",
           url: "/"
         },
         %{
-          label: "Chả giò cá Châu Đức",
-          url: "/pages/cha-gio-ca"
+          label: "Kinh nghiệm trồng cây",
+          url: "/categories/kinh-nghiem-trong-cay"
         },
         %{
-          label: "Về Chuso Foods",
-          url: "/pages/about-us"
+          label: "Trồng rau mầm",
+          url: "/categories/rau-mam"
         },
         %{
-          label: "Liên hệ",
-          url: "/pages/contact"
+          label: "Món ăn từ vườn",
+          url: "/categories/mon-an-tu-vuon"
+        },
+        %{
+          label: "Về Sói",
+          url: "/pages/about"
         }
       ]
     ]
