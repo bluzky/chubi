@@ -58,7 +58,8 @@ const outputFiles = {
 
 const entries = {
   admin: "admin.js",
-  "admin/markdown_editor": "admin/markdown_editor.js"
+  "admin/markdown_editor": "admin/markdown_editor.js",
+  "admin/html_editor": "admin/html_editor.js"
 };
 
 // -----------------

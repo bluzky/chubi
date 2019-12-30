@@ -50,15 +50,11 @@ defmodule Chubi.Content do
 
   """
 
-  def create_post(%{"format" => "markdown", "content" => content}) do
-    attrs = Chubi.Content.MarkdownParser.parse(content)
+  @content_parser_map [html: Chubi.Content.HtmlParser, markdown: Chubi.Content.MarkdownParser]
 
-    %Post{}
-    |> Post.changeset(attrs)
-    |> Repo.insert()
-  end
+  def create_post(params) do
+    attrs = parse_content(params)
 
-  def create_post(attrs \\ %{}) do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
@@ -76,15 +72,9 @@ defmodule Chubi.Content do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_post(%Post{} = post, %{"format" => "markdown", "content" => content}) do
-    attrs = Chubi.Content.MarkdownParser.parse(content)
+  def update_post(%Post{} = post, params) do
+    attrs = parse_content(params)
 
-    post
-    |> Post.changeset(attrs)
-    |> Repo.update()
-  end
-
-  def update_post(%Post{} = post, attrs) do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
@@ -163,15 +153,9 @@ defmodule Chubi.Content do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_page(%{"format" => "markdown", "content" => content}) do
-    attrs = Chubi.Content.MarkdownParser.parse(content)
+  def create_page(params \\ %{}) do
+    attrs = parse_content(params)
 
-    %Page{}
-    |> Page.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  def create_page(attrs \\ %{}) do
     %Page{}
     |> Page.changeset(attrs)
     |> Repo.insert()
@@ -189,15 +173,9 @@ defmodule Chubi.Content do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_page(%Page{} = page, %{"format" => "markdown", "content" => content}) do
-    attrs = Chubi.Content.MarkdownParser.parse(content)
+  def update_page(%Page{} = page, params \\ %{}) do
+    attrs = parse_content(params)
 
-    page
-    |> Page.changeset(attrs)
-    |> Repo.update()
-  end
-
-  def update_page(%Page{} = page, attrs \\ %{}) do
     page
     |> Page.changeset(attrs)
     |> Repo.update()
@@ -230,5 +208,12 @@ defmodule Chubi.Content do
   """
   def change_page(%Page{} = page) do
     Page.changeset(page, %{})
+  end
+
+  defp parse_content(%{"content" => content} = params) do
+    format = Application.get_env(:chubi, :post_format) || "html"
+    parser = Keyword.get(@content_parser_map, String.to_atom(format))
+    attrs = parser.parse(content)
+    Map.merge(params, attrs)
   end
 end

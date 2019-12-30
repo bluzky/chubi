@@ -1,0 +1,39 @@
+
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <%= label f, :title %>
+  <%= text_input f, :title %>
+  <%= error_tag f, :title %>
+
+  <%= label f, :slug %>
+  <%= text_input f, :slug %>
+  <%= error_tag f, :slug %>
+
+  <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
+  <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
+
+  <%= label f, :html_content %>
+  <%= text_input f, :html_content %>
+  <%= error_tag f, :html_content %>
+
+  <%= label f, :format %>
+  <%= text_input f, :format %>
+  <%= error_tag f, :format %>
+
+  <%= label f, :draft %>
+  <%= checkbox f, :draft %>
+  <%= error_tag f, :draft %>
+
+  <%= label f, :cover %>
+  <%= text_input f, :cover %>
+  <%= error_tag f, :cover %>
+
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

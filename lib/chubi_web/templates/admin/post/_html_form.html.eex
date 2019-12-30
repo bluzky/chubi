@@ -1,0 +1,22 @@
+
+<%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
+
+  <div class="pl-4 field-list">
+    <%= h_input(f, :title, label: gettext("Title")) %>
+    <%= h_input(f, :slug, label: gettext("Slug")) %>
+  </div>
+
+  <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
+  <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
+
+  <%= input(f, :excerpt, using: :textarea, rows: 3, label: gettext("Short Description")) %>
+
+  <div class="mt-7">
+    <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
+      <%= if assigns[:post] do
+      gettext "Update"
+      else
+      gettext "Save draft"
+      end %></button>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 [
   theme: "simple",
   locale: "en",
+  post_format: "html",
   base_url: "http://localhost:4000",
   site_params: [
     title: "Chả giò cá",
