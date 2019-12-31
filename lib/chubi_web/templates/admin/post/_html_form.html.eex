@@ -1,22 +1,50 @@
 
 <%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
+  <div class="row row-cards row-deck mt-md-5">
+    <div class="col-md-9">
+      <div class="card profile">
+        <div class="card-body p-6">
 
-  <div class="pl-4 field-list">
-    <%= h_input(f, :title, label: gettext("Title")) %>
-    <%= h_input(f, :slug, label: gettext("Slug")) %>
-  </div>
+          <h4 class="fw-bold"><%= gettext "Create posts" %></h4>
 
-  <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
-  <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
+          <div class="pl-4 field-list">
+            <%= h_input(f, :title, label: gettext("Title")) %>
+            <%= h_input(f, :slug, label: gettext("Slug")) %>
+          </div>
 
-  <%= input(f, :excerpt, using: :textarea, rows: 3, label: gettext("Short Description")) %>
+          <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
+          <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
 
-  <div class="mt-7">
-    <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
-      <%= if assigns[:post] do
-      gettext "Update"
-      else
-      gettext "Save draft"
-      end %></button>
+          <%= input(f, :excerpt, using: :textarea, rows: 3, label: gettext("Short Description")) %>
+
+          <div class="mt-7">
+            <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
+              <%= if assigns[:post] do
+              gettext "Update"
+              else
+              gettext "Save draft"
+              end %></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card flex-grow-0">
+        <div class="card-body">
+          <%= input(f, :i, label: gettext("Categories")) %>
+          <%= input(f, :tagsy, label: gettext("Tags")) %>
+        </div>
+      </div>
+      <div class="card flex-grow-0">
+        <div class="card-header">
+          <h3 class="card-title"><%= gettext "Cover photo" %></h3>
+        </div>
+        <div class="card-body">
+          <%= input(f, :i, label: gettext("Categories")) %>
+          <%= input(f, :tagsy, label: gettext("Tags")) %>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

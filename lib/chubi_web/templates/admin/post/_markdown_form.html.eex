@@ -16,16 +16,27 @@ this is excerpt
 your blog content here
 """
 %>
-<%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
-  <% content = input_value(f, :content) || default_content %>
-  <%= input(f, :content, using: :textarea, id: "editor", label: false, value: content) %>
+<div class="row row-cards row-deck mt-md-5">
+  <div class="col-md-8 offset-md-2">
+    <div class="card profile">
+      <div class="card-body p-6">
 
-  <div class="mt-7">
-    <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
-      <%= if assigns[:post] do
-        gettext "Update"
-      else
-        gettext "Save"
-      end %></button>
+        <h4 class="fw-bold"><%= gettext "Create posts" %></h4>
+
+        <%= form_for @changeset, @action, [multipart: true, novalidate: true, id: "js-announcement-form"], fn f -> %>
+          <% content = input_value(f, :content) || default_content %>
+          <%= input(f, :content, using: :textarea, id: "editor", label: false, value: content) %>
+
+          <div class="mt-7">
+            <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
+              <%= if assigns[:post] do
+              gettext "Update"
+              else
+              gettext "Save"
+              end %></button>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

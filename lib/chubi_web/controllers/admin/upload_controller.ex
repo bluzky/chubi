@@ -6,7 +6,14 @@ defmodule ChubiWeb.Admin.UploadController do
   def create(conn, %{"file" => file}) do
     case Uploader.store(file) do
       {:ok, %{identifier: identifier}} ->
-        json(conn, %{status: "OK", data: %{url: Uploader.url(identifier), identifier: identifier}})
+        json(conn, %{
+          status: "OK",
+          data: %{
+            url: Uploader.url(identifier),
+            identifier: identifier,
+            path: Routes.static_path(conn, "/uploads/#{identifier}")
+          }
+        })
 
       {:error, err} ->
         json(conn, %{status: "ERROR", message: "Cannot upload file"})

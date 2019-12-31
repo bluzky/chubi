@@ -20,7 +20,8 @@ defmodule ChubiWeb.Admin.PageController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"page" => page_params}) do
+  def create(conn, %{"page" => params}) do
+    params
     |> Content.create_page()
     |> case do
       {:ok, page} ->
@@ -44,7 +45,7 @@ defmodule ChubiWeb.Admin.PageController do
     render(conn, "edit.html", page: page, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "page" => page_params}) do
+  def update(conn, %{"id" => id, "page" => params}) do
     page = Content.get_page!(id)
 
     page
