@@ -32,4 +32,31 @@ defmodule ChubiWeb.Admin.PostView do
         """
     end
   end
+
+  def get_post_meta(conn) do
+    categories = get_in(conn.params, ["post", "categories"])
+
+    categories =
+      if categories do
+        String.split(categories, ",")
+      else
+        Map.get(conn.assigns[:post] || %{}, :categories, [])
+        |> Enum.map(& &1.name)
+      end
+
+    tags = get_in(conn.params, ["post", "tags"])
+
+    tags =
+      if tags do
+        String.split(tags, ",")
+      else
+        Map.get(conn.assigns[:post] || %{}, :tags, [])
+        |> Enum.map(& &1.name)
+      end
+
+    %{
+      categories: categories,
+      tags: tags
+    }
+  end
 end

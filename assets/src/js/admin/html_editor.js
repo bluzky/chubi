@@ -1,9 +1,6 @@
 import "./trix.js";
 import "../../scss/admin/trix.css";
-
-$(document).ready(function() {
-  const editor = document.querySelector("trix-editor").editor;
-});
+import SingleImageUpload from "./components/single_image_uppload.svelte";
 
 (function() {
   var HOST = "/admin/upload";
@@ -62,3 +59,18 @@ $(document).ready(function() {
     return fd;
   }
 })();
+
+function initUploadBox() {
+  var el = document.getElementById("cover-upload-box");
+  if (el) {
+    const uploadBox = new SingleImageUpload({
+      target: el,
+      props: {
+        url: el.getAttribute("data-url"),
+        name: el.getAttribute("data-name")
+      }
+    });
+  }
+}
+
+initUploadBox();

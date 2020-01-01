@@ -1,22 +1,5 @@
 <div class="container">
-
-  <div class="row row-cards row-deck mt-md-5">
-    <div class="col-md-8 offset-md-2">
-      <div class="card profile">
-        <!-- <div class="card-header">
-             <h3 class="card-title fw-bold"><%= gettext "Create new user account" %></h3>
-             </div>
-        -->
-        <div class="card-body p-6">
-
-          <h4 class="fw-bold"><%= gettext "Create posts" %></h4>
-
           <%= render "_form.html", Map.put(assigns, :action, Routes.admin_post_path(@conn, :create)) %>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
 

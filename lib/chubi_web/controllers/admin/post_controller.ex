@@ -6,6 +6,7 @@ defmodule ChubiWeb.Admin.PostController do
   alias Chubi.Content.Post
   alias Chubi.Repo
   alias ChubiWeb.PostFilterParams
+  alias Chubi.PostMeta
 
   def index(conn, params) do
     filters =
@@ -25,7 +26,10 @@ defmodule ChubiWeb.Admin.PostController do
 
   def new(conn, _params) do
     changeset = Content.change_post(%Post{})
-    render(conn, "new.html", changeset: changeset)
+
+    conn
+    |> put_meta
+    |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -36,7 +40,9 @@ defmodule ChubiWeb.Admin.PostController do
         |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_meta
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -54,7 +60,10 @@ defmodule ChubiWeb.Admin.PostController do
       |> Repo.preload([:tags, :categories])
 
     changeset = Content.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+
+    conn
+    |> put_meta
+    |> render("edit.html", post: post, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
@@ -69,7 +78,9 @@ defmodule ChubiWeb.Admin.PostController do
         |> redirect(to: Routes.admin_post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        conn
+        |> put_meta
+        |> render("edit.html", post: post, changeset: changeset)
     end
   end
 
@@ -80,5 +91,14 @@ defmodule ChubiWeb.Admin.PostController do
     conn
     |> put_flash(:info, "Post deleted successfully.")
     |> redirect(to: Routes.admin_post_path(conn, :index))
+  end
+
+  defp put_meta(conn) do
+    tags = PostMeta.list_tags()
+    categories = PostMeta.list_categories()
+
+    conn
+    |> assign(:tags, tags)
+    |> assign(:categories, categories)
   end
 end

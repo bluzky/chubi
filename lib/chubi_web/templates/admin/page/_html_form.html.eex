@@ -1,39 +1,49 @@
 
 <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+  <div class="row row-cards row-deck mt-md-5">
+    <div class="col-md-9">
+      <div class="card profile">
+        <div class="card-body p-6">
+
+          <h4 class="fw-bold"><%= gettext "Create page" %></h4>
+
+          <div class="pl-4 field-list">
+            <%= h_input(f, :title, label: gettext("Title")) %>
+            <%= h_input(f, :slug, label: gettext("Slug")) %>
+          </div>
+
+          <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
+          <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <%= label f, :title %>
-  <%= text_input f, :title %>
-  <%= error_tag f, :title %>
+  <div class="col-md-3">
+    <div class="card flex-grow-0">
+      <div class="card-header">
+        <h3 class="card-title"><%= gettext "Cover photo" %></h3>
+      </div>
+      <div class="card-body">
 
-  <%= label f, :slug %>
-  <%= text_input f, :slug %>
-  <%= error_tag f, :slug %>
+        <div id="cover-upload-box" data-name="<%= input_name(f, :cover) %>" data-url="<%= assigns[:post] && @post.cover %>"></div>
+        
+          <label class="custom-switch mt-5">
+          <input name="<%= input_name(f, :draft) %>" type="hidden" value="false">
+          <input type="checkbox" name="<%= input_name(f, :draft) %>" checked="<%= input_value(f, :draft) %>" value="true" class="custom-switch-input">
+          <span class="custom-switch-indicator"></span>
+          <span class="custom-switch-description"><%= gettext "Draft" %></span>
+        </label>
 
-  <%= input(f, :content, using: :hidden_input, id: "editor-content",label: gettext("Content")) %>
-  <trix-editor input="editor-content" style="min-height: 500px;"></trix-editor>
-
-  <%= label f, :html_content %>
-  <%= text_input f, :html_content %>
-  <%= error_tag f, :html_content %>
-
-  <%= label f, :format %>
-  <%= text_input f, :format %>
-  <%= error_tag f, :format %>
-
-  <%= label f, :draft %>
-  <%= checkbox f, :draft %>
-  <%= error_tag f, :draft %>
-
-  <%= label f, :cover %>
-  <%= text_input f, :cover %>
-  <%= error_tag f, :cover %>
-
-  <div>
-    <%= submit "Save" %>
+        <div class="mt-5">
+          <button type="submit" class="btn btn-primary"> <i class="fe fe-save mr-1"></i>
+            <%= if assigns[:post] do
+            gettext "Update"
+            else
+            gettext "Save"
+            end %></button>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 <% end %>

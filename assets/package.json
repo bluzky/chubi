@@ -64,6 +64,7 @@
     "phoenix_html": "file:../deps/phoenix_html",
     "popper.js": "^1.16.0",
     "selectize": "^0.12.6",
+    "selectize.js": "^0.12.12",
     "whatwg-fetch": "^3.0.0"
   }
 }

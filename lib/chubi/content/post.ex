@@ -15,7 +15,7 @@ defmodule Chubi.Content.Post do
     field(:format, :string, default: "markdown")
     field(:cover, :string)
 
-    field(:draft, :boolean, default: false)
+    field(:draft, :boolean, default: true)
     field(:date, :utc_datetime)
 
     many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)

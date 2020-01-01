@@ -39,9 +39,9 @@
   <div class="card-header p-4">
     <div class="card-options m-0 w-100">
 
-        <form method="post" action="/uploads" class="mr-5">
-          <input type="file" class="d-none" name="file" id="file-select" on:change={uploadFile}>
-          <label for="file-select" class="btn btn-primary btn-sm m-0"> <i class="fe fe-upload mr-1"></i> Upload file</label>
+      <form method="post" action="/uploads" class="mr-5">
+        <input type="file" class="d-none" name="file" id="file-select" on:change={uploadFile}>
+        <label for="file-select" class="btn btn-primary btn-sm m-0"> <i class="fe fe-upload mr-1"></i> Upload file</label>
         </form>
 
       <a href="#" class="card-options-collapse ml-auto" on:click={e => collapsed = !collapsed}><i class="fe fe-chevron-up"></i></a>
