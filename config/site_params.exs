@@ -24,12 +24,12 @@
           url: "/"
         },
         %{
-          label: "Kinh nghiệm trồng cây",
-          url: "/categories/kinh-nghiem-trong-cay"
+          label: "Vườn rau",
+          url: "/categories/vuon-rau"
         },
         %{
-          label: "Trồng rau mầm",
-          url: "/categories/rau-mam"
+          label: "Vườn hoa",
+          url: "/categories/vuon-hoa"
         },
         %{
           label: "Món ăn từ vườn",
