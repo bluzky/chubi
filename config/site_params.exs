@@ -1,39 +1,41 @@
 [
-  theme: "simple",
+  theme: "chubi",
   locale: "en",
-  post_format: "html",
-  base_url: "http://localhost:4000",
+  post_format: "markdown",
+  base_url: "http://soidev.com",
   site_params: [
-    title: "Chả giò cá",
-    sub_title: "Hương vị của biển",
-    intro:
-      "Chả giò cá là món ăn đặc sản nổi tiếng của vùng đất Bà Rịa. Chả giò cá là sự kết hợp hài hoà từ rau xanh tươi của núi và cá mềm ngọt từ biển khơi.",
+    title: "Soi's Blog",
+    sub_title: "Make it work, make it better, make it perfect",
+    intro: "Full-stack web developer | Elixir | Javascript | Golang | And what get stuffs done",
     image: "/images/chagio.jpg",
     ga: "UA-40665301-5",
     author: %{
-      fullname: "Chuso Foods",
+      fullname: "Dzung Nguyen",
       email: "bluesky.1289@gmail.com",
       avatar: "/images/logo.png",
-      bio:
-        "Thấu hiểu được mong muốn về những bữa ăn tươi ngon và an toàn cho gia đình bạn. Chuso Foods lựa chọn và đem đến cho bạn những thực phẩm vệ sinh, an toàn và tốt cho sức khoẻ."
+      bio: "Full-stack web developer | Elixir | Javascript | Golang | And what get stuffs done"
     },
     menu: [
       main: [
         %{
-          label: "Trang chủ",
+          label: "Blog",
           url: "/"
         },
         %{
-          label: "Chả giò cá Châu Đức",
-          url: "/pages/cha-gio-ca"
+          label: "Elixir/Phoenix",
+          url: "/categories/elixir"
         },
         %{
-          label: "Về Chuso Foods",
-          url: "/pages/about-us"
+          label: "Programming",
+          url: "/categories/programming"
         },
         %{
-          label: "Liên hệ",
-          url: "/pages/contact"
+          label: "#TIL",
+          url: "/tags/til"
+        },
+        %{
+          label: "About me",
+          url: "/pages/about"
         }
       ]
     ]
