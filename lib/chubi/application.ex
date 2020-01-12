@@ -11,7 +11,8 @@ defmodule Chubi.Application do
       # Start the Ecto repository
       Chubi.Repo,
       # Start the endpoint when the application starts
-      ChubiWeb.Endpoint
+      ChubiWeb.Endpoint,
+      {ConCache, [name: :db_cache, ttl_check_interval: false]}
       # Starts a worker by calling: Chubi.Worker.start_link(arg)
       # {Chubi.Worker, arg},
     ]

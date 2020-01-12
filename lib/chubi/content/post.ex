@@ -18,8 +18,8 @@ defmodule Chubi.Content.Post do
     field(:draft, :boolean, default: true)
     field(:date, :utc_datetime)
 
-    many_to_many(:tags, Tag, join_through: "post_tags", on_replace: :delete)
-    many_to_many(:categories, Category, join_through: "post_categories", on_replace: :delete)
+    has_many(:tags, Tag, on_replace: :delete)
+    has_many(:categories, Category, on_replace: :delete)
 
     timestamps()
   end
@@ -52,21 +52,14 @@ defmodule Chubi.Content.Post do
   end
 
   defp insert_and_get_all(names, model) do
-    maps =
-      Enum.map(names, fn name ->
-        model.changeset(struct(model, %{}), %{name: name})
-        |> apply_changes()
-        |> Map.take([:name, :slug])
-        |> Map.merge(%{
-          inserted_at:
-            Timex.now() |> Timex.to_naive_datetime() |> NaiveDateTime.truncate(:second),
-          updated_at: Timex.now() |> Timex.to_naive_datetime() |> NaiveDateTime.truncate(:second)
-        })
-      end)
-
-    slugs = Enum.map(maps, & &1.slug)
-
-    Repo.insert_all(model, maps, on_conflict: :nothing)
-    Repo.all(from(t in model, where: t.slug in ^slugs))
+    Enum.map(names, fn name ->
+      model.changeset(struct(model, %{}), %{name: name})
+      |> apply_changes()
+      |> Map.take([:name, :slug])
+      |> Map.merge(%{
+        inserted_at: Timex.now() |> Timex.to_naive_datetime() |> NaiveDateTime.truncate(:second),
+        updated_at: Timex.now() |> Timex.to_naive_datetime() |> NaiveDateTime.truncate(:second)
+      })
+    end)
   end
 end

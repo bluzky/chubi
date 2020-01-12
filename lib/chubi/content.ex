@@ -4,20 +4,40 @@ defmodule Chubi.Content do
   """
 
   use Chubi, :business
-
   alias Chubi.Content.Post
 
-  @doc """
-  Returns the list of posts.
+  def list_posts(query_params \\ %{}) do
+    Post
+    |> Filter.apply(query_params)
+    |> order_by(desc: :date)
+    |> Repo.all()
+    |> Repo.preload(:tags)
+    |> Repo.preload(:categories)
+  end
 
-  ## Examples
+  def paginate_posts(query_params, paging_params) do
+    list_posts
+    |> Paginator.new(paging_params)
+  end
 
-      iex> list_posts()
-      [%Post{}, ...]
+  def paginate_published_posts(paging_params) do
+    paginate_posts(%{draft: false}, paging_params)
+  end
 
-  """
-  def list_posts do
-    Repo.all(Post)
+  def paginate_posts_by_tag(tag_slug, paging_params) do
+    list_posts
+    |> Enum.filter(fn post ->
+      Enum.any?(post.tags || [], &(&1.slug == tag_slug))
+    end)
+    |> Paginator.new(paging_params)
+  end
+
+  def paginate_posts_by_category(category_slug, paging_params) do
+    list_posts
+    |> Enum.filter(fn post ->
+      Enum.any?(post.categories || [], &(&1.slug == category_slug))
+    end)
+    |> Paginator.new(paging_params)
   end
 
   @doc """
@@ -34,8 +54,17 @@ defmodule Chubi.Content do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
-  def get_post_by!(filters), do: Repo.get_by!(Post, filters)
+  def get_post!(id) do
+    Repo.get!(Post, id)
+    |> Repo.preload(:tags)
+    |> Repo.preload(:categories)
+  end
+
+  def get_post_by!(filters) do
+    Repo.get_by!(Post, filters)
+    |> Repo.preload(:tags)
+    |> Repo.preload(:categories)
+  end
 
   @doc """
   Creates a post.
@@ -122,6 +151,14 @@ defmodule Chubi.Content do
   """
   def list_pages do
     Repo.all(Page)
+  end
+
+  def paginate_pages(query_params, paging_params) do
+    Page
+    |> Filter.apply(query_params)
+    |> order_by(desc: :date)
+    |> Repo.all()
+    |> Paginator.new(paging_params)
   end
 
   @doc """

@@ -8,10 +8,7 @@ defmodule ChubiWeb.Admin.PageController do
   alias Chubi.Paginator
 
   def index(conn, params) do
-    paginator =
-      PostQuery.page_query()
-      |> Paginator.new(params)
-
+    paginator = Content.paginate_pages(%{}, params)
     render(conn, "index.html", pages: paginator.entries, paginator: paginator)
   end
 

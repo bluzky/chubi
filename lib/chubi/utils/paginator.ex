@@ -10,6 +10,25 @@ defmodule Chubi.Paginator do
             has_next?: false,
             has_prev?: false
 
+  # create paginator from list of items
+  def new(items, params) when is_list(items) do
+    params = parse_paging_params(params)
+    entry_count = length(items)
+
+    paginator = %__MODULE__{
+      entries: Enum.slice(items, params.size * (params.page - 1), params.size),
+      page: params.page,
+      size: params.size,
+      entry_count: entry_count,
+      total_page: Float.ceil(entry_count / params.size) |> round()
+    }
+
+    Map.merge(paginator, %{
+      has_next?: paginator.page < paginator.total_page,
+      has_prev?: paginator.page > 1
+    })
+  end
+
   def new(query, params) do
     params = parse_paging_params(params)
 

@@ -6,15 +6,12 @@ defmodule ChubiWeb.PageController do
   alias Chubi.Repo
 
   def index(conn, params) do
-    paginator =
-      PostQuery.published_posts()
-      |> Chubi.Paginator.new(params)
+    paginator = Content.paginate_published_posts(params)
 
-    posts =
-      paginator.entries
-      |> Repo.preload([:categories, :tags])
-
-    ControllerHelpers.render_first_match(conn, ["index.html"], posts: posts, paginator: paginator)
+    ControllerHelpers.render_first_match(conn, ["index.html"],
+      posts: paginator.entries,
+      paginator: paginator
+    )
   end
 
   def show(conn, %{"slug" => slug}) do

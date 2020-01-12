@@ -13,15 +13,9 @@ defmodule ChubiWeb.Admin.PostController do
       PostFilterParams.from(params)
       |> Params.to_map()
 
-    paginator =
-      PostQuery.filter_post(filters)
-      |> Chubi.Paginator.new(params)
+    paginator = Content.paginate_posts(filters, params)
 
-    posts =
-      paginator.entries
-      |> Repo.preload([:categories, :tags])
-
-    render(conn, "index.html", posts: posts, paginator: paginator)
+    render(conn, "index.html", posts: paginator.entries, paginator: paginator)
   end
 
   def new(conn, _params) do
@@ -47,17 +41,13 @@ defmodule ChubiWeb.Admin.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post =
-      Content.get_post!(id)
-      |> Repo.preload([:tags, :categories])
+    post = Content.get_post!(id)
 
     render(conn, "show.html", post: post)
   end
 
   def edit(conn, %{"id" => id}) do
-    post =
-      Content.get_post!(id)
-      |> Repo.preload([:tags, :categories])
+    post = Content.get_post!(id)
 
     changeset = Content.change_post(post)
 
@@ -67,9 +57,7 @@ defmodule ChubiWeb.Admin.PostController do
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post =
-      Content.get_post!(id)
-      |> Repo.preload([:tags, :categories])
+    post = Content.get_post!(id)
 
     case Content.update_post(post, post_params) do
       {:ok, post} ->

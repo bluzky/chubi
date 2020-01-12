@@ -1,18 +1,12 @@
 defmodule ChubiWeb.CategoryController do
   use ChubiWeb, :controller
 
-  alias Chubi.Content.PostQuery
-  alias Chubi.PostMeta.PostMetaQuery
+  alias Chubi.Content
   alias Chubi.PostMeta
-  alias Chubi.Repo
   alias ChubiWeb.ControllerHelpers
 
   def index(conn, params) do
-    paginator =
-      PostMetaQuery.category_query()
-      |> PostMetaQuery.category_with_post_count()
-      |> PostMetaQuery.order_by_post_count()
-      |> Chubi.Paginator.new(params)
+    paginator = PostMeta.paginate_categories(params)
 
     ControllerHelpers.render(conn, "list.html",
       items: paginator.entries,
@@ -23,19 +17,12 @@ defmodule ChubiWeb.CategoryController do
   def show(conn, %{"slug" => category_slug} = params) do
     category = PostMeta.get_category_by!(slug: category_slug)
 
-    paginator =
-      PostQuery.published_posts()
-      |> PostQuery.with_category(category_slug)
-      |> Chubi.Paginator.new(params)
-
-    posts =
-      paginator.entries
-      |> Repo.preload([:categories, :tags])
+    paginator = Content.paginate_posts_by_category(category.slug, params)
 
     ControllerHelpers.render_first_match(
       conn,
       ["category_#{category.slug}.html", "single.html"],
-      posts: posts,
+      posts: paginator.entries,
       paginator: paginator,
       category: category
     )

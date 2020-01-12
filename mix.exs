@@ -50,7 +50,9 @@ defmodule Chubi.MixProject do
       {:yamerl, "~> 0.7.0"},
       {:params, "~> 2.0"},
       {:belt, "~> 0.4.2"},
-      {:floki, "~> 0.23.0"}
+      {:floki, "~> 0.23.0"},
+      {:etso, "~> 0.1.1"},
+      {:con_cache, "~> 0.13"}
     ]
   end
 

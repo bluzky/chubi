@@ -3,9 +3,7 @@ defmodule Chubi.PostMeta do
   The PostMeta context.
   """
 
-  import Ecto.Query, warn: false
-  alias Chubi.Repo
-
+  use Chubi, :business
   alias Chubi.PostMeta.Tag
 
   @doc """
@@ -19,6 +17,20 @@ defmodule Chubi.PostMeta do
   """
   def list_tags do
     Repo.all(Tag)
+  end
+
+  def list_tags_with_post_count do
+    list_tags
+    |> Enum.group_by(& &1.slug)
+    |> Enum.map(fn {slug, items} ->
+      %{tag: List.first(items), post_count: length(items)}
+    end)
+    |> Enum.sort_by(& &1.post_count, &>=/2)
+  end
+
+  def paginate_tags(paging_params) do
+    list_tags_with_post_count()
+    |> Paginator.new(paging_params)
   end
 
   @doc """
@@ -116,6 +128,20 @@ defmodule Chubi.PostMeta do
   """
   def list_categories do
     Repo.all(Category)
+  end
+
+  def list_categories_with_post_count() do
+    list_categories
+    |> Enum.group_by(& &1.slug)
+    |> Enum.map(fn {slug, items} ->
+      %{category: List.first(items), post_count: length(items)}
+    end)
+    |> Enum.sort_by(& &1.post_count, &>=/2)
+  end
+
+  def paginate_categories(paging_params) do
+    list_categories_with_post_count
+    |> Paginator.new(paging_params)
   end
 
   @doc """
