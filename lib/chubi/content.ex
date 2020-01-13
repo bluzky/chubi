@@ -5,6 +5,7 @@ defmodule Chubi.Content do
 
   use Chubi, :business
   alias Chubi.Content.Post
+  alias Chubi.ContentFileStore, as: FileStore
 
   def list_posts(query_params \\ %{}) do
     Post
@@ -87,6 +88,7 @@ defmodule Chubi.Content do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+    |> write_to_file
   end
 
   @doc """
@@ -107,6 +109,7 @@ defmodule Chubi.Content do
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+    |> write_to_file
   end
 
   @doc """
@@ -196,6 +199,7 @@ defmodule Chubi.Content do
     %Page{}
     |> Page.changeset(attrs)
     |> Repo.insert()
+    |> write_to_file
   end
 
   @doc """
@@ -216,6 +220,7 @@ defmodule Chubi.Content do
     page
     |> Page.changeset(attrs)
     |> Repo.update()
+    |> write_to_file
   end
 
   @doc """
@@ -251,6 +256,21 @@ defmodule Chubi.Content do
     format = Application.get_env(:chubi, :post_format) || "html"
     parser = Keyword.get(@content_parser_map, String.to_atom(format))
     attrs = parser.parse(content)
+
     Map.merge(params, attrs)
+    |> Map.put("format", format)
   end
+
+  defp write_to_file({:ok, content}) do
+    FileStore.write(content)
+    {:ok, content}
+  end
+
+  defp write_to_file(rs), do: rs
+
+  defp delete_content_file({:ok, content} = rs) do
+    FileStore.delete(content)
+  end
+
+  defp delete_content_file(rs), do: rs
 end
