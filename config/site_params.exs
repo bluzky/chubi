@@ -2,7 +2,7 @@
   theme: "wordify",
   locale: "en",
   post_format: "html",
-  base_url: "http://vuonbancong.sachcuabo.com",
+  base_url: "http://vuoncuasoi.com",
   site_params: [
     title: "Vườn của Sói",
     sub_title: "Khu vườn xanh mướt và một tâm hồn yêu cây",
