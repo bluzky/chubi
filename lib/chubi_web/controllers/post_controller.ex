@@ -5,7 +5,7 @@ defmodule ChubiWeb.PostController do
   alias ChubiWeb.ControllerHelpers
 
   def index(conn, params) do
-    paginator = Content.paginate_published_posts()
+    paginator = Content.paginate_published_posts(params)
 
     ControllerHelpers.render(conn, "list.html", posts: paginator.entries, paginator: paginator)
   end
