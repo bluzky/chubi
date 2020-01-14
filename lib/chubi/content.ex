@@ -253,7 +253,7 @@ defmodule Chubi.Content do
   end
 
   defp parse_content(%{"content" => content} = params) do
-    format = Application.get_env(:chubi, :post_format) || "html"
+    format = params["format"] || Application.get_env(:chubi, :post_format) || "html"
     parser = Keyword.get(@content_parser_map, String.to_atom(format))
     attrs = parser.parse(content)
 

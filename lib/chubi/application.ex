@@ -20,7 +20,11 @@ defmodule Chubi.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Chubi.Supervisor]
-    Supervisor.start_link(children, opts)
+    rs = Supervisor.start_link(children, opts)
+
+    Chubi.DataImporter.import_all()
+
+    rs
   end
 
   # Tell Phoenix to update the endpoint configuration
