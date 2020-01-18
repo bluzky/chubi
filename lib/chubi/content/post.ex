@@ -32,10 +32,25 @@ defmodule Chubi.Content.Post do
     post
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> EctoUtils.cast_date(attrs, :date)
+    |> default_date
     |> EctoUtils.slugify(:title, :slug)
     |> validate_required(@required_fields)
     |> put_assoc(:tags, parse_assoc(attrs, "tags", Tag))
     |> put_assoc(:categories, parse_assoc(attrs, "categories", Category))
+  end
+
+  def default_date(changeset) do
+    date = get_field(changeset, :date)
+
+    if date do
+      changeset
+    else
+      date =
+        DateTime.utc_now()
+        |> DateTime.truncate(:second)
+
+      put_change(changeset, :date, date)
+    end
   end
 
   # take from http://blog.plataformatec.com.br/2016/12/many-to-many-and-upserts/

@@ -24,12 +24,14 @@
       <div class="card flex-grow-0">
         <div class="card-body">
           <% meta = get_post_meta(@conn)%>
-          <%= input(f, :name, using: :selectize, name: input_name(f, :categories), label: gettext("Categories"), source: Enum.map(@categories, & &1.name), multiple: true, value: meta.categories) %>
-          <%= input(f, :name, using: :selectize, name: input_name(f, :tags), label: gettext("Tags"), source: Enum.map(@tags, & &1.name), multiple: true, value: meta.tags) %>
+          <%= input(f, :name, using: :selectize, name: "post[categories][]", label: gettext("Categories"), source: Enum.map(@categories, & &1.name), multiple: true, value: meta.categories) %>
+          <%= input(f, :name, using: :selectize, name: "post[tags][]", label: gettext("Tags"), source: Enum.map(@tags, & &1.name), multiple: true, value: meta.tags) %>
+
+          <%= input(f, :date, using: :datepicker, label: gettext("Publish date"), format: "{YYYY}-{0M}-{0D}") %>
 
           <label class="custom-switch">
             <input name="<%= input_name(f, :draft) %>" type="hidden" value="false">
-            <input type="checkbox" name="<%= input_name(f, :draft) %>" checked="<%= input_value(f, :draft) %>" value="true" class="custom-switch-input">
+            <input type="checkbox" name="<%= input_name(f, :draft) %>" <%= input_value(f, :draft) and "checked=\"true\"" %>" value="true" class="custom-switch-input">
             <span class="custom-switch-indicator"></span>
             <span class="custom-switch-description"><%= gettext "Draft" %></span>
           </label>

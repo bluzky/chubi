@@ -71,7 +71,15 @@ defmodule ChubiWeb.Admin.InputHelpers do
     # add date picker class
     {class, opts} = Keyword.pop(opts, :class)
     class = class <> " datepicker"
-    opts = Keyword.put(opts, :class, class)
+
+    data =
+      Keyword.get(opts, :data, [])
+      |> Keyword.put(:toggle, "datepicker")
+
+    opts =
+      opts
+      |> Keyword.put(:class, class)
+      |> Keyword.put(:data, data)
 
     # format value string
     {format, opts} = Keyword.pop(opts, :format)
