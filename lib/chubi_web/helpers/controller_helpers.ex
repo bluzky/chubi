@@ -36,7 +36,7 @@ defmodule ChubiWeb.ControllerHelpers do
 
   # render first matched template
   def render_first_match(conn, template_list, assigns) do
-    theme = Application.get_env(:chubi, :theme)
+    theme = ChubiWeb.ThemeHelpers.current_theme_name()
     root = Phoenix.Template.module_to_template_root(view_module(conn), ChubiWeb, "View")
     root = ChubiWeb.ThemeHelpers.current_theme_directory("templates/#{root}")
 

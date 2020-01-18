@@ -255,7 +255,7 @@ defmodule Chubi.Content do
   defp parse_content(%{"content" => content} = params) do
     format = params["format"] || Application.get_env(:chubi, :post_format) || "html"
     parser = Keyword.get(@content_parser_map, String.to_atom(format))
-    attrs = parser.parse(content)
+    attrs = parser.parse(content, params)
 
     Map.merge(params, attrs)
     |> Map.put("format", format)

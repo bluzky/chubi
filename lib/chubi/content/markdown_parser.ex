@@ -1,5 +1,5 @@
 defmodule Chubi.Content.MarkdownParser do
-  def parse(data) do
+  def parse(data, _params) do
     [frontmatter, markdown] = String.split(data, ~r/\r*\n-{3,}\r*\n/, parts: 2)
 
     parse_meta(frontmatter)
