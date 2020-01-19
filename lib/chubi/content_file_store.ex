@@ -47,8 +47,8 @@ defmodule Chubi.ContentFileStore do
         post
         |> Map.drop([:__meta__, :__struct__])
         |> Map.merge(%{
-          categories: Enum.join(Enum.map(post.categories, & &1.name)),
-          tags: Enum.join(Enum.map(post.tags, & &1.name))
+          categories: Enum.map(post.categories, & &1.name),
+          tags: Enum.map(post.tags, & &1.name)
         })
         |> Jason.encode!()
     end
