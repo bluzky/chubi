@@ -57,7 +57,7 @@ defmodule ChubiWeb do
 
       import Plug.Conn
       import ChubiWeb.Gettext
-      alias ChubiWeb.Router.Helpers, as: Routes
+      alias ChubiWeb.AdminRouter.Helpers, as: Routes
     end
   end
 
@@ -86,7 +86,7 @@ defmodule ChubiWeb do
       import ChubiWeb.Admin.InputHelpers
       import ChubiWeb.Admin.ViewHelpers
       import ChubiWeb.Gettext
-      alias ChubiWeb.Router.Helpers, as: Routes
+      alias ChubiWeb.AdminRouter.Helpers, as: Routes
     end
   end
 

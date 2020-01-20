@@ -4,8 +4,8 @@
       <div class="card profile">
         <div class="card-body p-6 clearfix">
           <div class="btn-list float-right">
-            <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
-            <a href="<%= Routes.preview_path(@conn, :show_page, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-eye"></i> <%= gettext "Preview" %> </a>
+            <a href="<%= Routes.page_path(@conn, :edit, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-edit-2"></i> <%= gettext "Edit" %> </a>
+            <a href="<%= ChubiWeb.Router.Helpers.preview_path(@conn, :show_page, @page) %>" class="btn btn-secondary btn-sm"> <i class="fe fe-eye"></i> <%= gettext "Preview" %> </a>
           </div>
 
           <h2 class="fw-bold mb-0 text-primary"><%= @page.title %></h2>
@@ -25,7 +25,7 @@
           </div>
 
           <div class="mt-7">
-            <a href="<%= Routes.admin_page_path(@conn, :edit, @page) %>" type="submit" class="btn btn-secondary"> <i class="fe fe-edit-2 mr-1"></i><%= gettext "Edit" %></a>
+            <a href="<%= Routes.page_path(@conn, :edit, @page) %>" type="submit" class="btn btn-secondary"> <i class="fe fe-edit-2 mr-1"></i><%= gettext "Edit" %></a>
           </div>
 
         </div>

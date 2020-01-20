@@ -14,5 +14,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.admin_tag_path(@conn, :edit, @tag) %></span>
-<span><%= link "Back", to: Routes.admin_tag_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.tag_path(@conn, :edit, @tag) %></span>
+<span><%= link "Back", to: Routes.tag_path(@conn, :index) %></span>

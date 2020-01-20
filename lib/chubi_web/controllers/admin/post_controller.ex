@@ -31,7 +31,7 @@ defmodule ChubiWeb.Admin.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: Routes.admin_post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
@@ -63,7 +63,7 @@ defmodule ChubiWeb.Admin.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: Routes.admin_post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         conn
@@ -78,7 +78,7 @@ defmodule ChubiWeb.Admin.PostController do
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: Routes.admin_post_path(conn, :index))
+    |> redirect(to: Routes.post_path(conn, :index))
   end
 
   defp put_meta(conn) do

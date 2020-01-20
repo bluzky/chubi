@@ -21,7 +21,7 @@
 
               <%= for post <- @posts do %>
                 <tr>
-                  <td> <a href="<%= Routes.admin_post_path(@conn, :show, post) %>" class=""><%= post.title %></a>
+                  <td> <a href="<%= Routes.post_path(@conn, :show, post) %>" class=""><%= post.title %></a>
                   </td>
 
                   <td>
@@ -44,8 +44,8 @@
                       <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
                       <div class="dropdown-menu dropdown-menu-right">
                         <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Publish </a> -->
-                        <a href="<%= Routes.admin_post_path(@conn, :edit, post) %>" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
-                        <%= link to: Routes.admin_post_path(@conn, :delete, post), class: "dropdown-item", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
+                        <a href="<%= Routes.post_path(@conn, :edit, post) %>" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit</a>
+                        <%= link to: Routes.post_path(@conn, :delete, post), class: "dropdown-item", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
                           <i class="dropdown-icon fe fe-x"></i> <%= gettext "Delete" %></a>
                         <% end %>
                       </div>

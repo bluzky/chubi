@@ -66,12 +66,21 @@ defmodule Chubi.ContentFileStore do
     end
   end
 
+  defp file_name(post) do
+    date = Timex.format!(post.date || post.inserted_at, "{YYYY}-{0M}-{0D}")
+    "#{date}-#{post.slug}.#{extension(post)}"
+  end
+
   defp file_path(post) do
-    Path.join(directory(post), "#{post.slug}.#{extension(post)}")
+    Path.join(directory(post), file_name(post))
   end
 
   def write(post) do
     File.write(file_path(post), content(post), [:write])
+  end
+
+  def write_mem(post) do
+    {file_name(post), content(post)}
   end
 
   def delete(post) do

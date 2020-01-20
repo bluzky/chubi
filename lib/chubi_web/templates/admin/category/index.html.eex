@@ -16,13 +16,13 @@
       <td><%= category.slug %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.admin_category_path(@conn, :show, category) %></span>
-        <span><%= link "Edit", to: Routes.admin_category_path(@conn, :edit, category) %></span>
-        <span><%= link "Delete", to: Routes.admin_category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.category_path(@conn, :show, category) %></span>
+        <span><%= link "Edit", to: Routes.category_path(@conn, :edit, category) %></span>
+        <span><%= link "Delete", to: Routes.category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Category", to: Routes.admin_category_path(@conn, :new) %></span>
+<span><%= link "New Category", to: Routes.category_path(@conn, :new) %></span>

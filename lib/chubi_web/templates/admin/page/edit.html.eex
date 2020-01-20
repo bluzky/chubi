@@ -1,6 +1,6 @@
 <div class="container">
 
-          <%= render "form.html", Map.put(assigns, :action, Routes.admin_page_path(@conn, :update, @page)) %>
+          <%= render "form.html", Map.put(assigns, :action, Routes.page_path(@conn, :update, @page)) %>
 </div>
 
 
