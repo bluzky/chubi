@@ -8,8 +8,8 @@
     sub_title: "Khu vườn xanh mướt và một tâm hồn yêu cây",
     intro:
       "Sói không còn thích ăn thịt nữa, Sói thích ăn chay, yêu hoa và thích đắm mình trong những khu vườn xanh yên bình",
-    image: "/images/chagio.jpg",
-    ga: "UA-40665301-5",
+    image: "/images/cover.jpg",
+    ga: "UA-40665301-6",
     author: %{
       fullname: "Sói sắp già",
       email: "bluesky.1289@gmail.com",
