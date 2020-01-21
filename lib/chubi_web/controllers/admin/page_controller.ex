@@ -27,7 +27,7 @@ defmodule ChubiWeb.Admin.PageController do
       {:ok, page} ->
         conn
         |> put_flash(:info, "Page created successfully.")
-        |> redirect(to: Routes.admin_page_path(conn, :show, page))
+        |> redirect(to: Routes.page_path(conn, :show, page))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -54,7 +54,7 @@ defmodule ChubiWeb.Admin.PageController do
       {:ok, page} ->
         conn
         |> put_flash(:info, "Page updated successfully.")
-        |> redirect(to: Routes.admin_page_path(conn, :show, page))
+        |> redirect(to: Routes.page_path(conn, :show, page))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", page: page, changeset: changeset)
@@ -67,6 +67,6 @@ defmodule ChubiWeb.Admin.PageController do
 
     conn
     |> put_flash(:info, "Page deleted successfully.")
-    |> redirect(to: Routes.admin_page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

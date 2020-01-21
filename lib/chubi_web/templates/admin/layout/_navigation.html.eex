@@ -14,11 +14,11 @@
       <div class="col-lg order-lg-first">
         <ul class="nav nav-tabs border-0 flex-column flex-lg-row justify-content-center">
           <li class="nav-item">
-            <a href="<%= Routes.admin_post_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PostController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Post" %></a>
+            <a href="<%= Routes.post_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PostController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Post" %></a>
           </li>
 
           <li class="nav-item">
-            <a href="<%= Routes.admin_page_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PageController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Page" %></a>
+            <a href="<%= Routes.page_path(@conn, :index) %>" class="nav-link <%= nav_state(@conn, [ChubiWeb.Admin.PageController]) %>"><i class="fe fe-edit-2"></i> <%= gettext "Page" %></a>
           </li>
           <li class="nav-item">
             <div class="dropdown">
@@ -27,9 +27,17 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <%= for theme <- ChubiWeb.ThemeHelpers.list_theme() do %>
-                <a class="dropdown-item" href="<%= Routes.admin_setting_path(@conn, :set_theme, theme: theme.identifier) %>"><%= theme.name %></a>
+                <a class="dropdown-item" href="<%= Routes.setting_path(@conn, :set_theme, theme: theme.identifier) %>"><%= theme.name %></a>
                 <% end %>
               </div>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-settings"></i> <%= gettext "Settings" %></a>
+            <div class="dropdown-menu dropdown-menu-arrow" x-placement="bottom-start">
+              <a href="<%= Routes.setting_path(@conn, :export_content) %>" class="dropdown-item "><%= gettext "Export" %></a>
+              <a href="<%= Routes.setting_path(@conn, :select_import) %>" class="dropdown-item "><%= gettext "Import" %></a>
             </div>
           </li>
 

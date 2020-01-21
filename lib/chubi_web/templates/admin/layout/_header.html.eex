@@ -1,7 +1,7 @@
 <div class="header py-4">
   <div class="container">
     <div class="d-flex">
-      <a class="header-brand" href="<%= Routes.admin_page_path(@conn, :index) %>">
+      <a class="header-brand" href="<%= Routes.page_path(@conn, :index) %>">
         <img src="../demo/brand/tabler.svg" class="header-brand-img" alt="Chubi">
       </a>
       <div class="d-flex order-lg-2 ml-auto">
