@@ -1,0 +1,24 @@
+<%=  if message = get_flash(@conn, :error) do %>
+  <div class="alert alert-icon alert-danger border-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span>
+    </button> <i class="fe fe-x-circle list-icon"></i>  <%= message %>
+  </div>
+<% end %>
+
+<%=  if message = get_flash(@conn, :info) do %>
+  <div class="alert alert-icon alert-info border-info alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span></span>
+    </button> <i class="fe fe-info list-icon"></i>  <%= message %></div>
+<% end %>
+
+<%=  if message = get_flash(@conn, :success) do %>
+  <div class="alert alert-icon alert-success border-info alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span></span>
+    </button> <i class="fe fe-check-circle list-icon"></i>  <%= message %></div>
+<% end %>
+
+<%=  if message = get_flash(@conn, :warning) do %>
+  <div class="alert alert-icon alert-warning border-info alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span></span>
+    </button> <i class="fe fe-alert-triangle list-icon"></i>  <%= message %></div>
+<% end %>

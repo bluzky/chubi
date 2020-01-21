@@ -40,6 +40,7 @@ defmodule ChubiWeb.AdminRouter do
 
     get("/settings/set_theme", SettingController, :set_theme)
     get("/settings/export", SettingController, :export_content)
+    get("/settings/select_import", SettingController, :select_import)
     post("/settings/import", SettingController, :import_content)
   end
 end

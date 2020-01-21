@@ -35,6 +35,9 @@
         <div class="flex-grow-1" >
 
           <div class="" style="height: 100%;">
+            <div class="m-3">
+              <%=  render "_alert.html", assigns %>
+            </div>
             <%= render @view_module, @view_template, assigns %>
           </div>
 

@@ -37,7 +37,7 @@
             <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-settings"></i> <%= gettext "Settings" %></a>
             <div class="dropdown-menu dropdown-menu-arrow" x-placement="bottom-start">
               <a href="<%= Routes.setting_path(@conn, :export_content) %>" class="dropdown-item "><%= gettext "Export" %></a>
-              <a href="import" class="dropdown-item "><%= gettext "Import" %></a>
+              <a href="<%= Routes.setting_path(@conn, :select_import) %>" class="dropdown-item "><%= gettext "Import" %></a>
             </div>
           </li>
 
