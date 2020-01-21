@@ -103,6 +103,8 @@ If there is only 2 sections, the second section will be used as post content. If
 - Support Shortcode
 - Support Mardown format
 - Support theme
+- Writing in markdown or html
+_ Export content and import from zip file
 
 
 # 4. What it doesn't support
