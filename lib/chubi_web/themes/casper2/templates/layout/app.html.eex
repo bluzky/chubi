@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <%= partial "head.html", assigns %>
+
+  <body class="home-template">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= @site_params[:ga] %>"></script>
+    <script>
+     window.dataLayer = window.dataLayer || [];
+     function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', '<%= @site_params[:ga] %>');
+    </script>
+
+    <div class="site-wrapper">
+      <%= partial "navigation.html", assigns %>
+      <%= render @view_module, @view_template, assigns %>
+      <%= partial "footer.html", assigns %>
+    </div>
+  </body>
+</html>

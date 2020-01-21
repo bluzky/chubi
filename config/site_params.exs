@@ -1,11 +1,11 @@
 [
-  theme: "simple",
+  theme: "casper2",
   locale: "en",
-  post_format: "html",
+  post_format: "markdown",
   base_url: "http://localhost:4000",
   site_params: [
-    title: "Chả giò cá",
-    sub_title: "Hương vị của biển",
+    title: "CHUBI",
+    sub_title: "A Simple phoenix blog app",
     intro:
       "Chả giò cá là món ăn đặc sản nổi tiếng của vùng đất Bà Rịa. Chả giò cá là sự kết hợp hài hoà từ rau xanh tươi của núi và cá mềm ngọt từ biển khơi.",
     image: "/images/chagio.jpg",
@@ -14,6 +14,7 @@
       fullname: "Chuso Foods",
       email: "bluesky.1289@gmail.com",
       avatar: "/images/logo.png",
+      website: "https://github.com/bluzky",
       bio:
         "Thấu hiểu được mong muốn về những bữa ăn tươi ngon và an toàn cho gia đình bạn. Chuso Foods lựa chọn và đem đến cho bạn những thực phẩm vệ sinh, an toàn và tốt cho sức khoẻ."
     },

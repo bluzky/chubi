@@ -1,0 +1,32 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Language" content="en" />
+
+  <meta name="csrf" content="<%= Plug.CSRFProtection.get_csrf_token() %>">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+
+  <title><%= assigns[:title] || @site_params[:title] %></title>
+
+  <% seo = assigns[:seo] || %{} %>
+  <meta property="og:title" content="<%= seo[:title] || @site_params[:title] %>"/>
+  <meta property="og:url" content="<%= current_url(@conn) %>"/>
+  <meta property="og:site_name" content="<%= @site_params[:title] %>"/>
+  <meta property="og:image" content="<%= seo[:image] || Routes.static_url(@conn, @site_params[:image]) %>"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:description" content="<%= seo[:description] || @site_params[:intro] %>"/>
+
+
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/casper2/css/screen.css") %>">
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/casper2/css/casper-two.css") %>">
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/casper2/css/highlight.css") %>">
+
+
+  <%= raw(render_existing(view_module(@conn), "styles." <> view_template(@conn), assigns)) %>
+</head>

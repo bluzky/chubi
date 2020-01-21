@@ -1,0 +1,12 @@
+<main id="site-main" class="site-main outer" role="main">
+  <div class="inner">
+    <div class="post-feed">
+      <%= for post <- @posts do %>
+ 	      <%= partial("post_item.html", Map.put(assigns, :post, post)) %>
+      <% end %>
+
+    </div>
+
+    <%= partial "pagination.html", assigns %>
+  </div>
+</main>

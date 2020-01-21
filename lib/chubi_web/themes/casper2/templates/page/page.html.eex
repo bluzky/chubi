@@ -1,0 +1,19 @@
+<main id="site-main" class="site-main outer" role="main">
+  <div class="inner">
+    <main id="site-main" class="site-main outer" role="main">
+      <div class="inner">
+        <article class="post-full post page no-image">
+          <header class="post-full-header">
+            <h1 class="post-full-title"><%= @page.title %></h1>
+          </header>
+
+          <section class="post-full-content">
+            <div class="kg-card-markdown">
+              <p>  <%= compile_shortcode @page.html_content %></p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+  </div>
+</main>

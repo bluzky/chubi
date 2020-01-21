@@ -1,0 +1,12 @@
+<nav class="pagination" role="navigation">
+  <span class="page-number">
+    <%=  if @paginator.has_next? do %>
+      <a class="newer-posts" href="<%= prev_page_path(@conn, @paginator) %>">← <span class="hide">Next Posts</span></a>
+    <% end %>
+    <span class="hide">Page <%= @paginator.page %> of <%= @paginator.total_page %></span>&nbsp;</span>
+    <%=  if @paginator.has_next? do %>
+      <a class="older-posts" href="<%= next_page_path(@conn, @paginator) %>">
+        <span class="hide">Previous Posts</span> →</a>
+    <% end %>
+
+</nav>

@@ -1,0 +1,18 @@
+<footer class="site-footer outer">
+  <div class="site-footer-content inner">
+    <section class="copyright" style="line-height: 1.3em;">
+      <a href="#">EM</a> &copy; 2017 <br>
+      <span style="font-size: 0.8em; color: #555;">Chubi port of <a href="https://github.com/TryGhost/Casper">Casper 2.1.7</a> by <a href="#">Bluzky</a></span>
+    </section>
+    <nav class="site-footer-nav">
+      <a href="/">Latest Posts</a>
+      <a href="https://www.facebook.com/ghost" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com/tryghost" target="_blank" rel="noopener">Twitter</a>
+      <a href="#" target="_blank" rel="noopener">Github</a>
+    </nav>  
+  </div>
+</footer>
+
+
+<script src="<%= Routes.static_path(@conn, "/casper2/js/highlight.pack.js") %>"></script>
+<script>hljs.initHighlightingOnLoad();</script>

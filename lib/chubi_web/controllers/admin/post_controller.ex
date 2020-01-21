@@ -1,5 +1,5 @@
 defmodule ChubiWeb.Admin.PostController do
-  use ChubiWeb, :controller
+  use ChubiWeb, :admin_controller
 
   alias Chubi.Content
   alias Chubi.Content.PostQuery
