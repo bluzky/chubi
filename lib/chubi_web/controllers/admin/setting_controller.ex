@@ -1,5 +1,5 @@
 defmodule ChubiWeb.Admin.SettingController do
-  use ChubiWeb, :controller
+  use ChubiWeb, :admin_controller
   alias Chubi.Content
 
   def set_theme(conn, %{"theme" => theme}) do
@@ -41,12 +41,15 @@ defmodule ChubiWeb.Admin.SettingController do
   end
 
   def select_import(conn, _) do
+    render(conn, "select_import.html")
   end
 
-  def import_content(conn, %{%{path: path} => file}) do
-    with {:ok, files} <- :zip.extract(path, [:memory]) do
+  def import_content(conn, %{"file" => %{path: path}}) do
+    with {:ok, files} <- :zip.extract(String.to_charlist(path), [:memory]) do
       rs =
-        Enum.map(files, fn {_filename, content} ->
+        Enum.map(files, fn {file_path, content} ->
+          file_path = to_string(file_path)
+
           attrs =
             case Path.extname(file_path) do
               ".md" -> %{"content" => content, "format" => "markdown"}
@@ -63,12 +66,16 @@ defmodule ChubiWeb.Admin.SettingController do
       success = Enum.filter(rs, &(elem(&1, 0) == :ok))
 
       conn
-      |> put_flash(:error, gettext("Cannot import content"))
-      |> redirect(to: Routes.setting_path(conn, :select_import))
+      |> put_flash(
+        :info,
+        gettext("%{success}/%{total} is imported", %{success: length(success), total: length(rs)})
+      )
+      |> redirect(to: Routes.post_path(conn, :index))
     else
-      conn
-      |> put_flash(:error, gettext("Cannot import content"))
-      |> redirect(to: Routes.setting_path(conn, :select_import))
+      err ->
+        conn
+        |> put_flash(:error, gettext("Cannot import content"))
+        |> redirect(to: Routes.setting_path(conn, :select_import))
     end
   end
 end

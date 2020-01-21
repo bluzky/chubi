@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row row-cards row-deck mt-md-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="card profile">
+        <div class="card-body p-6 clearfix">
+          <h2 class="fw-bold mb-0 text-primary"><%= gettext("Select ZIP file content") %></h2>
+
+          <form method="post" class="mt-5" action="<%= Routes.setting_path(@conn, :import_content) %>" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>" >
+              <input type="file" name="file" >
+            </div>
+            <button class="btn btn-primary"> <i class="fe fe-flash mr-1"></i> <%= gettext("Import") %></button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
