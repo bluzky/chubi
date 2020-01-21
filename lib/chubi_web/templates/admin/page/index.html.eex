@@ -2,7 +2,7 @@
   <div class="row row-cards row-deck mt-md-5">
 
     <div class="col-md-12">
-      <a href="<%= Routes.admin_page_path(@conn, :new) %>" class="btn btn-primary mr-auto">
+      <a href="<%= Routes.page_path(@conn, :new) %>" class="btn btn-primary mr-auto">
         <i class="fe fe-plus mr-1"></i>
         <%= gettext "New page" %></a>
     </div>
@@ -23,7 +23,7 @@
               <%= for page <- @pages do %>
                 <tr>
                   <td>
-                    <a href="<%= Routes.admin_page_path(@conn, :show, page) %>" class="fw-bold d-block"><%= page.title %></a>
+                    <a href="<%= Routes.page_path(@conn, :show, page) %>" class="fw-bold d-block"><%= page.title %></a>
                     <a href="<%= Routes.page_path(@conn, :show, page) %>" class="small text-muted"><%= Routes.page_path(@conn, :show, page) %></a>
                   </td>
 
@@ -36,8 +36,8 @@
                   </td>
 
                   <td class="text-center">
-                    <a href="<%= Routes.admin_page_path(@conn, :edit, page) %>" class="btn btn-secondary btn-sm"><i class="fe fe-edit-2"></i> Edit</a>
-                    <%= link to: Routes.admin_page_path(@conn, :delete, page), class: "btn btn-danger btn-sm", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
+                    <a href="<%= Routes.page_path(@conn, :edit, page) %>" class="btn btn-secondary btn-sm"><i class="fe fe-edit-2"></i> Edit</a>
+                    <%= link to: Routes.page_path(@conn, :delete, page), class: "btn btn-danger btn-sm", method: "delete", data: [confirm: gettext("Are you sure?")] do %>
                       <i class="fe fe-x"></i> <%= gettext "Delete" %></a>
                     <% end %>
 

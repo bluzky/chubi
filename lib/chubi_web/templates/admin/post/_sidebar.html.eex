@@ -1,18 +1,18 @@
       <div class="mb-3">
-        <a href="<%= Routes.admin_post_path(@conn, :new) %>" class="btn btn-primary btn-block">
+        <a href="<%= Routes.post_path(@conn, :new) %>" class="btn btn-primary btn-block">
           <i class="fe fe-plus mr-2"></i>
           <%= gettext "New post" %></a>
       </div>
 
       <div class="list-group list-group-transparent mb-0">
-        <a href="<%= Routes.admin_post_path(@conn, :index, draft: false) %>" class="list-group-item list-group-item-action d-flex align-items-center active">
+        <a href="<%= Routes.post_path(@conn, :index, draft: false) %>" class="list-group-item list-group-item-action d-flex align-items-center active">
           <i class="fe fe-inbox mr-2"></i> <%= gettext "Published" %>
         </a>
-        <a href="<%= Routes.admin_post_path(@conn, :index, draft: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
+        <a href="<%= Routes.post_path(@conn, :index, draft: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
           <i class="fe fe-file mr-2"></i> <%= gettext "Draft" %>
         </a>
 
-        <a href="<%= Routes.admin_post_path(@conn, :index, trashed: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
+        <a href="<%= Routes.post_path(@conn, :index, trashed: true) %>" class="list-group-item list-group-item-action d-flex align-items-center">
           <i class="fe fe-trash mr-2"></i> <%= gettext "Trash" %>
         </a>
       </div>
