@@ -48,12 +48,17 @@ defmodule ChubiWeb.Admin.SettingController do
     with {:ok, files} <- :zip.extract(String.to_charlist(path), [:memory]) do
       rs =
         Enum.map(files, fn {file_path, content} ->
-          file_path = to_string(file_path)
+          file_path =
+            to_string(file_path)
+            |> IO.inspect()
 
           attrs =
             case Path.extname(file_path) do
-              ".md" -> %{"content" => content, "format" => "markdown"}
-              _ -> Jason.decode!(content)
+              ".md" ->
+                %{"content" => content, "format" => "markdown"}
+
+              _ext ->
+                Jason.decode!(content)
             end
 
           if String.starts_with?(file_path, "posts") do
