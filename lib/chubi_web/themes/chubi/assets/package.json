@@ -62,6 +62,6 @@
     "codemirror": "^5.49.2",
     "codemirror-mode-elixir": "^1.1.2",
     "highlight.js": "^9.16.2",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   }
 }
